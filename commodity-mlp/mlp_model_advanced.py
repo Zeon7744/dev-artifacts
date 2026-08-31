@@ -322,3 +322,30 @@ if __name__ == '__main__':
     print(f"\nTop 5 重要特征:")
     for i, (name, imp) in enumerate(list(importance.items())[:5], 1):
         print(f"  {i}. {name}: {imp:.4f}")
+    
+    def generate_signals(self, features: pd.DataFrame, threshold: float = None, mode: str = 'conservative') -> np.ndarray:
+        """
+        生成交易信号
+        
+        参数:
+            mode: 'conservative' 保守模式（高置信度才交易）
+                  'aggressive' 激进模式（低阈值频繁交易）
+        """
+        proba = self.predict_proba(features)
+        if threshold is None:
+            threshold = self.threshold
+        
+        if mode == 'conservative':
+            # 保守模式：只在高置信度时交易
+            conservative_threshold = max(threshold, 0.6)
+            signals = np.where(proba >= conservative_threshold, 1, 
+                              np.where(proba <= (1 - conservative_threshold), 0, -1))
+        else:
+            # 激进模式
+            signals = (proba >= threshold).astype(int)
+        
+        return signals
+    
+    def generate_aggressive_signals(self, features: pd.DataFrame, threshold: float = None) -> np.ndarray:
+        """生成激进交易信号（低阈值，频繁交易）"""
+        return self.generate_signals(features, threshold, mode='aggressive')
