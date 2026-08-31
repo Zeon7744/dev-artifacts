@@ -32,33 +32,51 @@ class CommodityDataFetcher:
         days: int = 800,
         seed: Optional[int] = None
     ) -> pd.DataFrame:
-        """生成模拟大宗商品数据"""
+        """生成模拟大宗商品数据（含趋势和波动聚集）"""
         if symbol not in COMMODITY_CONFIG:
             raise ValueError(f"不支持的商品代码: {symbol}")
         
         config = COMMODITY_CONFIG[symbol]
         base_price = config['base_price']
         
-        if seed is not None:
-            np.random.seed(seed)
+        # 使用商品符号作为种子基础，确保每个商品数据不同
+        if seed is None:
+            seed = sum(ord(c) * (i + 1) for i, c in enumerate(symbol)) % (2**32)
+        
+        np.random.seed(seed)
         
         # 生成日期序列
-        dates = pd.date_range(end=datetime.now(), periods=days, freq='D')
+        dates = pd.date_range(end=datetime.now(), periods=days, freq='B')  # 工作日
         
-        # 模拟价格序列（几何布朗运动）
-        volatility = 0.02  # 日波动率
-        drift = 0.0001     # 日漂移
+        # 模拟价格序列（带趋势和波动聚集的GBM）
+        # 1. 长期趋势
+        trend_duration = np.random.randint(50, 150)
+        trend_direction = np.random.choice([-1, 1])
+        trend_strength = np.random.uniform(0.0001, 0.0005)
         
+        # 2. 波动聚集（GARCH-like）
+        base_volatility = 0.015
+        volatility = np.zeros(days)
+        volatility[0] = base_volatility
+        for i in range(1, days):
+            # 波动聚集：高波动后倾向于保持高波动
+            volatility[i] = 0.95 * volatility[i-1] + 0.05 * np.random.uniform(0.01, 0.03)
+        
+        # 3. 收益率生成
+        drift = trend_direction * trend_strength
         returns = np.random.normal(drift, volatility, days)
+        
+        # 4. 生成价格
         prices = base_price * np.exp(np.cumsum(returns))
         
-        # 生成OHLC数据
-        np.random.seed(42 if seed is None else seed + 1)
-        volumes = np.random.randint(10000, 100000, days).astype(float)
+        # 5. 生成OHLC数据
+        np.random.seed(seed + 1)
+        volumes = np.random.lognormal(mean=10, sigma=0.5, size=days).astype(float)
         
-        high = prices * (1 + np.random.uniform(0, 0.01, days))
-        low = prices * (1 - np.random.uniform(0, 0.01, days))
-        open_prices = prices * (1 + np.random.uniform(-0.005, 0.005, days))
+        intraday_vol = volatility * 0.5  # 日内波动约为日波动的50%
+        high = prices * (1 + np.random.uniform(0, intraday_vol, days))
+        low = prices * (1 - np.random.uniform(0, intraday_vol, days))
+        open_prices = prices * (1 + np.random.uniform(-intraday_vol/2, intraday_vol/2, days))
         
         df = pd.DataFrame({
             'Date': dates,
@@ -69,7 +87,7 @@ class CommodityDataFetcher:
             'Volume': volumes
         })
         
-        # 添加目标变量：未来5日涨跌（二进制）
+        # 添加目标变量：未来5日涨跌
         df['Target'] = (df['Close'].shift(-5) > df['Close']).astype(int)
         
         return df.dropna().reset_index(drop=True)
