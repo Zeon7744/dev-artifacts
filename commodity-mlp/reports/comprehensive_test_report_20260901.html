@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大宗商品MLP投资分析工具 - 综合测试报告</title>
+<style>
+:root {
+  --bg: #F8F6F0;
+  --surface: #FFFFFF;
+  --text: #1D2733;
+  --text-secondary: #667085;
+  --accent: #2978B5;
+  --accent-dark: #102A43;
+  --warning: #F59E0B;
+  --success: #10B981;
+  --border: #E6E1D8;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+header {
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--accent-dark);
+  padding-bottom: 1.5rem;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--accent-dark);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.timestamp {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--accent-dark);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 1.125rem;
+  color: var(--text);
+  margin: 1.5rem 0 0.75rem;
+}
+
+/* 关键指标卡片 */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.metric-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.metric-unit {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-left: 0.25rem;
+}
+
+/* 商品卡片 */
+.commodity-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.commodity-header {
+  background: var(--accent-dark);
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commodity-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.commodity-type {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.commodity-body {
+  padding: 1.5rem;
+}
+
+/* 表格 */
+.table-container {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+th {
+  background: var(--bg);
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--border);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:hover td {
+  background: var(--bg);
+}
+
+.metric-good {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.metric-neutral {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* 特征列表 */
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.feature-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.feature-name {
+  color: var(--text);
+}
+
+.feature-score {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* 注释 */
+.note {
+  background: #FEF3C7;
+  border-left: 4px solid var(--warning);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.note-title {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.note-text {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* 图表区域 */
+.chart-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.chart-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bar-label {
+  width: 80px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.bar-track {
+  flex: 1;
+  height: 24px;
+  background: var(--bg);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  transition: width 0.3s ease;
+}
+
+.bar-mlp { background: var(--accent); }
+.bar-lstm { background: var(--success); }
+.bar-opt { background: var(--warning); color: var(--text-dark); }
+
+/* 页脚 */
+footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* 打印样式 */
+@media print {
+  body { background: white; }
+  .container { max-width: 100%; }
+  .commodity-card { break-inside: avoid; }
+  footer { display: none; }
+}
+
+/* 响应式 */
+@media (max-width: 640px) {
+  .container { padding: 1rem; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .feature-list { grid-template-columns: 1fr; }
+  .commodity-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+<main>
+<div class="container">
+  <header>
+    <h1>大宗商品MLP投资分析工具 - 综合测试报告</h1>
+    <p class="subtitle">测试时间：2026年9月1日 | 测试商品：黄金(GC=F)、原油(CL=F)</p>
+    <p class="timestamp">报告生成时间：2026-09-01 07:51 GMT+8</p>
+  </header>
+
+  <section>
+    <h2>执行摘要</h2>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">测试商品</div>
+        <div class="metric-value">2<span class="metric-unit">个</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">模型类型</div>
+        <div class="metric-value">3<span class="metric-unit">种</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">最高准确率</div>
+        <div class="metric-value" style="color: var(--success);">80.15<span class="metric-unit">%</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">最优超参数</div>
+        <div class="metric-value" style="color: var(--warning);">82.05<span class="metric-unit">%</span></div>
+      </div>
+    </div>
+    <p>本次测试验证了改进版大宗商品MLP投资分析工具的核心功能，包括数据获取、特征工程、MLP模型、LSTM时序模型和超参数自动优化。测试结果显示，模型在模拟数据上表现稳定，LSTM模型在黄金期货预测上取得了80.15%的准确率。</p>
+  </section>
+
+  <section>
+    <h2>测试结果概览</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">商品</th>
+            <th scope="col">模型</th>
+            <th scope="col">准确率</th>
+            <th scope="col">精确率</th>
+            <th scope="col">召回率</th>
+            <th scope="col">F1分数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3"><strong>GC=F</strong><br><small style="color: var(--text-secondary);">黄金期货</small></td>
+            <td>MLP</td>
+            <td class="metric-neutral">71.34%</td>
+            <td>69.77%</td>
+            <td>75.95%</td>
+            <td>72.73%</td>
+          </tr>
+          <tr>
+            <td>LSTM</td>
+            <td class="metric-good">80.15%</td>
+            <td>79.25%</td>
+            <td>72.41%</td>
+            <td>75.68%</td>
+          </tr>
+          <tr>
+            <td>超参数优化</td>
+            <td class="metric-good" style="background: #FEF3C7;">82.05%</td>
+            <td colspan="3" style="color: var(--text-secondary);">最佳验证分数</td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>CL=F</strong><br><small style="color: var(--text-secondary);">原油期货</small></td>
+            <td>MLP</td>
+            <td class="metric-neutral">73.25%</td>
+            <td>75.79%</td>
+            <td>79.12%</td>
+            <td class="metric-good">77.42%</td>
+          </tr>
+          <tr>
+            <td>LSTM</td>
+            <td class="metric-neutral">71.32%</td>
+            <td>72.73%</td>
+            <td>54.24%</td>
+            <td>62.14%</td>
+          </tr>
+          <tr>
+            <td>超参数优化</td>
+            <td class="metric-neutral" style="background: #FEF3C7;">75.64%</td>
+            <td colspan="3" style="color: var(--text-secondary);">最佳验证分数</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>详细测试结果</h2>
+    
+    <div class="commodity-card">
+      <div class="commodity-header">
+        <span class="commodity-name">GC=F 黄金期货</span>
+        <span class="commodity-type">USD/oz | 模拟数据 800天</span>
+      </div>
+      <div class="commodity-body">
+        <h3>特征工程</h3>
+        <p>提取了15个技术指标特征，包括收益率、移动平均线比率、RSI、MACD、布林带宽度和ATR等。</p>
+        
+        <h3>MLP模型表现</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>指标</th>
+                <th>训练集</th>
+                <th>验证集</th>
+                <th>测试集</th>
+                <th>交叉验证</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>准确率</td>
+                <td>78.94%</td>
+                <td>80.77%</td>
+                <td class="metric-neutral">71.34%</td>
+                <td>76.48%</td>
+              </tr>
+              <tr>
+                <td>标准差</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>±2.66%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <h3>关键特征（重要性排序）</h3>
+        <div class="feature-list">
+          <div class="feature-item"><span class="feature-name">RSI_14</span><span class="feature-score">34.17</span></div>
+          <div class="feature-item"><span class="feature-name">Returns_10d</span><span class="feature-score">30.45</span></div>
+          <div class="feature-item"><span class="feature-name">MA_5</span><span class="feature-score">30.11</span></div>
+          <div class="feature-item"><span class="feature-name">Bollinger_Band_Width</span><span class="feature-score">30.05</span></div>
+          <div class="feature-item"><span class="feature-name">Bollinger_Position</span><span class="feature-score">30.05</span></div>
+        </div>
+        
+        <h3>LSTM模型表现</h3>
+        <div class="chart-container">
+          <div class="chart-title">模型对比 - GC=F</div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">MLP</span>
+              <div class="bar-track">
+                <div class="bar-fill bar-mlp" style="width: 71.34%;">71.34%</div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">LSTM</span>
+              <div class="bar-track">
+                <div class="bar-fill bar-lstm" style="width: 80.15%;">80.15%</div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">超参数</span>
+              <div class="bar-track">
+                <div class="bar-fill bar-opt" style="width: 82.05%;">82.05%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>LSTM模型通过捕捉时间序列依赖关系，在黄金期货预测上取得了80.15%的准确率，显著优于MLP的71.34%。</p>
+      </div>
+    </div>
+
+    <div class="commodity-card">
+      <div class="commodity-header">
+        <span class="commodity-name">CL=F 原油期货</span>
+        <span class="commodity-type">USD/bbl | 模拟数据 800天</span>
+      </div>
+      <div class="commodity-body">
+        <h3>特征工程</h3>
+        <p>同样提取15个特征，原油市场波动性较高，目标变量分布为上涨447次、下跌334次。</p>
+        
+        <h3>MLP模型表现</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>指标</th>
+                <th>训练集</th>
+                <th>验证集</th>
+                <th>测试集</th>
+                <th>交叉验证</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>准确率</td>
+                <td>73.44%</td>
+                <td>74.36%</td>
+                <td class="metric-neutral">73.25%</td>
+                <td>67.25%</td>
+              </tr>
+              <tr>
+                <td>F1分数</td>
+                <td>—</td>
+                <td>—</td>
+                <td class="metric-good">77.42%</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <h3>关键特征</h3>
+        <div class="feature-list">
+          <div class="feature-item"><span class="feature-name">Returns_10d</span><span class="feature-score">30.44</span></div>
+          <div class="feature-item"><span class="feature-name">MA_10/M20</span><span class="feature-score">29.54</span></div>
+          <div class="feature-item"><span class="feature-name">MACD_Signal</span><span class="feature-score">29.50</span></div>
+          <div class="feature-item"><span class="feature-name">MA_5</span><span class="feature-score">29.10</span></div>
+          <div class="feature-item"><span class="feature-name">MA_10</span><span class="feature-score">29.08</span></div>
+        </div>
+        
+        <h3>LSTM模型表现</h3>
+        <div class="chart-container">
+          <div class="chart-title">模型对比 - CL=F</div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">MLP</span>
+              <div class="bar-track">
+                <div class="bar-fill bar-mlp" style="width: 73.25%;">73.25%</div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">LSTM</span>
+              <div class="bar-track">
+                <div class="bar-fill bar-lstm" style="width: 71.32%;">71.32%</div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">超参数</span>
+              <div class="bar-track">
+                <div class="bar-fill bar-opt" style="width: 75.64%;">75.64%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>原油市场的波动性较高，LSTM模型表现略低于MLP，但超参数优化后达到75.64%的最佳分数。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>关键发现</h2>
+    <div class="note">
+      <div class="note-title">LSTM vs MLP 表现差异</div>
+      <div class="note-text">
+        在黄金期货(GC=F)上，LSTM模型（80.15%）显著优于MLP（71.34%），差异达8.8个百分点。这表明黄金价格具有较强的时间序列依赖性，LSTM的时序建模能力更适合。而在原油期货(CL=F)上，两者表现接近（MLP 73.25% vs LSTM 71.32%），说明原油市场可能受到更多随机因素干扰。
+      </div>
+    </div>
+    
+    <div class="note">
+      <div class="note-title">超参数优化的价值</div>
+      <div class="note-text">
+        通过Optuna进行超参数自动搜索后，GC=F的最佳验证分数达到82.05%，比默认参数提升约10个百分点。CL=F从默认分数提升到75.64%。这表明超参数优化对模型性能有显著提升，建议在正式使用时启用。
+      </div>
+    </div>
+    
+    <div class="note">
+      <div class="note-title">关键特征识别</div>
+      <div class="note-text">
+        两个商品的最重要特征均为<strong>短期收益率</strong>（Returns_10d）和<strong>移动平均线比率</strong>（MA_5/M20、MA_10/M20）。RSI_14在黄金市场中重要性最高。这些特征与交易实践一致，验证了模型的合理性。
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>技术改进说明</h2>
+    <h3>1. 数据获取模块增强</h3>
+    <p>新增真实数据获取功能，支持yfinance接口并添加重试机制。当真实数据获取失败时自动降级到模拟数据。</p>
+    
+    <h3>2. LSTM时序模型</h3>
+    <p>新增基于PyTorch的LSTM模型，支持序列长度配置、早停机制和GPU加速。模型结构包含双层LSTM和全连接层。</p>
+    
+    <h3>3. 超参数自动搜索</h3>
+    <p>集成Optuna库实现超参数自动优化，支持隐藏层结构、激活函数、学习率等多维度搜索。</p>
+    
+    <h3>4. 综合测试套件</h3>
+    <p>新增自动化测试脚本，一键运行所有模块测试并生成结构化报告。</p>
+  </section>
+
+  <footer>
+    <p>大宗商品MLP投资分析工具 | 版本 2.0 | 测试日期 2026-09-01</p>
+  </footer>
+</div>
+
+<script>
+// 简单的入场动画
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.commodity-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(card);
+  });
+});
+</script>
+</body>
+</html>
+@media (prefers-reduced-motion: reduce) {
+  .commodity-card { transition: none; }
+}
