@@ -37,7 +37,7 @@ class BacktestEngine:
     def run_backtest(
         self,
         df: pd.DataFrame,
-        signals: pd.Series,
+        signals,  # 接受array-like类型
         position_size: float = 1.0
     ) -> Dict:
         """
@@ -45,7 +45,7 @@ class BacktestEngine:
         
         参数:
             df: 包含价格数据的DataFrame
-            signals: 预测信号序列（1=买入，0=卖出）
+            signals: 预测信号序列（1=买入，0=卖出）- 支持array/pd.Series/np.ndarray
             position_size: 仓位比例（0-1）
             
         返回:
@@ -57,6 +57,10 @@ class BacktestEngine:
         
         equity = [capital]
         trades_log = []
+        
+        # 转换signals为pandas Series以兼容索引
+        if isinstance(signals, np.ndarray):
+            signals = pd.Series(signals, index=df.index[:len(signals)])
         
         for i in range(len(df)):
             current_price = df['Close'].iloc[i]
