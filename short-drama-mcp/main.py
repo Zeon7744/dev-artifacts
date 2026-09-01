@@ -250,6 +250,36 @@ def optimize_dialogue(filepath: str) -> str:
         return json.dumps({"error": str(e)}, ensure_ascii=False)
 
 
+@mcp.tool()
+def generate_storyboard(filepath: str) -> str:
+    """生成分镜脚本
+    
+    根据剧本内容自动生成视频分镜：
+    - 按场景拆分剧本
+    - 分析每场的情绪和角色
+    - 生成镜头列表（景别/运镜/时长）
+    - 输出 JSON 格式分镜脚本
+    
+    Args:
+        filepath: 剧本文件路径
+    
+    Returns:
+        JSON 格式的分镜脚本，包含各集镜头详情
+    """
+    try:
+        result = generate_storyboard(filepath)
+        if 'error' in result:
+            return json.dumps({"error": result['error']}, ensure_ascii=False, indent=2)
+        
+        # 保存分镜文件
+        output_path = save_storyboard(result)
+        result['output_file'] = output_path
+        
+        return json.dumps(result, ensure_ascii=False, indent=2)
+    except Exception as e:
+        return json.dumps({"error": str(e)}, ensure_ascii=False)
+
+
 def run_server():
     """运行 MCP 服务器"""
     if not MCP_AVAILABLE:
@@ -257,7 +287,7 @@ def run_server():
         sys.exit(1)
     
     print(f"🎬 短剧创作 MCP 服务器启动...")
-    print(f"📍 工具数量: 7")
+    print(f"📍 工具数量: 8")
     print(f"   - check_script_format: 剧本格式校验")
     print(f"   - count_shuang_points: 爽点统计")
     print(f"   - generate_episode_outline: 集纲生成")
@@ -265,6 +295,7 @@ def run_server():
     print(f"   - classify_content: 内容分类")
     print(f"   - create_character_profile: 角色设定生成")
     print(f"   - optimize_dialogue: 对话质量优化")
+    print(f"   - generate_storyboard: 分镜脚本生成")
     print("-" * 50)
     
     mcp.run()
