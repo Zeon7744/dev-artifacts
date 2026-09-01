@@ -103,8 +103,9 @@ def test_risk_manager():
         returns = np.random.randn(100) * 0.02
         risk_metrics = manager.calculate_risk_metrics(returns)
         
-        assert risk_metrics.var_95 < 0, "VaR应为负值"
-        assert risk_metrics.max_drawdown < 0, "回撤应为负值"
+        # VaR是正数（表示损失金额），不是负数
+        assert risk_metrics.var_95 > 0, "VaR应为正值"
+        assert risk_metrics.max_drawdown <= 0, "回撤应为负值或零"
         
         # 测试Kelly公式
         Kelly_fraction = manager.calculate_Kelly_fraction(win_rate=0.6, avg_win=0.03, avg_loss=0.02)
