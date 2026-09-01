@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "total_templates": 3,
+    "extraction_time": "2026-09-01T12:54:44.063832"
+  },
+  "templates": [
+    {
+      "template_id": "tmpl_0001",
+      "name": "220kV主变保护措施单",
+      "equipment_type": "主变保护",
+      "voltage_level": "220kV",
+      "work_type": "其他",
+      "categories": [],
+      "items": [
+        {
+          "seq": "一",
+          "category": "",
+          "subcategory": "",
+          "content": "核实二次措施单与现场实际接线一致",
+          "location": ""
+        },
+        {
+          "seq": "1",
+          "category": "",
+          "subcategory": "三",
+          "content": "在XXP #1主变保护A屏密封涉及220kV 母线失灵保护A启失灵及解复压回路端子共2组出口：1CD28、1KD28；1CD30、1KD30。",
+          "location": "XXP #1主变保护A屏"
+        },
+        {
+          "seq": "2",
+          "category": "",
+          "subcategory": "三",
+          "content": "在XXP #1主变保护A屏密封涉及运行设备220kV母联2012、110kV母联100、10kV分段500开关跳闸回路共3组出口：1CD3、1KD3;1CD12、1KD12;1CD21、1KD21。",
+          "location": "XXP #1主变保护A屏"
+        },
+        {
+          "seq": "3",
+          "category": "",
+          "subcategory": "三",
+          "content": "在XXP #1主变保护A屏密封涉及运行设备10kV分段500备自投闭锁回路共1组出口：1CD23、1KD23。",
+          "location": "XXP #1主变保护A屏"
+        },
+        {
+          "seq": "4",
+          "category": "",
+          "subcategory": "三",
+          "content": "在XXP #1主变保护B屏密封涉及220kV 母线失灵保护B启失灵及解复压回路端子共2组出口：1CD28、1KD28；1CD30、1KD30。",
+          "location": "XXP #1主变保护B屏"
+        },
+        {
+          "seq": "5",
+          "category": "",
+          "subcategory": "三",
+          "content": "在XXP #1主变保护B屏密封涉及运行设备220kV母联2012、110kV母联100、10kV分段500开关跳闸回路共3组出口：1CD3、1KD3;1CD12、1KD12;1CD21、1KD21。",
+          "location": "XXP #1主变保护B屏"
+        },
+        {
+          "seq": "6",
+          "category": "",
+          "subcategory": "三",
+          "content": "在XXP #1主变保护B屏密封涉及运行设备10kV分段500备自投闭锁回路共1组出口：1CD23、1KD23。",
+          "location": "XXP #1主变保护B屏"
+        },
+        {
+          "seq": "7",
+          "category": "",
+          "subcategory": "三",
+          "content": "在XXP #1主变保护C屏密封涉及220kV 母线失灵保护三跳启失灵回路端子共2组出口：1-4PD1、1-4PD4;1-4PD2、1-4PD5。",
+          "location": "XXP #1主变保护C屏"
+        }
+      ],
+      "source_file": "unknown",
+      "source_row_start": 0,
+      "source_row_end": 19
+    },
+    {
+      "template_id": "tmpl_0002",
+      "name": "220kV主变保护措施单",
+      "equipment_type": "主变保护",
+      "voltage_level": "220kV",
+      "work_type": "其他",
+      "categories": [],
+      "items": [
+        {
+          "seq": "1",
+          "category": "",
+          "subcategory": "",
+          "content": "在XXP #1主变保护A屏密封带电的二次电压回路端子：1-7UD1至1-7UD27；2-7UD1至2-7UD27。",
+          "location": "XXP #1主变保护A屏"
+        },
+        {
+          "seq": "2",
+          "category": "",
+          "subcategory": "",
+          "content": "在XXP #1主变保护B屏密封带电的二次电压回路端子：1-7UD1至1-7UD31；2-7UD1至2-7UD31。",
+          "location": "XXP #1主变保护B屏"
+        },
+        {
+          "seq": "1",
+          "category": "",
+          "subcategory": "五",
+          "content": "在220kV变电场  #1主变变高2201开关端子箱密封涉及母差、安稳绕组电流回路端子：1D7-1D12、1D13-1D18、1D19-1D24。",
+          "location": ""
+        },
+        {
+          "seq": "2",
+          "category": "",
+          "subcategory": "五",
+          "content": "在110kV变电场  #1主变变中101开关端子箱密封涉及母差、安稳绕组电流回路端子：1D7-1D12、1D13-1D18。",
+          "location": ""
+        },
+        {
+          "seq": "3",
+          "category": "",
+          "subcategory": "五",
+          "content": "在10kV高压室  #1主变变低501开关柜密封涉及安稳及备自投绕组电流回路端子：1D7-1D12、1D13-1D18。",
+          "location": ""
+        },
+        {
+          "seq": "1",
+          "category": "",
+          "subcategory": "一",
+          "content": "确认高压侧CT无流后，打开如下端子连接片：1I1D1、1I1D2、 1I1D3、I1D4，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "2",
+          "category": "",
+          "subcategory": "一",
+          "content": "确认中压侧CT无流后，打开如下端子连接片：1I2D1、1I2D2、 1I2D3、I2D4，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "3",
+          "category": "",
+          "subcategory": "一",
+          "content": "确认低压侧CT无流后，打开如下端子连接片：1I3D1、1I3D2、 1I3D3、I3D4，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "4",
+          "category": "",
+          "subcategory": "一",
+          "content": "确认高压侧零序CT无流后，打开如下端子连接片：1I1D9、1I1D10，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "5",
+          "category": "",
+          "subcategory": "一",
+          "content": "确认高压侧间隙零序CT无流后，打开如下端子连接片：1I1D13、1I1D14，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "6",
+          "category": "",
+          "subcategory": "一",
+          "content": "确认中压侧零序CT无流后，打开如下端子连接片：1I2D9、1I2D10，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "7",
+          "category": "",
+          "subcategory": "一",
+          "content": "确认中压侧间隙零序CT无流后，打开如下端子连接片：1I2D13、1I2D14，并密封非工作侧端子。",
+          "location": ""
+        }
+      ],
+      "source_file": "unknown",
+      "source_row_start": 0,
+      "source_row_end": 22
+    },
+    {
+      "template_id": "tmpl_0003",
+      "name": "220kV保护装置措施单",
+      "equipment_type": "保护装置",
+      "voltage_level": "220kV",
+      "work_type": "其他",
+      "categories": [],
+      "items": [
+        {
+          "seq": "8",
+          "category": "",
+          "subcategory": "",
+          "content": "打开高压侧PT二次电压回路如下端子连接片：1U1D1、1U1D2、1U1D3、1U1D4、1U1D5、1U1D6，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "9",
+          "category": "",
+          "subcategory": "",
+          "content": "打开中压侧PT二次电压回路如下端子连接片：1U2D1、1U2D2、1U2D3、1U2D4、1U2D5、1U2D6，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "10",
+          "category": "",
+          "subcategory": "",
+          "content": "打开低压侧PT二次电压回路如下端子连接片：1U3D1、1U3D3、1U3D5、1U3D7、1U3D8、1U3D10，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "1",
+          "category": "",
+          "subcategory": "二",
+          "content": "确认高压侧CT无流后，打开如下端子连接片：\nI1D1、1I1D2、1I1D3、1I1D4，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "2",
+          "category": "",
+          "subcategory": "二",
+          "content": "确认中压侧CT无流后，打开如下端子连接片：\nI2D1、1I2D2、1I2D3、I2D4，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "3",
+          "category": "",
+          "subcategory": "二",
+          "content": "确认低压侧CT无流后，打开如下端子连接片：\nI3D1、1I3D2、1I3D3、I3D4，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "4",
+          "category": "",
+          "subcategory": "二",
+          "content": "确认高压侧零序CT无流后，打开如下端子连接片：1I1D9、1I1D10，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "5",
+          "category": "",
+          "subcategory": "二",
+          "content": "确认高压侧间隙零序CT无流后，打开如下端子连接片：1I1D13、1I1D14，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "6",
+          "category": "",
+          "subcategory": "二",
+          "content": "确认中压侧零序CT无流后，打开如下端子连接片：1I2D9、1I2D10，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "7",
+          "category": "",
+          "subcategory": "二",
+          "content": "确认中压侧间隙零序CT无流后，打开如下端子连接片：1I2D13、1I2D14，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "8",
+          "category": "",
+          "subcategory": "二",
+          "content": "打开高压侧PT二次电压回路如下端子连接片：1U1D1、1U1D2、1U1D3、1U1D4、1U1D5、1U1D6，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "9",
+          "category": "",
+          "subcategory": "二",
+          "content": "打开中压侧PT二次电压回路如下端子连接片：1U2D1、1U2D2、1U2D3、1U2D4、1U2D5、1U2D6，并密封非工作侧端子。",
+          "location": ""
+        },
+        {
+          "seq": "10",
+          "category": "",
+          "subcategory": "二",
+          "content": "打开低压侧PT二次电压回路如下端子连接片：1U3D1、1U3D3、1U3D5、1U3D7、1U3D10、1U3D11，并密封非工作侧端子。",
+          "location": ""
+        }
+      ],
+      "source_file": "unknown",
+      "source_row_start": 0,
+      "source_row_end": 21
+    }
+  ]
+}

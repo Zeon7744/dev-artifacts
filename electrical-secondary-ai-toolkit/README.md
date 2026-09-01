@@ -1,4 +1,4 @@
-# 电气二次AI工具包 - 模型训练工作流
+# 电气二次AI工具包 - 模型训练工作流 v2
 
 > 面向电气二次专业AI应用开发者的完整模型训练工作流与工具集
 
@@ -7,7 +7,7 @@
 本项目基于广东电网有限责任公司《厂站二次设备及其二次回路工作安全技术措施单实施细则（2025版）》，提供一套完整的模型训练工作流，包括：
 
 1. **二次作业知识抽取与结构化系统** - 从标准文档中提取知识，构建领域知识图谱
-2. **二次措施单智能生成模型** - 基于输入参数自动生成符合标准的措施单
+2. **二次措施单智能生成模型** - 基于真实附录数据和模板匹配自动生成符合标准的措施单
 
 ## 🏗️ 工作流架构
 
@@ -22,17 +22,18 @@
 │  └──────────────┘    └──────────────┘    └──────────────┘      │
 │       ↓                       ↓                       ↓         │
 │  ┌─────────────────────────────────────────────────────────┐   │
-│  │                    成果一：知识图谱系统                    │   │
+│  │              成果一：知识图谱系统 + 模板库                 │   │
 │  │  • 标准文档解析器                                         │   │
 │  │  • 术语与规则抽取器                                       │   │
 │  │  • 知识图谱构建器                                         │   │
+│  │  • 附录模板提取器 ← 新增                                 │   │
 │  │  • 结构化知识库存储                                       │   │
 │  └─────────────────────────────────────────────────────────┘   │
 │                                                                 │
 │  ┌─────────────────────────────────────────────────────────┐   │
-│  │                    成果二：智能生成模型                    │   │
+│  │              成果二：智能生成模型 v2                      │   │
 │  │  • 输入参数建模器                                         │   │
-│  │  • 模板匹配引擎                                           │   │
+│  │  • 真实模板匹配引擎 ← 优化                                │   │
 │  │  • 措施内容生成器                                         │   │
 │  │  • 合规性校验器                                           │   │
 │  └─────────────────────────────────────────────────────────┘   │
@@ -41,6 +42,7 @@
 │  │                    输出层                                  │   │
 │  │  • Word格式措施单生成                                      │   │
 │  │  • JSON结构化数据导出                                     │   │
+│  │  • Markdown报告                                          │   │
 │  │  • API服务接口                                            │   │
 │  └─────────────────────────────────────────────────────────┘   │
 │                                                                 │
@@ -55,10 +57,12 @@ electrical-secondary-ai-toolkit/
 │   ├── parsed_*.json             # 解析结果
 │   ├── knowledge_extracted.json  # 抽取知识
 │   ├── knowledge_graph*.json     # 知识图谱
+│   ├── templates_*.json          # 提取的模板（新增）
 │   └── measures_*.json           # 生成结果
 ├── docs/                          # 输出文档
 │   ├── *.docx                    # Word措施单
-│   └── *.json                    # JSON数据
+│   ├── *.json                    # JSON数据
+│   └── *.md                      # Markdown报告
 ├── examples/                      # 示例目录
 │   ├── example_220kV_transformer.json
 │   └── example_220kV_line.json
@@ -67,9 +71,13 @@ electrical-secondary-ai-toolkit/
 │   ├── 02_knowledge_extraction.py # 知识抽取脚本
 │   ├── 03_knowledge_graph.py     # 知识图谱构建脚本
 │   ├── 03_knowledge_graph_enhanced.py # 增强版图谱构建器
+│   ├── 04_template_extractor.py  # 模板提取器 v1
+│   ├── 04_template_extractor_v2.py # 模板提取器 v2（优化）
 │   ├── 05_measures_generation.py # 措施生成脚本
+│   ├── 05_measures_generation_v2.py # 措施生成脚本 v2（优化）
 │   ├── 08_measures_docx_generator.py # Word导出脚本
 │   └── run_workflow.py           # 完整工作流集成脚本
+│   └── run_workflow_v2.py        # 完整工作流测试脚本 v2
 ├── config/                        # 配置文件目录
 │   └── paths.yaml                # 路径配置
 ├── api_server.py                  # FastAPI服务
@@ -85,6 +93,7 @@ electrical-secondary-ai-toolkit/
 - 自动解析二次作业标准文档（Word/PDF）
 - 抽取术语、规则、流程等知识要素
 - 构建领域知识图谱（NetworkX）
+- 从附录文档提取真实措施单模板
 - 支持知识查询与推理
 
 **技术栈**：
@@ -94,18 +103,20 @@ electrical-secondary-ai-toolkit/
 - jieba（中文分词）
 
 **已实现**：
-- ✅ 文档解析器 - 解析197个章节，0表格
-- ✅ 知识抽取器 - 抽取271条规则，1个流程
+- ✅ 文档解析器 - 解析197个章节
+- ✅ 知识抽取器 - 抽取271条规则
 - ✅ 知识图谱构建器 - 构建227节点、450边的图谱
+- ✅ 附录模板提取器 - 从附录4-6提取3个模板，附录4-7提取1个模板
 - ✅ 动作-设备关联映射
 
-### 成果二：二次措施单智能生成模型
+### 成果二：二次措施单智能生成模型 v2
 
 **功能**：
 - 接收作业参数（变电站等级、设备类型、作业类型等）
-- 智能匹配最佳模板
+- 智能匹配真实附录模板
 - 生成符合标准格式的措施单
-- 自动校验合规性
+- 自动校验合规性（操作动词规范、禁止字符检测）
+- 导出Word、JSON、Markdown格式
 
 **技术栈**：
 - Python 3.10+
@@ -114,10 +125,11 @@ electrical-secondary-ai-toolkit/
 - Pydantic（数据验证）
 
 **已实现**：
-- ✅ 措施单生成器 - 基于模板匹配生成
+- ✅ 措施单生成器 v2 - 基于真实附录模板匹配生成
 - ✅ Word文档导出器 - 符合附录1格式
 - ✅ FastAPI服务 - RESTful API接口
 - ✅ 完整工作流集成脚本
+- ✅ 合规性校验器 - 检测禁止字符、检查必填项
 
 ## 🚀 快速开始
 
@@ -134,18 +146,21 @@ pip install -r requirements.txt
 ### 运行工作流
 
 ```bash
-# 方式1：运行完整流水线
+# 方式1：运行v2完整流水线（推荐）
+python scripts/run_workflow_v2.py
+
+# 方式2：运行完整流水线
 python scripts/run_workflow.py \
   --doc "path/to/实施细则.docx" \
   --output-prefix my_output
 
-# 方式2：仅生成措施单
-python scripts/run_workflow.py \
+# 方式3：仅生成措施单
+python scripts/run_workflow_v2.py \
   --mode generate \
   --params examples/example_220kV_transformer.json \
   --output-prefix docs/主变保护定检
 
-# 方式3：使用API服务
+# 方式4：使用API服务
 python api_server.py
 # 访问 http://localhost:8000/docs
 ```
@@ -169,36 +184,42 @@ python api_server.py
 - [x] 标准文档解析器（197章节解析）
 - [x] 知识抽取器（271条规则抽取）
 - [x] 知识图谱构建器（227节点，450边）
-- [x] 措施单智能生成器
+- [x] 附录模板提取器 v2（提取4个真实模板）
+- [x] 措施单智能生成器 v2（基于真实模板）
 - [x] Word文档导出器（符合附录1格式）
 - [x] FastAPI服务
-- [x] 完整工作流集成脚本
+- [x] 完整工作流集成脚本 v2
 - [x] 示例输入文件（主变保护、线路保护）
 
 ### 测试结果
 
 ```
-✓ 文档解析：197章节，0表格
-✓ 知识抽取：271条规则，1个流程
+✓ 文档解析：197章节
+✓ 知识抽取：271条规则
 ✓ 知识图谱：227节点，450边
-✓ 措施单生成：成功生成220kV主变保护定检措施单
+✓ 模板提取：附录4-6提取3个模板，附录4-7提取1个模板
+✓ 措施单生成：成功生成220kV主变保护、线路保护定检措施单
 ✓ Word导出：生成标准格式Word文档
+✓ 合规校验：通过（无问题，无警告）
 ```
 
 ## 📁 输出文件示例
 
 ```
 docs/
-├── 220kV主变保护定检措施单.docx   # Word格式措施单
-├── 220kV主变保护定检措施单.json   # JSON数据
+├── 220kV主变保护定检措施单.docx   # Word格式措施单（原版）
+├── 220kV主变保护定检措施单_v2.docx # Word格式措施单（v2优化版）
+├── 220kV主变保护定检措施单_v2.json # JSON数据
+├── 220kV主变保护定检措施单_v2.md  # Markdown报告
 ├── 220kV线路保护定检措施单.docx
-└── 220kV线路保护定检措施单.json
+└── 220kV线路保护定检措施单_v2.docx
 
 data/
 ├── parsed_实施细则.json           # 解析结果
 ├── knowledge_extracted.json       # 抽取知识
 ├── knowledge_graph_enhanced.json  # 知识图谱
-└── measures_generated.json        # 生成结果
+├── templates_附录4-6_v2.json      # 主变保护模板
+└── templates_附录4-7_v2.json      # 线路保护模板
 ```
 
 ## 🔧 模块说明
@@ -234,17 +255,32 @@ builder.export_to_json("output.json")
 # 输出：节点227个，边450条
 ```
 
-### 模块4：措施单生成器 (`05_measures_generation.py`)
+### 模块4：附录模板提取器 (`04_template_extractor_v2.py`)
 
 ```python
-from scripts.05_measures_generation import MeasuresGenerator
+from scripts.04_template_extractor_v2 import AppendixTemplateExtractorV2
 
-generator = MeasuresGenerator()
+extractor = AppendixTemplateExtractorV2()
+templates = extractor.extract_from_parsed_data(parsed_data)
+extractor.save_templates("data/templates_output.json")
+# 输出：提取的模板列表
+```
+
+### 模块5：措施单生成器 v2 (`05_measures_generation_v2.py`)
+
+```python
+from scripts.05_measures_generation_v2 import MeasuresGeneratorV2, RealTemplateLoader
+
+# 加载真实模板
+loader = RealTemplateLoader(['data/templates_附录4-6_v2.json', 'data/templates_附录4-7_v2.json'])
+real_templates = loader.get_templates()
+
+generator = MeasuresGeneratorV2(real_templates=real_templates)
 measures = generator.generate(params)
 # params: 变电站名称、电压等级、设备类型、工作类型等
 ```
 
-### 模块5：Word导出器 (`08_measures_docx_generator.py`)
+### 模块6：Word导出器 (`08_measures_docx_generator.py`)
 
 ```python
 from scripts.08_measures_docx_generator import MeasuresDocGenerator
@@ -266,7 +302,7 @@ doc_gen.generate(measures_data, "output.docx")
 ### 添加新模板
 
 1. 在 `examples/` 目录添加新的JSON参数文件
-2. 在 `scripts/05_measures_generation.py` 的模板库中添加新模板
+2. 解析附录文档提取真实模板
 3. 测试生成结果
 
 ### 扩展知识图谱

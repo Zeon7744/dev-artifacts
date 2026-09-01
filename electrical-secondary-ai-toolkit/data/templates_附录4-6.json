@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "total_templates": 2,
+    "extraction_time": "2026-09-01T12:52:51.752959"
+  },
+  "templates": [
+    {
+      "template_id": "tmpl_0001",
+      "name": "220kV保护装置其他措施单",
+      "equipment_type": "保护装置",
+      "voltage_level": "220kV",
+      "work_type": "其他",
+      "categories": [
+        "密封安措"
+      ],
+      "items": [
+        {
+          "seq": "备注：（停电间隔，电流回路无串接其他设备的，可以采取不打开电流回路端子）   编制人：***",
+          "category": "密封安措",
+          "subcategory": "",
+          "content": "备注：（停电间隔，电流回路无串接其他设备的，可以采取不打开电流回路端子）   编制人：***"
+        }
+      ],
+      "source_file": "unknown",
+      "source_row_start": 10,
+      "source_row_end": 22
+    },
+    {
+      "template_id": "tmpl_0002",
+      "name": "220kV保护装置其他措施单",
+      "equipment_type": "保护装置",
+      "voltage_level": "220kV",
+      "work_type": "其他",
+      "categories": [],
+      "items": [
+        {
+          "seq": "备注：（停电间隔，电流回路无串接其他设备的，可以采取不打开电流回路端子）   编制人：***",
+          "category": "",
+          "subcategory": "",
+          "content": "备注：（停电间隔，电流回路无串接其他设备的，可以采取不打开电流回路端子）   编制人：***"
+        }
+      ],
+      "source_file": "unknown",
+      "source_row_start": 0,
+      "source_row_end": 21
+    }
+  ]
+}
