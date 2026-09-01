@@ -59,7 +59,7 @@ def get_data(symbol: str):
     use_real = request.args.get('real', 'false').lower() == 'true'
     
     fetcher = CommodityDataFetcher()
-    df = fetcher.get_latest_data(symbol, days=days)
+    df = fetcher.get_data(symbol, days=days)
     
     if df is None or df.empty:
         return jsonify({'error': f'无法获取{symbol}数据'}), 404
@@ -88,7 +88,7 @@ def train_model(symbol: str):
         engineer = FeatureEngineer()
         
         # 获取数据
-        df = fetcher.get_latest_data(symbol)
+        df = fetcher.get_data(symbol)
         features = engineer.extract_features(df)
         target = df['Target'].iloc[:len(features)]
         
@@ -156,7 +156,7 @@ def predict(symbol: str):
         engineer = FeatureEngineer()
         
         # 获取最新数据
-        df = fetcher.get_latest_data(symbol, days=100)
+        df = fetcher.get_data(symbol, days=100)
         features = engineer.extract_features(df)
         
         # 预测
@@ -200,7 +200,7 @@ def backtest(symbol: str):
         engineer = FeatureEngineer()
         
         # 获取数据
-        df = fetcher.get_latest_data(symbol)
+        df = fetcher.get_data(symbol)
         features = engineer.extract_features(df)
         target = df['Target'].iloc[:len(features)]
         
@@ -252,7 +252,7 @@ def analysis(symbol: str):
         engineer = FeatureEngineer()
         
         # 获取数据
-        df = fetcher.get_latest_data(symbol)
+        df = fetcher.get_data(symbol)
         features = engineer.extract_features(df)
         target = df['Target'].iloc[:len(features)]
         
