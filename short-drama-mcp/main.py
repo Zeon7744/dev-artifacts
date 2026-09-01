@@ -26,6 +26,8 @@ from tools.classifier import classify_content as classify_file
 from tools.shuang_analyzer import count_shuang_points
 from tools.platform_checker import check_platform_compliance, PLATFORM_RULES
 from tools.outline_generator import generate_episode_outline
+from tools.character_creator import create_character_profile, create_character_set
+from tools.dialogue_optimizer import optimize_dialogue, check_dialogue_quality
 
 if MCP_AVAILABLE:
     mcp = FastMCP("short-drama-creator")
@@ -64,6 +66,16 @@ def list_tools() -> str:
         {
             "name": "classify_content",
             "description": "内容分类：自动识别短剧剧本、短篇小说、教程文档等类型",
+            "params": ["filepath"]
+        },
+        {
+            "name": "create_character_profile",
+            "description": "角色设定生成：根据题材和角色类型生成完整角色档案（姓名/身份/性格/关系网）",
+            "params": ["name", "role_type", "genre"]
+        },
+        {
+            "name": "optimize_dialogue",
+            "description": "对话优化检查：检测超长对话、冗余表达，提供精简建议",
             "params": ["filepath"]
         }
     ]
@@ -187,6 +199,57 @@ def classify_content(filepath: str) -> str:
         return json.dumps({"error": str(e)}, ensure_ascii=False)
 
 
+@mcp.tool()
+def create_character_profile(name: str, role_type: str = "protagonist", genre: str = "玄幻重生") -> str:
+    """生成角色设定档案
+    
+    根据角色类型和题材生成完整角色卡片：
+    - 姓名/身份/职业
+    - 性格特点
+    - 外貌特征
+    - 动机目标
+    - 秘密隐藏
+    - 人物关系网
+    - 标志性台词
+    
+    Args:
+        name: 角色姓名
+        role_type: 角色类型 (protagonist/antagonist/support)
+        genre: 题材类型
+    
+    Returns:
+        JSON 格式的角色档案
+    """
+    try:
+        result = create_character_profile(name, role_type, genre)
+        return json.dumps(result, ensure_ascii=False, indent=2)
+    except Exception as e:
+        return json.dumps({"error": str(e)}, ensure_ascii=False)
+
+
+@mcp.tool()
+def optimize_dialogue(filepath: str) -> str:
+    """优化剧本对话质量
+    
+    检查并优化：
+    - 超长对话（>15字）截断建议
+    - 冗余表达检测
+    - 平均长度统计
+    - 自动生成优化版本
+    
+    Args:
+        filepath: 剧本文件路径
+    
+    Returns:
+        JSON 格式的优化报告，包含建议和优化后文本
+    """
+    try:
+        result = check_dialogue_quality(filepath)
+        return result
+    except Exception as e:
+        return json.dumps({"error": str(e)}, ensure_ascii=False)
+
+
 def run_server():
     """运行 MCP 服务器"""
     if not MCP_AVAILABLE:
@@ -194,12 +257,14 @@ def run_server():
         sys.exit(1)
     
     print(f"🎬 短剧创作 MCP 服务器启动...")
-    print(f"📍 工具数量: 5")
+    print(f"📍 工具数量: 7")
     print(f"   - check_script_format: 剧本格式校验")
     print(f"   - count_shuang_points: 爽点统计")
     print(f"   - generate_episode_outline: 集纲生成")
     print(f"   - check_platform_compliance: 平台合规检查")
     print(f"   - classify_content: 内容分类")
+    print(f"   - create_character_profile: 角色设定生成")
+    print(f"   - optimize_dialogue: 对话质量优化")
     print("-" * 50)
     
     mcp.run()

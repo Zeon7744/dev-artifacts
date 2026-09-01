@@ -343,3 +343,33 @@ results = engine.run(df, symbol='GC=F')
 | 风险管理 | 基础 | 高级 | 动态仓位/熔断机制 |
 | 超参数优化 | 手动 | Optuna自动 | 自动化搜索 |
 | 内存优化 | - | 本地缓存 | 减少重复请求 |
+
+### 集成学习模型 (`ensemble_model.py`)
+
+支持多种集成策略，提升预测稳定性：
+
+| 模型 | 说明 | 适用场景 |
+|------|------|----------|
+| VotingClassifier | 硬投票/软投票 | 快速基线 |
+| StackingClassifier | 元学习器组合 | 更高精度 |
+
+**使用示例：**
+```python
+from ensemble_model import CommodityEnsembleModel
+
+# 创建集成模型
+model = CommodityEnsembleModel(model_type='stacking')
+
+# 训练
+model.fit(X_train, y_train, feature_names=features)
+
+# 时序交叉验证
+cv_results = model.cross_validate(X_test, y_test, cv=5, use_time_series=True)
+print(f"准确率: {cv_results['mean_accuracy']:.4f} ± {cv_results['std_accuracy']:.4f}")
+```
+
+**特性：**
+- 时序交叉验证（TimeSeriesSplit）
+- 特征重要性分析
+- 模型序列化支持
+- 多算法集成（MLP + RF + GB）
