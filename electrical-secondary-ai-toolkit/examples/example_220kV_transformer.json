@@ -1,0 +1,16 @@
+{
+  "substation_name": "XX变电站",
+  "voltage_level": "220kV",
+  "equipment_type": "主变保护",
+  "work_type": "定检",
+  "protection_model": "PCS-978",
+  "wiring_form": "双母线",
+  "work_ticket_number": "",
+  "preparer": "",
+  "approver": "",
+  "executor": "",
+  "supervisor": "",
+  "restorer": "",
+  "witness": "",
+  "notes": "停电间隔，电流回路无串接其他设备的，可以采取不打开电流回路端子"
+}

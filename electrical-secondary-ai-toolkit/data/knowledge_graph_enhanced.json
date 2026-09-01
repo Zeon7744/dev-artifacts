@@ -1,0 +1,4965 @@
+{
+  "metadata": {
+    "build_time": "2026-09-01T12:42:15.515685",
+    "stats": {
+      "node_count": 227,
+      "edge_count": 450,
+      "node_type_distribution": {
+        "document": 1,
+        "rule": 200,
+        "action": 11,
+        "equipment": 15
+      },
+      "edge_type_distribution": {
+        "stipulates": 200,
+        "requires": 76,
+        "applies_to": 148,
+        "related_to": 26
+      },
+      "density": 0.008771587852325445,
+      "avg_degree": 3.9647577092511015
+    }
+  },
+  "nodes": [
+    {
+      "id": "doc_root",
+      "type": "document",
+      "label": "二次作业标准体系",
+      "properties": {
+        "source": "实施细则2025版"
+      }
+    },
+    {
+      "id": "rule_0001",
+      "type": "rule",
+      "label": "采取的隔离措施，如二次回路断开、短接、接地、拆除、接入、绝缘密封等技术措施",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "采取的隔离措施，如二次回路断开、短接、接地、拆除、接入、绝缘密封等技术措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "action_断开",
+      "type": "action",
+      "label": "断开操作",
+      "properties": {
+        "action_type": "断开"
+      }
+    },
+    {
+      "id": "rule_0002",
+      "type": "rule",
+      "label": "根据工作内容、工作地点、一次设备停电范围、二次设备运行状态、二次回路设计等实际因...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "根据工作内容、工作地点、一次设备停电范围、二次设备运行状态、二次回路设计等实际因素，充分评估工作过程对相关联二次设备或回路的影响，必要时应制定二次安全措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0003",
+      "type": "rule",
+      "label": "在工作票或二次措施单中体现，具体要求详见4.1.2和4.1.3",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在工作票或二次措施单中体现，具体要求详见4.1.2和4.1.3",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0004",
+      "type": "rule",
+      "label": "使用二次措施单的工作：\", \"content\": \"\", \"level\": 2,...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用二次措施单的工作：\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_23\", \"title\": \"1）在运行",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0005",
+      "type": "rule",
+      "label": "修订或重新填写二次措施单",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "修订或重新填写二次措施单",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0006",
+      "type": "rule",
+      "label": "注意不同阶段安全措\\n施变动可能产生的误拆、漏恢复风险，以及工作地点变动可能产生...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "注意不同阶段安全措\\n施变动可能产生的误拆、漏恢复风险，以及工作地点变动可能产生的\\n误入间隔风险",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0007",
+      "type": "rule",
+      "label": "考虑以下安全措施，如需执行时，应在工作票中体现，工作票内的二次安全措施应在工作票...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "考虑以下安全措施，如需执行时，应在工作票中体现，工作票内的二次安全措施应在工作票许可前实施，并由工作许可人与工作负责人确认：\\n\", \"level\": 2, \"children\": []}, {\"se",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0008",
+      "type": "rule",
+      "label": "的GOOSE发送软压板）",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "的GOOSE发送软压板）",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_软压板",
+      "type": "equipment",
+      "label": "软压板",
+      "properties": {}
+    },
+    {
+      "id": "equip_压板",
+      "type": "equipment",
+      "label": "压板",
+      "properties": {}
+    },
+    {
+      "id": "rule_0009",
+      "type": "rule",
+      "label": "的GOOSE发送、接收软压板）",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "的GOOSE发送、接收软压板）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0010",
+      "type": "rule",
+      "label": "的GOOSE发送软压板）",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "的GOOSE发送软压板）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0011",
+      "type": "rule",
+      "label": "的GOOSE发送软压板）",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "的GOOSE发送软压板）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0012",
+      "type": "rule",
+      "label": "填写与运行设备进行物理隔离的措施，避免作业过程中造成运行中断路器或刀闸误分合、电...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "填写与运行设备进行物理隔离的措施，避免作业过程中造成运行中断路器或刀闸误分合、电流回路误开路、电压回路误短路等风险",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0013",
+      "type": "rule",
+      "label": "考虑以下安全措施，如需执行时，应在二次措施单中体现，二次措施单内的二次安全措施作...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "考虑以下安全措施，如需执行时，应在二次措施单中体现，二次措施单内的二次安全措施作业前由工作负责人组织实施：\\n\", \"level\": 2, \"children\": []}, {\"section_id\"",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0014",
+      "type": "rule",
+      "label": "由运行人员按相关规范执行与恢复",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "由运行人员按相关规范执行与恢复",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0015",
+      "type": "rule",
+      "label": "采取锁门或张贴封条等方法进行管控",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "采取锁门或张贴封条等方法进行管控",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0016",
+      "type": "rule",
+      "label": "征得运维单位人员同意后方可开放",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "征得运维单位人员同意后方可开放",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0017",
+      "type": "rule",
+      "label": "由运维单位检修人员现场监督",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "由运维单位检修人员现场监督",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0018",
+      "type": "rule",
+      "label": "由工作负责人事先征得工作许可人同意并确定安全措施的恢复状态",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "由工作负责人事先征得工作许可人同意并确定安全措施的恢复状态",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0019",
+      "type": "rule",
+      "label": "在工作许可和经现场核实正确后，由工作负责人组织工作班成员实施，执行前应检查工作票...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在工作许可和经现场核实正确后，由工作负责人组织工作班成员实施，执行前应检查工作票要求的软硬压板状态、空开、把手位置与实际一致，确认其与现场实际接线相符",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_空开",
+      "type": "equipment",
+      "label": "空开",
+      "properties": {}
+    },
+    {
+      "id": "equip_硬压板",
+      "type": "equipment",
+      "label": "硬压板",
+      "properties": {}
+    },
+    {
+      "id": "rule_0020",
+      "type": "rule",
+      "label": "修订或重新填写二次措施单",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "修订或重新填写二次措施单",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0021",
+      "type": "rule",
+      "label": "由工作负责人确认二次安全措施的执行情况",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "由工作负责人确认二次安全措施的执行情况",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0022",
+      "type": "rule",
+      "label": "加入施工单位的工作票并在二次措施单备注栏签名",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "加入施工单位的工作票并在二次措施单备注栏签名",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0023",
+      "type": "rule",
+      "label": "在措施执行(恢复)当日，工作间断前完成签名",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在措施执行(恢复)当日，工作间断前完成签名",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0024",
+      "type": "rule",
+      "label": "在各自负责执行(恢复)的措施页上分别签名",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在各自负责执行(恢复)的措施页上分别签名",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0025",
+      "type": "rule",
+      "label": "在更换工作地点或开展其它工作任务前，填写已执行（恢复）二次措施的记录",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在更换工作地点或开展其它工作任务前，填写已执行（恢复）二次措施的记录",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0026",
+      "type": "rule",
+      "label": "征得工作负责人同意，在工作负责人或指定监护人的监护下进行变更，并在二次措施单上记...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "征得工作负责人同意，在工作负责人或指定监护人的监护下进行变更，并在二次措施单上记录变更情况",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0027",
+      "type": "rule",
+      "label": "在二次措施单中修改及记录",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在二次措施单中修改及记录",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0028",
+      "type": "rule",
+      "label": "重新履行二次措施单编制、审核两级流程",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "重新履行二次措施单编制、审核两级流程",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0029",
+      "type": "rule",
+      "label": "组织清理现场，撤离工作人员，确认安全措施不变后，方可工作间断",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "组织清理现场，撤离工作人员，确认安全措施不变后，方可工作间断",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0030",
+      "type": "rule",
+      "label": "对照二次措施单，逐一检查恢复情况，对变动的端子连接片、二次接线、光纤接头进行紧固...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "对照二次措施单，逐一检查恢复情况，对变动的端子连接片、二次接线、光纤接头进行紧固检查，确保相关二次措施已恢复",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_光纤",
+      "type": "equipment",
+      "label": "光纤",
+      "properties": {}
+    },
+    {
+      "id": "equip_端子",
+      "type": "equipment",
+      "label": "端子",
+      "properties": {}
+    },
+    {
+      "id": "rule_0031",
+      "type": "rule",
+      "label": "在业主单位运维班组人员的见证下依据二次措施单恢复",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在业主单位运维班组人员的见证下依据二次措施单恢复",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0032",
+      "type": "rule",
+      "label": "根据相关要求在电网管理平台工作票相应附件位置中上传审批完成的施工（工作）方案（含...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "根据相关要求在电网管理平台工作票相应附件位置中上传审批完成的施工（工作）方案（含二次拆接线表）、二次措施单、现场勘察记录等，工作终结前上传执行完毕的二次措施单扫描件",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0033",
+      "type": "rule",
+      "label": "遵循以下要求：\\n\", \"level\": 2, \"children\": []},...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "遵循以下要求：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_80\", \"title\": \"4.1.6.1 实施二次安全措施前，工作负责",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0034",
+      "type": "rule",
+      "label": "组织记录工作设备初始状态，主要包括空开、压板、切换把手、定值区、地址码、过程层网...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "组织记录工作设备初始状态，主要包括空开、压板、切换把手、定值区、地址码、过程层网络连接端口等元器件或参数的初始状态",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0035",
+      "type": "rule",
+      "label": "检查确认工作设备恢复至初始状态",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "检查确认工作设备恢复至初始状态",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0036",
+      "type": "rule",
+      "label": "核实端子排内部接线与压板一致，数量与工作票退出的压板一致，防止关键出口回路封错、...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "核实端子排内部接线与压板一致，数量与工作票退出的压板一致，防止关键出口回路封错、漏密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_端子排",
+      "type": "equipment",
+      "label": "端子排",
+      "properties": {}
+    },
+    {
+      "id": "action_退出",
+      "type": "action",
+      "label": "退出操作",
+      "properties": {
+        "action_type": "退出"
+      }
+    },
+    {
+      "id": "rule_0037",
+      "type": "rule",
+      "label": "尽量避免拉扯二次线，防止造成电流回路的线芯松动",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "尽量避免拉扯二次线，防止造成电流回路的线芯松动",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0038",
+      "type": "rule",
+      "label": "紧固，防止因连接片自动滑落造成虚断的情况",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "紧固，防止因连接片自动滑落造成虚断的情况",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0039",
+      "type": "rule",
+      "label": "先明确“CT回路是否带电”、“CT回路是否有和电流”、“CT回路是否串接运行设备...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "先明确“CT回路是否带电”、“CT回路是否有和电流”、“CT回路是否串接运行设备”、“CT回路接地点位置”等回路情况，辨识“能不能断”、“在哪里断、在哪里短、在哪里密封”、“先短后断、先断后短还是只断",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_CT",
+      "type": "equipment",
+      "label": "CT",
+      "properties": {}
+    },
+    {
+      "id": "action_密封",
+      "type": "action",
+      "label": "密封操作",
+      "properties": {
+        "action_type": "密封"
+      }
+    },
+    {
+      "id": "rule_0040",
+      "type": "rule",
+      "label": "结合现场实际情况，考虑以下安全措施，并特别注意二次安全措施的实施顺序，防止运行电...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "结合现场实际情况，考虑以下安全措施，并特别注意二次安全措施的实施顺序，防止运行电流回路开路、分流、多点接地、失去接地点、误加入试验电流",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0041",
+      "type": "rule",
+      "label": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证、回路直流电阻测量，确认电流回路正确",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0042",
+      "type": "rule",
+      "label": "的二次电流回路须进行物理隔离，应在最靠近检修CT的汇控箱或端子箱端子排处，打开检...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "的二次电流回路须进行物理隔离，应在最靠近检修CT的汇控箱或端子箱端子排处，打开检修CT对应的二次电流回路端子连接片",
+        "context": ""
+      }
+    },
+    {
+      "id": "action_打开",
+      "type": "action",
+      "label": "打开操作",
+      "properties": {
+        "action_type": "打开"
+      }
+    },
+    {
+      "id": "rule_0043",
+      "type": "rule",
+      "label": "注意防止和电流形式的二次电流回路误碰造成短路分流、多点接地或失去接地点",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "注意防止和电流形式的二次电流回路误碰造成短路分流、多点接地或失去接地点",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0044",
+      "type": "rule",
+      "label": "遵循先短接后断开的原则（在电流端子靠近CT侧短接）",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "遵循先短接后断开的原则（在电流端子靠近CT侧短接）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0045",
+      "type": "rule",
+      "label": "遵循先跨接后断开的原则",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "遵循先跨接后断开的原则",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0046",
+      "type": "rule",
+      "label": "使用专用短接线，确认电流已可靠短接或跨接后，方可打开端子连接片",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用专用短接线，确认电流已可靠短接或跨接后，方可打开端子连接片",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0047",
+      "type": "rule",
+      "label": "退出相应的保护装置或保护功能投入压板",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "退出相应的保护装置或保护功能投入压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_保护装置",
+      "type": "equipment",
+      "label": "保护装置",
+      "properties": {}
+    },
+    {
+      "id": "action_投入",
+      "type": "action",
+      "label": "投入操作",
+      "properties": {
+        "action_type": "投入"
+      }
+    },
+    {
+      "id": "rule_0048",
+      "type": "rule",
+      "label": "先明确“PT回路是否带电”、 “PT回路有无并接运行设备”、“PT回路接地点位置...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "先明确“PT回路是否带电”、 “PT回路有无并接运行设备”、“PT回路接地点位置”等回路情况，辨识“能不能断开”、“在哪里断开、在哪里密封”等风险，确保二次安全措施正确、完备",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_PT",
+      "type": "equipment",
+      "label": "PT",
+      "properties": {}
+    },
+    {
+      "id": "rule_0049",
+      "type": "rule",
+      "label": "结合现场实际情况，考虑以下安全措施，并特别注意二次电压回路短路、反充电、多点接地...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "结合现场实际情况，考虑以下安全措施，并特别注意二次电压回路短路、反充电、多点接地、失去接地点：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0050",
+      "type": "rule",
+      "label": "采用断开空气开关、打开端子连接片或拆除接线等物理隔离措施",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "采用断开空气开关、打开端子连接片或拆除接线等物理隔离措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0051",
+      "type": "rule",
+      "label": "优先选择电压空气开关或带连接片的电压端子，带电侧（非工作侧）密封",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "优先选择电压空气开关或带连接片的电压端子，带电侧（非工作侧）密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0052",
+      "type": "rule",
+      "label": "用万用表确认回路无电压",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "用万用表确认回路无电压",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0053",
+      "type": "rule",
+      "label": "断开保护绕组、测量绕组、计量绕组的电压空开，并拆除开口三角电压、N600电缆线芯...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "断开保护绕组、测量绕组、计量绕组的电压空开，并拆除开口三角电压、N600电缆线芯，用绝缘胶布包扎完好",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0054",
+      "type": "rule",
+      "label": "打开开口三角电压二次回路连接片或拆除其二次线，核相确认开口三角电压正常后再接入系...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "打开开口三角电压二次回路连接片或拆除其二次线，核相确认开口三角电压正常后再接入系统，防止PT开口三角电压极性错误导致主变零序过压保护误动作",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0055",
+      "type": "rule",
+      "label": "密封，做好物理隔离，防止误碰",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "密封，做好物理隔离，防止误碰",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0056",
+      "type": "rule",
+      "label": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝缘胶布贴住或用塑料扣板扣住端子",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0057",
+      "type": "rule",
+      "label": "征得工作负责人或监护人同意",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "征得工作负责人或监护人同意",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0058",
+      "type": "rule",
+      "label": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应防止误碰",
+        "context": ""
+      }
+    },
+    {
+      "id": "action_拆除",
+      "type": "action",
+      "label": "拆除操作",
+      "properties": {
+        "action_type": "拆除"
+      }
+    },
+    {
+      "id": "rule_0059",
+      "type": "rule",
+      "label": "使用装置的出口传动功能",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用装置的出口传动功能",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0060",
+      "type": "rule",
+      "label": "短时退出失灵保护或线路远跳功能",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "短时退出失灵保护或线路远跳功能",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0061",
+      "type": "rule",
+      "label": "在执行、恢复和变动时相互沟通、现场确认，并在备注栏中做好记录，由各工作班负责人签...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在执行、恢复和变动时相互沟通、现场确认，并在备注栏中做好记录，由各工作班负责人签名确认，防止漏执行、漏恢复、误恢复",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0062",
+      "type": "rule",
+      "label": "评估对二次设备的影响，制定二次回路物理隔离措施（必要时经二次专业审核），防止运行...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "评估对二次设备的影响，制定二次回路物理隔离措施（必要时经二次专业审核），防止运行二次设备不正确动作",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0063",
+      "type": "rule",
+      "label": "注意评估对邻近通信光缆、二次电缆的影响，防止损坏有关线缆",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "注意评估对邻近通信光缆、二次电缆的影响，防止损坏有关线缆",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_光缆",
+      "type": "equipment",
+      "label": "光缆",
+      "properties": {}
+    },
+    {
+      "id": "rule_0064",
+      "type": "rule",
+      "label": "充分评估对二次系统的影响，严防导致大量二次设备断电的事件发生",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "充分评估对二次系统的影响，严防导致大量二次设备断电的事件发生",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0065",
+      "type": "rule",
+      "label": "联合各相关专业开展现场勘察，并通过专项方案落实风险防控措施",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "联合各相关专业开展现场勘察，并通过专项方案落实风险防控措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0066",
+      "type": "rule",
+      "label": "制定安全措施，确保不发生保护不正确动作事件",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "制定安全措施，确保不发生保护不正确动作事件",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0067",
+      "type": "rule",
+      "label": "一并退出GOOSE发送、接收软压板①",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "一并退出GOOSE发送、接收软压板①",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0068",
+      "type": "rule",
+      "label": "GOOSE报文无误后，再投入GOOSE接收软压板",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "GOOSE报文无误后，再投入GOOSE接收软压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0069",
+      "type": "rule",
+      "label": "查看装置指示灯、人机界面变位报文或开入变位等情况，同时核查相关运行装置是否出现非...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "查看装置指示灯、人机界面变位报文或开入变位等情况，同时核查相关运行装置是否出现非预期信号，确认正常后方可继续执行",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0070",
+      "type": "rule",
+      "label": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用防尘塞密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0071",
+      "type": "rule",
+      "label": "采取充分的安全措施，不宜采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "采取充分的安全措施，不宜采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的安全措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0072",
+      "type": "rule",
+      "label": "充分评估对调度自动化系统的影响，组织发起自动化检修管理流程，并根据检修批复意见和...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "充分评估对调度自动化系统的影响，组织发起自动化检修管理流程，并根据检修批复意见和执行流程开展",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0073",
+      "type": "rule",
+      "label": "组织现场人员联系主站执行安全措施，包括但不限于数据封锁、数据替代等措施，防止误调...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "组织现场人员联系主站执行安全措施，包括但不限于数据封锁、数据替代等措施，防止误调、误控、数据跳变等对调度监控及市场运营的影响",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0074",
+      "type": "rule",
+      "label": "确认具备向主站解除安措的条件，申请检修单完工并通知主站恢复安全措施，确认数据及业...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "确认具备向主站解除安措的条件，申请检修单完工并通知主站恢复安全措施，确认数据及业务通道正常",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0075",
+      "type": "rule",
+      "label": "核实设备接入网口的IP地址、MAC地址、装置的地址、61850报告实例号等信息与...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "核实设备接入网口的IP地址、MAC地址、装置的地址、61850报告实例号等信息与站内网络运行中设备不冲突",
+        "context": ""
+      }
+    },
+    {
+      "id": "action_接入",
+      "type": "action",
+      "label": "接入操作",
+      "properties": {
+        "action_type": "接入"
+      }
+    },
+    {
+      "id": "rule_0076",
+      "type": "rule",
+      "label": "经验证无误后才可投入运行",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "经验证无误后才可投入运行",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0077",
+      "type": "rule",
+      "label": "履行网络安全报备手续，厂站二次设备未接入业务的备用端口要做好密封",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "履行网络安全报备手续，厂站二次设备未接入业务的备用端口要做好密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0078",
+      "type": "rule",
+      "label": "使用调试专用移动存储设备或调试专用的笔记本电脑，并定期使用专用杀毒U盘或专用杀毒...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用调试专用移动存储设备或调试专用的笔记本电脑，并定期使用专用杀毒U盘或专用杀毒电脑开展病毒查杀工作，防范病毒感染",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0079",
+      "type": "rule",
+      "label": "使用二次措施单进行管控",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用二次措施单进行管控",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0080",
+      "type": "rule",
+      "label": "严格执行现场勘查、编制施工方案和二次措施单等管控要求",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "严格执行现场勘查、编制施工方案和二次措施单等管控要求",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0081",
+      "type": "rule",
+      "label": "根据断电影响范围开展通信电源负载、设备供电接线（含错接线、并联接线等）等检查，检...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "根据断电影响范围开展通信电源负载、设备供电接线（含错接线、并联接线等）等检查，检查步骤和检查结果应以现场勘查表、施工方案等形式做好记录",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0082",
+      "type": "rule",
+      "label": "填报排查情况，提交调度机构检修批票人员审核",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "填报排查情况，提交调度机构检修批票人员审核",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0083",
+      "type": "rule",
+      "label": "遵循以下要求：\\n\", \"level\": 2, \"children\": []},...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "遵循以下要求：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_133\", \"title\": \"4.2.1.1 对于屏柜、压板、把手、空开",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0084",
+      "type": "rule",
+      "label": "同时包含端子编号、回路编号和回路用途",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "同时包含端子编号、回路编号和回路用途",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0085",
+      "type": "rule",
+      "label": "采用取下、装上、断开、合上、连上、打开、投入、退出、拔出、插入、切换至、拆除、接...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "采用取下、装上、断开、合上、连上、打开、投入、退出、拔出、插入、切换至、拆除、接入等含有明确操作行为的规范动词",
+        "context": ""
+      }
+    },
+    {
+      "id": "action_取下",
+      "type": "action",
+      "label": "取下操作",
+      "properties": {
+        "action_type": "取下"
+      }
+    },
+    {
+      "id": "rule_0086",
+      "type": "rule",
+      "label": "采用《中国南方电网有限责任公司电力安全工作规程》规范的格式（见附录1）",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "采用《中国南方电网有限责任公司电力安全工作规程》规范的格式（见附录1）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0087",
+      "type": "rule",
+      "label": "的工作票编号、二次措施单编号及按执行顺序列写的二次安全措施序号、执行时间、执行人...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "的工作票编号、二次措施单编号及按执行顺序列写的二次安全措施序号、执行时间、执行人、安全技术措施内容（主要包括密封安措和回路安措）、恢复时间、恢复人、监护人、工作负责人、编制人、见证人等，具体要求如下：",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0088",
+      "type": "rule",
+      "label": "用“ ”符号划去或在空白第一行填写“以下空白”的字样",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "用“ ”符号划去或在空白第一行填写“以下空白”的字样",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0089",
+      "type": "rule",
+      "label": "的时间栏填写执行和恢复的具体时间",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "的时间栏填写执行和恢复的具体时间",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0090",
+      "type": "rule",
+      "label": "在每天执行(恢复)的第一项加注日期",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在每天执行(恢复)的第一项加注日期",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0091",
+      "type": "rule",
+      "label": "分别填写在措施单的相邻两行",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "分别填写在措施单的相邻两行",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0092",
+      "type": "rule",
+      "label": "征得工作负责人同意，按照“谁修改谁同意谁签字”原则在备注栏进行签名确认，修改方式...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "征得工作负责人同意，按照“谁修改谁同意谁签字”原则在备注栏进行签名确认，修改方式主要包括：错别字的修改应在其上方修改，同时在错别字横划三道",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0093",
+      "type": "rule",
+      "label": "在漏字处下方划“∧”符号，在“∧”的上方写上所漏的字",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在漏字处下方划“∧”符号，在“∧”的上方写上所漏的字",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0094",
+      "type": "rule",
+      "label": "遵循以下要求：\\n\", \"level\": 2, \"children\": []},...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "遵循以下要求：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_147\", \"title\": \"1）操作地点：在XX屏柜（编号和名称）操作",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0095",
+      "type": "rule",
+      "label": "逐项填写，对于不拆除二次线的其他绝缘密封操作可合并填写",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "逐项填写，对于不拆除二次线的其他绝缘密封操作可合并填写",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0096",
+      "type": "rule",
+      "label": "按功能分行填写，并列出密封端子对应的间隔及数量，防止关键回路漏密封",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "按功能分行填写，并列出密封端子对应的间隔及数量，防止关键回路漏密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0097",
+      "type": "rule",
+      "label": "进行现场勘查，填写和现场实际情况一致的二次措施单，二次措施单应重点体现施工设备与...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "进行现场勘查，填写和现场实际情况一致的二次措施单，二次措施单应重点体现施工设备与运行设备关键回路的安全隔离措施，不涉及运行设备关键回路的拆接线应使用二次拆接线表（格式参考见附录2）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0098",
+      "type": "rule",
+      "label": "结合图纸，以及现场实际接线，勘察二次接线的电缆号、回路号、端子号，确认屏位拆除、...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "结合图纸，以及现场实际接线，勘察二次接线的电缆号、回路号、端子号，确认屏位拆除、安装部分、电缆路径走向",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0099",
+      "type": "rule",
+      "label": "在设备停电前10个工作日会同施工方案（含二次拆接线表）送运维部门审批",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在设备停电前10个工作日会同施工方案（含二次拆接线表）送运维部门审批",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0100",
+      "type": "rule",
+      "label": "在设备停电前5个工作日会同业主单位运维班组人员完成现场核对",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在设备停电前5个工作日会同业主单位运维班组人员完成现场核对",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0101",
+      "type": "rule",
+      "label": "在业主单位运维班组人员的见证下完成",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在业主单位运维班组人员的见证下完成",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0102",
+      "type": "rule",
+      "label": "在二次措施单每一页的“备注栏”签名确认措施实施的正确性，并注明见证日期",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在二次措施单每一页的“备注栏”签名确认措施实施的正确性，并注明见证日期",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0103",
+      "type": "rule",
+      "label": "彻底将欲拆除的屏柜或设备与运行设备进行隔离",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "彻底将欲拆除的屏柜或设备与运行设备进行隔离",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0104",
+      "type": "rule",
+      "label": "两端解开，剪掉裸露部分，再进行绝缘包扎并固定好",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "两端解开，剪掉裸露部分，再进行绝缘包扎并固定好",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0105",
+      "type": "rule",
+      "label": "确认电压回路、电流回路和直流回路电位状态正确，拆除后应确认拆除的回路均处于不带电...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "确认电压回路、电流回路和直流回路电位状态正确，拆除后应确认拆除的回路均处于不带电状态",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0106",
+      "type": "rule",
+      "label": "直接对控制电缆进行裁剪",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "直接对控制电缆进行裁剪",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0107",
+      "type": "rule",
+      "label": "两侧配合拆除，遵循“先拆电源端、再拆负载端”的原则",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "两侧配合拆除，遵循“先拆电源端、再拆负载端”的原则",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0108",
+      "type": "rule",
+      "label": "遵循“先拆负电端、再拆正电端”的原则，并同步在负载端测量电位变化进行验证",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "遵循“先拆负电端、再拆正电端”的原则，并同步在负载端测量电位变化进行验证",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0109",
+      "type": "rule",
+      "label": "使用布帘或封条对相关运行的回路和压板进行隔离",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用布帘或封条对相关运行的回路和压板进行隔离",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0110",
+      "type": "rule",
+      "label": "遵循“先接正电端、再接负电端”的原则，接入正电端后需确认未接入的负电端电位正常，...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "遵循“先接正电端、再接负电端”的原则，接入正电端后需确认未接入的负电端电位正常，接入完成后，应在接点端的接线端子上测量电位正常，以确保电缆线芯接触良好",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0111",
+      "type": "rule",
+      "label": "在工作票或二次措施单中予以明确，在其上开展相关二次工作时，应执行本实施细则",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在工作票或二次措施单中予以明确，在其上开展相关二次工作时，应执行本实施细则",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0112",
+      "type": "rule",
+      "label": "先进行作业风险评估，并制定预控措施，办理工作票和填写二次措施单或二次拆接线记录",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "先进行作业风险评估，并制定预控措施，办理工作票和填写二次措施单或二次拆接线记录",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0113",
+      "type": "rule",
+      "label": "记录回路变更情况，作业结束后按记录进行恢复",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "记录回路变更情况，作业结束后按记录进行恢复",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0114",
+      "type": "rule",
+      "label": "对不属于更换对象的交流插件进行固定或隔离，防止误拔出交流插件造成CT开路",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "对不属于更换对象的交流插件进行固定或隔离，防止误拔出交流插件造成CT开路",
+        "context": ""
+      }
+    },
+    {
+      "id": "action_拔出",
+      "type": "action",
+      "label": "拔出操作",
+      "properties": {
+        "action_type": "拔出"
+      }
+    },
+    {
+      "id": "rule_0115",
+      "type": "rule",
+      "label": "及时检查现场情况，立即查明原因，并汇报调度",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "及时检查现场情况，立即查明原因，并汇报调度",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0116",
+      "type": "rule",
+      "label": "急处置的二次安全措施可参照以下执行：\", \"content\": \"\", \"lev...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "急处置的二次安全措施可参照以下执行：\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_181\", \"title\"",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0117",
+      "type": "rule",
+      "label": "先退出智能终端所有出口硬压板，最后投入装置检修压板",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "先退出智能终端所有出口硬压板，最后投入装置检修压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_智能终端",
+      "type": "equipment",
+      "label": "智能终端",
+      "properties": {}
+    },
+    {
+      "id": "rule_0118",
+      "type": "rule",
+      "label": "先退出智能终端检修压板，再检查装置、报文正常，测量出口硬压板电位正常后，方可投入...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "先退出智能终端检修压板，再检查装置、报文正常，测量出口硬压板电位正常后，方可投入出口硬压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0119",
+      "type": "rule",
+      "label": "退出相关保护功能软压板后再重启装置",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "退出相关保护功能软压板后再重启装置",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0120",
+      "type": "rule",
+      "label": "保持该装置重启时状态，应评估受影响的范围，必要时申请一次设备停电",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "保持该装置重启时状态，应评估受影响的范围，必要时申请一次设备停电",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0121",
+      "type": "rule",
+      "label": "体现作业前实施的安全措施，重点体现二次电压、二次电流、通道尾纤、不经压板的联跳及...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "体现作业前实施的安全措施，重点体现二次电压、二次电流、通道尾纤、不经压板的联跳及闭锁等回路的物理隔离，工作时的作业步骤、作业方法、作业记录等不需要写入二次措施单",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_尾纤",
+      "type": "equipment",
+      "label": "尾纤",
+      "properties": {}
+    },
+    {
+      "id": "rule_0122",
+      "type": "rule",
+      "label": "通过测试仪直接向过程层交换机网络光口加量并开展传动试验",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "通过测试仪直接向过程层交换机网络光口加量并开展传动试验",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_过程层交换机",
+      "type": "equipment",
+      "label": "过程层交换机",
+      "properties": {}
+    },
+    {
+      "id": "rule_0123",
+      "type": "rule",
+      "label": "结合定检策略、现场实际情况，考虑以下安全措施：\", \"content\": \"\",...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "结合定检策略、现场实际情况，考虑以下安全措施：\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_188\", \"t",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0124",
+      "type": "rule",
+      "label": "先拔出装置过程层光纤，再投入跳母联、分段等运行间隔GOOSE发送软压板",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "先拔出装置过程层光纤，再投入跳母联、分段等运行间隔GOOSE发送软压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0125",
+      "type": "rule",
+      "label": "先退出跳母联、分段等运行间隔GOOSE发送软压板，再恢复装置过程层光纤",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "先退出跳母联、分段等运行间隔GOOSE发送软压板，再恢复装置过程层光纤",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0126",
+      "type": "rule",
+      "label": "确认涉及运行设备的跳闸、启失灵、联闭锁等GOOSE发送、接收软压板在退出状态，装...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "确认涉及运行设备的跳闸、启失灵、联闭锁等GOOSE发送、接收软压板在退出状态，装置检修硬压板在投入状态",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0127",
+      "type": "rule",
+      "label": "在测控屏通过短接线短接五防锁或遥控分合闸端子开展开关传动试验",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "在测控屏通过短接线短接五防锁或遥控分合闸端子开展开关传动试验",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0128",
+      "type": "rule",
+      "label": "根据二次设计图纸及设备现场实际情况进行修编，以满足现场实际作业安全管控的要求，应...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "根据二次设计图纸及设备现场实际情况进行修编，以满足现场实际作业安全管控的要求，应详细列出二次安全措施的位置、回路号、端子号、压板编号等具体内容，并按二次措施单格式填写及执行",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0129",
+      "type": "rule",
+      "label": "列入二次措施单\", \"context\": \"sec_2_43\", \"refere...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "列入二次措施单\", \"context\": \"sec_2_43\", \"references\": [], \"metadata\": {\"source\": \"4.1.3 二次措施单体现的二次安全措施内容\"}}",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0130",
+      "type": "rule",
+      "label": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证、回路直流电阻测量，确认电流回路正确\", \"context\": \"sec_2_84\", \"references\": []",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0131",
+      "type": "rule",
+      "label": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证、回路直流电阻测量，确认电流回路正确\", \"context\": \"sec_2_84\", \"references\": []",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0132",
+      "type": "rule",
+      "label": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应防止误碰\", \"context\": \"sec_2_95\", \"references\": [], \"metadata\": ",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0133",
+      "type": "rule",
+      "label": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝缘胶布贴住或用塑料扣板扣住端子",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0134",
+      "type": "rule",
+      "label": "征得工作负责人或监护人同意\", \"context\": \"sec_2_95\", \"...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "征得工作负责人或监护人同意\", \"context\": \"sec_2_95\", \"references\": [], \"metadata\": {\"source\": \"2）若工作设备与其他运行设备组合在同一",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0135",
+      "type": "rule",
+      "label": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝缘胶布贴住或用塑料扣板扣住端子",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0136",
+      "type": "rule",
+      "label": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应防止误碰\", \"context\": \"sec_2_95\", \"references\": [], \"metadata\": ",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0137",
+      "type": "rule",
+      "label": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝缘胶布贴住或用塑料扣板扣住端子",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0138",
+      "type": "rule",
+      "label": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用防尘塞密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0139",
+      "type": "rule",
+      "label": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用...",
+      "properties": {
+        "rule_type": "mandatory",
+        "full_content": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用防尘塞密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0140",
+      "type": "rule",
+      "label": "与工作票同步填写，其正确性、完备性和具体组织执行由工作负责人负责",
+      "properties": {
+        "rule_type": "recommendation",
+        "full_content": "与工作票同步填写，其正确性、完备性和具体组织执行由工作负责人负责",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0141",
+      "type": "rule",
+      "label": "设置过多，防止安全措施设置过度造成漏恢复",
+      "properties": {
+        "rule_type": "recommendation",
+        "full_content": "设置过多，防止安全措施设置过度造成漏恢复",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0142",
+      "type": "rule",
+      "label": "先退出GOOSE接收软压板，后退出GOOSE发送软压板，再投入检修硬压板",
+      "properties": {
+        "rule_type": "recommendation",
+        "full_content": "先退出GOOSE接收软压板，后退出GOOSE发送软压板，再投入检修硬压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0143",
+      "type": "rule",
+      "label": "先退出检修硬压板，后投入GOOSE发送软压板，确认相应GOOSE报文无误后，再投...",
+      "properties": {
+        "rule_type": "recommendation",
+        "full_content": "先退出检修硬压板，后投入GOOSE发送软压板，确认相应GOOSE报文无误后，再投入GOOSE接收软压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0144",
+      "type": "rule",
+      "label": "采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的安全措施",
+      "properties": {
+        "rule_type": "recommendation",
+        "full_content": "采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的安全措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0145",
+      "type": "rule",
+      "label": "采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的安全措施\", \"cont...",
+      "properties": {
+        "rule_type": "recommendation",
+        "full_content": "采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的安全措施\", \"context\": \"sec_2_114\", \"references\": [], \"metadata\": {\"source\": ",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0146",
+      "type": "rule",
+      "label": "、短接、接地、拆除、接入、绝缘密封等技术措施",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "、短接、接地、拆除、接入、绝缘密封等技术措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0147",
+      "type": "rule",
+      "label": "点或可判断的断开点，不存在电气或通信连接的可能",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "点或可判断的断开点，不存在电气或通信连接的可能",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0148",
+      "type": "rule",
+      "label": "出口硬压板、拆除二次电缆及拔出光纤、尾纤等",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "出口硬压板、拆除二次电缆及拔出光纤、尾纤等",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0149",
+      "type": "rule",
+      "label": "装置检修压板、退出GOOSE软压板等",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "装置检修压板、退出GOOSE软压板等",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0150",
+      "type": "rule",
+      "label": "或连接二次回路的连接元件",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或连接二次回路的连接元件",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0151",
+      "type": "rule",
+      "label": "或连接二次回路的连接元件",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或连接二次回路的连接元件",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0152",
+      "type": "rule",
+      "label": "或连接二次回路的把手",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或连接二次回路的把手",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0153",
+      "type": "rule",
+      "label": "、误投退、误加量导致人身风险或运行设备停运、损坏的措施",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "、误投退、误加量导致人身风险或运行设备停运、损坏的措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0154",
+      "type": "rule",
+      "label": "旧保护屏涉及的运\", \"content\": \"行回路、新保护屏二次回路接入运行设...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "旧保护屏涉及的运\", \"content\": \"行回路、新保护屏二次回路接入运行设备两个作业阶段的工作票及二\\n次安全措施单应分别独立开具并实施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0155",
+      "type": "rule",
+      "label": "开关电机电源空气开关或取下熔断器",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "开关电机电源空气开关或取下熔断器",
+        "context": ""
+      }
+    },
+    {
+      "id": "equip_熔断器",
+      "type": "equipment",
+      "label": "熔断器",
+      "properties": {}
+    },
+    {
+      "id": "rule_0156",
+      "type": "rule",
+      "label": "刀闸或地刀控制电源和电机电源或取下熔断器",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "刀闸或地刀控制电源和电机电源或取下熔断器",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0157",
+      "type": "rule",
+      "label": "二次电压空开",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "二次电压空开",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0158",
+      "type": "rule",
+      "label": "涉及运行设备的跳、合闸及联跳出口压板（含相应的GOOSE发送软压板）",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "涉及运行设备的跳、合闸及联跳出口压板（含相应的GOOSE发送软压板）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0159",
+      "type": "rule",
+      "label": "失灵启动回路压板（含相应的GOOSE发送、接收软压板）",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "失灵启动回路压板（含相应的GOOSE发送、接收软压板）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0160",
+      "type": "rule",
+      "label": "闭锁开出回路压板（含相应的GOOSE发送软压板）",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "闭锁开出回路压板（含相应的GOOSE发送软压板）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0161",
+      "type": "rule",
+      "label": "远跳发信回路压板（含相应的GOOSE发送软压板）",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "远跳发信回路压板（含相应的GOOSE发送软压板）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0162",
+      "type": "rule",
+      "label": "光缆跳闸装置（含智能终端）的检修压板",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "光缆跳闸装置（含智能终端）的检修压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0163",
+      "type": "rule",
+      "label": "安自装置的站间或套间通信通道(包括退出通道压板和断开通道开关)",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "安自装置的站间或套间通信通道(包括退出通道压板和断开通道开关)",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0164",
+      "type": "rule",
+      "label": "涉及运行设备的遥控出口压板",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "涉及运行设备的遥控出口压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0165",
+      "type": "rule",
+      "label": "保护、安自装置远方操作硬压板",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "保护、安自装置远方操作硬压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0166",
+      "type": "rule",
+      "label": "或连上二次电流回路端子连接片",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或连上二次电流回路端子连接片",
+        "context": ""
+      }
+    },
+    {
+      "id": "action_连上",
+      "type": "action",
+      "label": "连上操作",
+      "properties": {
+        "action_type": "连上"
+      }
+    },
+    {
+      "id": "rule_0167",
+      "type": "rule",
+      "label": "或连上二次电压回路端子连接片",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或连上二次电压回路端子连接片",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0168",
+      "type": "rule",
+      "label": "或插入保护、安自装置的光纤通道尾纤或接口装置的同轴电缆",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或插入保护、安自装置的光纤通道尾纤或接口装置的同轴电缆",
+        "context": ""
+      }
+    },
+    {
+      "id": "action_插入",
+      "type": "action",
+      "label": "插入操作",
+      "properties": {
+        "action_type": "插入"
+      }
+    },
+    {
+      "id": "rule_0169",
+      "type": "rule",
+      "label": "或插入过程层光纤接口尾纤",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或插入过程层光纤接口尾纤",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0170",
+      "type": "rule",
+      "label": "或插入网采网跳智能变电站对时通信尾纤",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或插入网采网跳智能变电站对时通信尾纤",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0171",
+      "type": "rule",
+      "label": "或接入不经端子连接片的二次电压回路二次线",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或接入不经端子连接片的二次电压回路二次线",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0172",
+      "type": "rule",
+      "label": "或接入不经端子连接片的运行设备位置开入等回路二次线",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或接入不经端子连接片的运行设备位置开入等回路二次线",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0173",
+      "type": "rule",
+      "label": "或接入不经压板的联跳、失灵启动、闭锁开出等回路二次线",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或接入不经压板的联跳、失灵启动、闭锁开出等回路二次线",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0174",
+      "type": "rule",
+      "label": "或接入交直流电源线、断开或闭合开关、投入或退出熔断器、密封电缆头等",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "或接入交直流电源线、断开或闭合开关、投入或退出熔断器、密封电缆头等",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0175",
+      "type": "rule",
+      "label": "点不宜设置过多，防止安全措施设置过度造成漏恢复",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "点不宜设置过多，防止安全措施设置过度造成漏恢复",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0176",
+      "type": "rule",
+      "label": "的压板一致，防止关键出口回路封错、漏密封",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "的压板一致，防止关键出口回路封错、漏密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0177",
+      "type": "rule",
+      "label": "电流或电压端子连接片后应紧固，防止因连接片自动滑落造成虚断的情况",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "电流或电压端子连接片后应紧固，防止因连接片自动滑落造成虚断的情况",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0178",
+      "type": "rule",
+      "label": "前应使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "前应使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证、回路直流电阻测量，确认电流回路正确",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0179",
+      "type": "rule",
+      "label": "工作设备所在屏柜上的二次电流输入、输出回路端子连接片，短接二次电流输出回路装置侧...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "工作设备所在屏柜上的二次电流输入、输出回路端子连接片，短接二次电流输出回路装置侧端子，并密封非工作侧电流端子",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0180",
+      "type": "rule",
+      "label": "工作设备所在屏柜上的二次电流输入、输出回路端子连接片，短接二次电流输出回路装置侧...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "工作设备所在屏柜上的二次电流输入、输出回路端子连接片，短接二次电流输出回路装置侧端子",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0181",
+      "type": "rule",
+      "label": "检修CT对应的二次电流回路端子连接片",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "检修CT对应的二次电流回路端子连接片",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0182",
+      "type": "rule",
+      "label": "的原则（在电流端子靠近CT侧短接）",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "的原则（在电流端子靠近CT侧短接）",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0183",
+      "type": "rule",
+      "label": "相应的保护装置或保护功能投入压板",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "相应的保护装置或保护功能投入压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0184",
+      "type": "rule",
+      "label": "”、“在哪里断开、在哪里密封”等风险，确保二次安全措施正确、完备",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "”、“在哪里断开、在哪里密封”等风险，确保二次安全措施正确、完备",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0185",
+      "type": "rule",
+      "label": "空气开关、打开端子连接片或拆除接线等物理隔离措施",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "空气开关、打开端子连接片或拆除接线等物理隔离措施",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0186",
+      "type": "rule",
+      "label": "点应优先选择电压空气开关或带连接片的电压端子，带电侧（非工作侧）密封",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "点应优先选择电压空气开关或带连接片的电压端子，带电侧（非工作侧）密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0187",
+      "type": "rule",
+      "label": "二次电压回路接线，并用绝缘胶布包扎完好",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "二次电压回路接线，并用绝缘胶布包扎完好",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0188",
+      "type": "rule",
+      "label": "保护绕组、测量绕组、计量绕组的电压空开，并拆除开口三角电压、N600电缆线芯，用...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "保护绕组、测量绕组、计量绕组的电压空开，并拆除开口三角电压、N600电缆线芯，用绝缘胶布包扎完好",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0189",
+      "type": "rule",
+      "label": "开口三角电压二次回路连接片或拆除其二次线，核相确认开口三角电压正常后再接入系统，...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "开口三角电压二次回路连接片或拆除其二次线，核相确认开口三角电压正常后再接入系统，防止PT开口三角电压极性错误导致主变零序过压保护误动作",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0190",
+      "type": "rule",
+      "label": "二次回路的外部电缆前，应征得工作负责人或监护人同意",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "二次回路的外部电缆前，应征得工作负责人或监护人同意",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0191",
+      "type": "rule",
+      "label": "并确认无电压后，应立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "并确认无电压后，应立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应防止误碰",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0192",
+      "type": "rule",
+      "label": "的汇控柜门、在跳闸继电器或跳闸回路前设置隔离档板、断开刀闸电机电源等",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "的汇控柜门、在跳闸继电器或跳闸回路前设置隔离档板、断开刀闸电机电源等",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0193",
+      "type": "rule",
+      "label": "失灵保护或线路远跳功能",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "失灵保护或线路远跳功能",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0194",
+      "type": "rule",
+      "label": "、拔出光纤等工作均应制定安全措施，确保不发生保护不正确动作事件",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "、拔出光纤等工作均应制定安全措施，确保不发生保护不正确动作事件",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0195",
+      "type": "rule",
+      "label": "GOOSE发送、接收软压板①",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "GOOSE发送、接收软压板①",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0196",
+      "type": "rule",
+      "label": "GOOSE接收软压板，后退出GOOSE发送软压板，再投入检修硬压板",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "GOOSE接收软压板，后退出GOOSE发送软压板，再投入检修硬压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0197",
+      "type": "rule",
+      "label": "检修硬压板，后投入GOOSE发送软压板，确认相应GOOSE报文无误后，再投入GO...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "检修硬压板，后投入GOOSE发送软压板，确认相应GOOSE报文无误后，再投入GOOSE接收软压板",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0198",
+      "type": "rule",
+      "label": "过程层光纤后，应立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "过程层光纤后，应立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用防尘塞密封",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0199",
+      "type": "rule",
+      "label": "全站五防系统进行遥控，防止遥控误出口",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "全站五防系统进行遥控，防止遥控误出口",
+        "context": ""
+      }
+    },
+    {
+      "id": "rule_0200",
+      "type": "rule",
+      "label": "网络前，应核实设备接入网口的IP地址、MAC地址、装置的地址、61850报告实例...",
+      "properties": {
+        "rule_type": "action",
+        "full_content": "网络前，应核实设备接入网口的IP地址、MAC地址、装置的地址、61850报告实例号等信息与站内网络运行中设备不冲突",
+        "context": ""
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "doc_root",
+      "target": "rule_0001",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0001",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0002",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0003",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0004",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0005",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0006",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0007",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0008",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0008",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0008",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0009",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0009",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0009",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0010",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0010",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0010",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0011",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0011",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0011",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0012",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0013",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0014",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0015",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0016",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0017",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0018",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0019",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0019",
+      "target": "equip_空开",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0019",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0019",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0020",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0021",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0022",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0023",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0024",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0025",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0026",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0027",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0028",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0029",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0030",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0030",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0030",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0031",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0032",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0033",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0034",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0034",
+      "target": "equip_空开",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0034",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0035",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0036",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0036",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0036",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0036",
+      "target": "equip_端子排",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0036",
+      "target": "action_退出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0037",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0038",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0039",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0039",
+      "target": "equip_CT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0039",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0040",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0041",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0042",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0042",
+      "target": "equip_CT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0042",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0042",
+      "target": "equip_端子排",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0042",
+      "target": "action_打开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0043",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0044",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0044",
+      "target": "equip_CT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0044",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0044",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0045",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0045",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0046",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0046",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0046",
+      "target": "action_打开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0047",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0047",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0047",
+      "target": "equip_保护装置",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0047",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0048",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0048",
+      "target": "equip_PT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0048",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0049",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0050",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0050",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0050",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0051",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0051",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0051",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0052",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0053",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0053",
+      "target": "equip_空开",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0053",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0054",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0054",
+      "target": "equip_PT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0054",
+      "target": "action_打开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0055",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0055",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0056",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0056",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0056",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0056",
+      "target": "equip_端子排",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0057",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0058",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0058",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0059",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0060",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0060",
+      "target": "action_退出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0061",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0062",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0063",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0063",
+      "target": "equip_光缆",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0064",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0065",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0066",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0067",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0067",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0067",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0067",
+      "target": "action_退出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0068",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0068",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0068",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0068",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0069",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0070",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0070",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0070",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0071",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0072",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0073",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0074",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0075",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0075",
+      "target": "action_接入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0076",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0076",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0077",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0077",
+      "target": "action_接入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0078",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0079",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0080",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0081",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0082",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0083",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0083",
+      "target": "equip_空开",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0083",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0084",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0084",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0085",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0085",
+      "target": "action_取下",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0086",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0087",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0087",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0088",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0089",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0090",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0091",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0092",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0093",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0094",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0095",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0095",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0096",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0096",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0096",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0097",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0098",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0098",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0098",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0099",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0100",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0101",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0102",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0103",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0103",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0104",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0105",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0105",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0106",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0107",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0107",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0108",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0109",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0109",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0110",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0110",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0110",
+      "target": "action_接入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0111",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0112",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0113",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0114",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0114",
+      "target": "equip_CT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0114",
+      "target": "action_拔出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0115",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0116",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0117",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0117",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0117",
+      "target": "equip_智能终端",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0117",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0117",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0118",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0118",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0118",
+      "target": "equip_智能终端",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0118",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0118",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0119",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0119",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0119",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0119",
+      "target": "action_退出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0120",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0121",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0121",
+      "target": "equip_尾纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0121",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0122",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0122",
+      "target": "equip_过程层交换机",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0123",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0124",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0124",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0124",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0124",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0124",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0125",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0125",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0125",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0125",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0125",
+      "target": "action_退出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0126",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0126",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0126",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0126",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0126",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0127",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0127",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0128",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0128",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0128",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0129",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0130",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0131",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0132",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0132",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0133",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0133",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0133",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0133",
+      "target": "equip_端子排",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0134",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0135",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0135",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0135",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0135",
+      "target": "equip_端子排",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0136",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0136",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0137",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0137",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0137",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0137",
+      "target": "equip_端子排",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0138",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0138",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0138",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0139",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0139",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0139",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0140",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0141",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0142",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0142",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0142",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0142",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0142",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0143",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0143",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0143",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0143",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0143",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0144",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0145",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0146",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0146",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0147",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0147",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0148",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0148",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0148",
+      "target": "equip_尾纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0148",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0148",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0148",
+      "target": "action_拔出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0149",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0149",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0149",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0149",
+      "target": "action_退出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0150",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0151",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0152",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0153",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0154",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0154",
+      "target": "action_接入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0155",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0155",
+      "target": "equip_熔断器",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0155",
+      "target": "action_取下",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0156",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0156",
+      "target": "equip_熔断器",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0156",
+      "target": "action_取下",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0157",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0157",
+      "target": "equip_空开",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0158",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0158",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0158",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0159",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0159",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0159",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0160",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0160",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0160",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0161",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0161",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0161",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0162",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0162",
+      "target": "equip_光缆",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0162",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0162",
+      "target": "equip_智能终端",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0163",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0163",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0163",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0164",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0164",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0165",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0165",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0165",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0166",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0166",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0166",
+      "target": "action_连上",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0167",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0167",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0167",
+      "target": "action_连上",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0168",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0168",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0168",
+      "target": "equip_尾纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0168",
+      "target": "action_插入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0169",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0169",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0169",
+      "target": "equip_尾纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0169",
+      "target": "action_插入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0170",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0170",
+      "target": "equip_尾纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0170",
+      "target": "action_插入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0171",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0171",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0171",
+      "target": "action_接入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0172",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0172",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0172",
+      "target": "action_接入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0173",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0173",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0173",
+      "target": "action_接入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0174",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0174",
+      "target": "equip_熔断器",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0174",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0175",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0176",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0176",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0176",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0177",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0177",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0178",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0179",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0179",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0179",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0180",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0180",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0181",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0181",
+      "target": "equip_CT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0181",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0182",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0182",
+      "target": "equip_CT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0182",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0183",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0183",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0183",
+      "target": "equip_保护装置",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0183",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0184",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0184",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0185",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0185",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0185",
+      "target": "action_打开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0186",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0186",
+      "target": "equip_端子",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0186",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0187",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0188",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0188",
+      "target": "equip_空开",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0188",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0189",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0189",
+      "target": "equip_PT",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0189",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0190",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0191",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0191",
+      "target": "action_拆除",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0192",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0192",
+      "target": "action_断开",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0193",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0194",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0194",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0194",
+      "target": "action_拔出",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0195",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0195",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0195",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0196",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0196",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0196",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0196",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0196",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0197",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0197",
+      "target": "equip_软压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0197",
+      "target": "equip_压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0197",
+      "target": "equip_硬压板",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0197",
+      "target": "action_投入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0198",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0198",
+      "target": "equip_光纤",
+      "relation": "applies_to",
+      "properties": {}
+    },
+    {
+      "source": "rule_0198",
+      "target": "action_密封",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0199",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "doc_root",
+      "target": "rule_0200",
+      "relation": "stipulates",
+      "properties": {}
+    },
+    {
+      "source": "rule_0200",
+      "target": "action_接入",
+      "relation": "requires",
+      "properties": {}
+    },
+    {
+      "source": "action_断开",
+      "target": "equip_空开",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_断开",
+      "target": "equip_端子",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_断开",
+      "target": "equip_端子排",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_退出",
+      "target": "equip_软压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_退出",
+      "target": "equip_压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_退出",
+      "target": "equip_硬压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_退出",
+      "target": "equip_保护装置",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_密封",
+      "target": "equip_端子",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_密封",
+      "target": "equip_端子排",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_打开",
+      "target": "equip_端子",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_打开",
+      "target": "equip_端子排",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_投入",
+      "target": "equip_软压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_投入",
+      "target": "equip_压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_投入",
+      "target": "equip_硬压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_投入",
+      "target": "equip_保护装置",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_取下",
+      "target": "equip_软压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_取下",
+      "target": "equip_压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_取下",
+      "target": "equip_空开",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_取下",
+      "target": "equip_硬压板",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_取下",
+      "target": "equip_熔断器",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_拔出",
+      "target": "equip_光纤",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_拔出",
+      "target": "equip_尾纤",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_连上",
+      "target": "equip_端子",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_连上",
+      "target": "equip_端子排",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_插入",
+      "target": "equip_光纤",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    },
+    {
+      "source": "action_插入",
+      "target": "equip_尾纤",
+      "relation": "related_to",
+      "properties": {
+        "weight": 0.8
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "build_time": "2026-09-01T12:40:36.008108",
+    "stats": {
+      "node_count": 1,
+      "edge_count": 0,
+      "node_types": {
+        "doc_main": "document"
+      },
+      "relation_types": [],
+      "density": 0,
+      "avg_degree": 0.0
+    }
+  },
+  "nodes": [
+    {
+      "id": "doc_main",
+      "type": "document",
+      "label": "实施细则（2025版）",
+      "properties": {
+        "source": "主文档"
+      }
+    }
+  ],
+  "edges": []
+}

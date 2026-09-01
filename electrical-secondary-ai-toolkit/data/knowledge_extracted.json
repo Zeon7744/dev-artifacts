@@ -1,0 +1,2062 @@
+{
+  "metadata": {
+    "extract_time": "2026-09-01T12:40:24.465306",
+    "terms_count": 0,
+    "rules_count": 271,
+    "procedures_count": 1
+  },
+  "terms": [],
+  "rules": [
+    {
+      "rule_id": "rule_0001",
+      "rule_type": "mandatory",
+      "content": "采取的隔离措施，如二次回路断开、短接、接地、拆除、接入、绝缘密封等技术措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0002",
+      "rule_type": "mandatory",
+      "content": "根据工作内容、工作地点、一次设备停电范围、二次设备运行状态、二次回路设计等实际因素，充分评估工作过程对相关联二次设备或回路的影响，必要时应制定二次安全措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0003",
+      "rule_type": "mandatory",
+      "content": "在工作票或二次措施单中体现，具体要求详见4.1.2和4.1.3",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0004",
+      "rule_type": "mandatory",
+      "content": "使用二次措施单的工作：\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_23\", \"title\": \"1）在运行",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0005",
+      "rule_type": "mandatory",
+      "content": "修订或重新填写二次措施单",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0006",
+      "rule_type": "mandatory",
+      "content": "注意不同阶段安全措\\n施变动可能产生的误拆、漏恢复风险，以及工作地点变动可能产生的\\n误入间隔风险",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0007",
+      "rule_type": "mandatory",
+      "content": "考虑以下安全措施，如需执行时，应在工作票中体现，工作票内的二次安全措施应在工作票许可前实施，并由工作许可人与工作负责人确认：\\n\", \"level\": 2, \"children\": []}, {\"se",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0008",
+      "rule_type": "mandatory",
+      "content": "的GOOSE发送软压板）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0009",
+      "rule_type": "mandatory",
+      "content": "的GOOSE发送、接收软压板）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0010",
+      "rule_type": "mandatory",
+      "content": "的GOOSE发送软压板）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0011",
+      "rule_type": "mandatory",
+      "content": "的GOOSE发送软压板）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0012",
+      "rule_type": "mandatory",
+      "content": "填写与运行设备进行物理隔离的措施，避免作业过程中造成运行中断路器或刀闸误分合、电流回路误开路、电压回路误短路等风险",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0013",
+      "rule_type": "mandatory",
+      "content": "考虑以下安全措施，如需执行时，应在二次措施单中体现，二次措施单内的二次安全措施作业前由工作负责人组织实施：\\n\", \"level\": 2, \"children\": []}, {\"section_id\"",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0014",
+      "rule_type": "mandatory",
+      "content": "由运行人员按相关规范执行与恢复",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0015",
+      "rule_type": "mandatory",
+      "content": "采取锁门或张贴封条等方法进行管控",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0016",
+      "rule_type": "mandatory",
+      "content": "征得运维单位人员同意后方可开放",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0017",
+      "rule_type": "mandatory",
+      "content": "由运维单位检修人员现场监督",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0018",
+      "rule_type": "mandatory",
+      "content": "由工作负责人事先征得工作许可人同意并确定安全措施的恢复状态",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0019",
+      "rule_type": "mandatory",
+      "content": "在工作许可和经现场核实正确后，由工作负责人组织工作班成员实施，执行前应检查工作票要求的软硬压板状态、空开、把手位置与实际一致，确认其与现场实际接线相符",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "空开"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0020",
+      "rule_type": "mandatory",
+      "content": "修订或重新填写二次措施单",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0021",
+      "rule_type": "mandatory",
+      "content": "由工作负责人确认二次安全措施的执行情况",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0022",
+      "rule_type": "mandatory",
+      "content": "加入施工单位的工作票并在二次措施单备注栏签名",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0023",
+      "rule_type": "mandatory",
+      "content": "在措施执行(恢复)当日，工作间断前完成签名",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0024",
+      "rule_type": "mandatory",
+      "content": "在各自负责执行(恢复)的措施页上分别签名",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0025",
+      "rule_type": "mandatory",
+      "content": "在更换工作地点或开展其它工作任务前，填写已执行（恢复）二次措施的记录",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0026",
+      "rule_type": "mandatory",
+      "content": "征得工作负责人同意，在工作负责人或指定监护人的监护下进行变更，并在二次措施单上记录变更情况",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0027",
+      "rule_type": "mandatory",
+      "content": "在二次措施单中修改及记录",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0028",
+      "rule_type": "mandatory",
+      "content": "重新履行二次措施单编制、审核两级流程",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0029",
+      "rule_type": "mandatory",
+      "content": "组织清理现场，撤离工作人员，确认安全措施不变后，方可工作间断",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0030",
+      "rule_type": "mandatory",
+      "content": "对照二次措施单，逐一检查恢复情况，对变动的端子连接片、二次接线、光纤接头进行紧固检查，确保相关二次措施已恢复",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子",
+        "光纤"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0031",
+      "rule_type": "mandatory",
+      "content": "在业主单位运维班组人员的见证下依据二次措施单恢复",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0032",
+      "rule_type": "mandatory",
+      "content": "根据相关要求在电网管理平台工作票相应附件位置中上传审批完成的施工（工作）方案（含二次拆接线表）、二次措施单、现场勘察记录等，工作终结前上传执行完毕的二次措施单扫描件",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0033",
+      "rule_type": "mandatory",
+      "content": "遵循以下要求：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_80\", \"title\": \"4.1.6.1 实施二次安全措施前，工作负责",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0034",
+      "rule_type": "mandatory",
+      "content": "组织记录工作设备初始状态，主要包括空开、压板、切换把手、定值区、地址码、过程层网络连接端口等元器件或参数的初始状态",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "空开"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0035",
+      "rule_type": "mandatory",
+      "content": "检查确认工作设备恢复至初始状态",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0036",
+      "rule_type": "mandatory",
+      "content": "核实端子排内部接线与压板一致，数量与工作票退出的压板一致，防止关键出口回路封错、漏密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "端子"
+      ],
+      "related_action": "退出"
+    },
+    {
+      "rule_id": "rule_0037",
+      "rule_type": "mandatory",
+      "content": "尽量避免拉扯二次线，防止造成电流回路的线芯松动",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0038",
+      "rule_type": "mandatory",
+      "content": "紧固，防止因连接片自动滑落造成虚断的情况",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0039",
+      "rule_type": "mandatory",
+      "content": "先明确“CT回路是否带电”、“CT回路是否有和电流”、“CT回路是否串接运行设备”、“CT回路接地点位置”等回路情况，辨识“能不能断”、“在哪里断、在哪里短、在哪里密封”、“先短后断、先断后短还是只断",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "CT"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0040",
+      "rule_type": "mandatory",
+      "content": "结合现场实际情况，考虑以下安全措施，并特别注意二次安全措施的实施顺序，防止运行电流回路开路、分流、多点接地、失去接地点、误加入试验电流",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0041",
+      "rule_type": "mandatory",
+      "content": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证、回路直流电阻测量，确认电流回路正确",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0042",
+      "rule_type": "mandatory",
+      "content": "的二次电流回路须进行物理隔离，应在最靠近检修CT的汇控箱或端子箱端子排处，打开检修CT对应的二次电流回路端子连接片",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "CT",
+        "端子"
+      ],
+      "related_action": "打开"
+    },
+    {
+      "rule_id": "rule_0043",
+      "rule_type": "mandatory",
+      "content": "注意防止和电流形式的二次电流回路误碰造成短路分流、多点接地或失去接地点",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0044",
+      "rule_type": "mandatory",
+      "content": "遵循先短接后断开的原则（在电流端子靠近CT侧短接）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "CT",
+        "端子"
+      ],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0045",
+      "rule_type": "mandatory",
+      "content": "遵循先跨接后断开的原则",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0046",
+      "rule_type": "mandatory",
+      "content": "使用专用短接线，确认电流已可靠短接或跨接后，方可打开端子连接片",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "打开"
+    },
+    {
+      "rule_id": "rule_0047",
+      "rule_type": "mandatory",
+      "content": "退出相应的保护装置或保护功能投入压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "保护装置",
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0048",
+      "rule_type": "mandatory",
+      "content": "先明确“PT回路是否带电”、 “PT回路有无并接运行设备”、“PT回路接地点位置”等回路情况，辨识“能不能断开”、“在哪里断开、在哪里密封”等风险，确保二次安全措施正确、完备",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "PT"
+      ],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0049",
+      "rule_type": "mandatory",
+      "content": "结合现场实际情况，考虑以下安全措施，并特别注意二次电压回路短路、反充电、多点接地、失去接地点：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0050",
+      "rule_type": "mandatory",
+      "content": "采用断开空气开关、打开端子连接片或拆除接线等物理隔离措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0051",
+      "rule_type": "mandatory",
+      "content": "优先选择电压空气开关或带连接片的电压端子，带电侧（非工作侧）密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0052",
+      "rule_type": "mandatory",
+      "content": "用万用表确认回路无电压",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0053",
+      "rule_type": "mandatory",
+      "content": "断开保护绕组、测量绕组、计量绕组的电压空开，并拆除开口三角电压、N600电缆线芯，用绝缘胶布包扎完好",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "空开"
+      ],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0054",
+      "rule_type": "mandatory",
+      "content": "打开开口三角电压二次回路连接片或拆除其二次线，核相确认开口三角电压正常后再接入系统，防止PT开口三角电压极性错误导致主变零序过压保护误动作",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "PT"
+      ],
+      "related_action": "打开"
+    },
+    {
+      "rule_id": "rule_0055",
+      "rule_type": "mandatory",
+      "content": "密封，做好物理隔离，防止误碰",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0056",
+      "rule_type": "mandatory",
+      "content": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝缘胶布贴住或用塑料扣板扣住端子",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0057",
+      "rule_type": "mandatory",
+      "content": "征得工作负责人或监护人同意",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0058",
+      "rule_type": "mandatory",
+      "content": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应防止误碰",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0059",
+      "rule_type": "mandatory",
+      "content": "使用装置的出口传动功能",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0060",
+      "rule_type": "mandatory",
+      "content": "短时退出失灵保护或线路远跳功能",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "退出"
+    },
+    {
+      "rule_id": "rule_0061",
+      "rule_type": "mandatory",
+      "content": "在执行、恢复和变动时相互沟通、现场确认，并在备注栏中做好记录，由各工作班负责人签名确认，防止漏执行、漏恢复、误恢复",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0062",
+      "rule_type": "mandatory",
+      "content": "评估对二次设备的影响，制定二次回路物理隔离措施（必要时经二次专业审核），防止运行二次设备不正确动作",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0063",
+      "rule_type": "mandatory",
+      "content": "注意评估对邻近通信光缆、二次电缆的影响，防止损坏有关线缆",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "光缆"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0064",
+      "rule_type": "mandatory",
+      "content": "充分评估对二次系统的影响，严防导致大量二次设备断电的事件发生",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0065",
+      "rule_type": "mandatory",
+      "content": "联合各相关专业开展现场勘察，并通过专项方案落实风险防控措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0066",
+      "rule_type": "mandatory",
+      "content": "制定安全措施，确保不发生保护不正确动作事件",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0067",
+      "rule_type": "mandatory",
+      "content": "一并退出GOOSE发送、接收软压板①",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "退出"
+    },
+    {
+      "rule_id": "rule_0068",
+      "rule_type": "mandatory",
+      "content": "GOOSE报文无误后，再投入GOOSE接收软压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0069",
+      "rule_type": "mandatory",
+      "content": "查看装置指示灯、人机界面变位报文或开入变位等情况，同时核查相关运行装置是否出现非预期信号，确认正常后方可继续执行",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0070",
+      "rule_type": "mandatory",
+      "content": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用防尘塞密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "光纤"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0071",
+      "rule_type": "mandatory",
+      "content": "采取充分的安全措施，不宜采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的安全措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0072",
+      "rule_type": "mandatory",
+      "content": "充分评估对调度自动化系统的影响，组织发起自动化检修管理流程，并根据检修批复意见和执行流程开展",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0073",
+      "rule_type": "mandatory",
+      "content": "组织现场人员联系主站执行安全措施，包括但不限于数据封锁、数据替代等措施，防止误调、误控、数据跳变等对调度监控及市场运营的影响",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0074",
+      "rule_type": "mandatory",
+      "content": "确认具备向主站解除安措的条件，申请检修单完工并通知主站恢复安全措施，确认数据及业务通道正常",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0075",
+      "rule_type": "mandatory",
+      "content": "核实设备接入网口的IP地址、MAC地址、装置的地址、61850报告实例号等信息与站内网络运行中设备不冲突",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "接入"
+    },
+    {
+      "rule_id": "rule_0076",
+      "rule_type": "mandatory",
+      "content": "经验证无误后才可投入运行",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0077",
+      "rule_type": "mandatory",
+      "content": "履行网络安全报备手续，厂站二次设备未接入业务的备用端口要做好密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "接入"
+    },
+    {
+      "rule_id": "rule_0078",
+      "rule_type": "mandatory",
+      "content": "使用调试专用移动存储设备或调试专用的笔记本电脑，并定期使用专用杀毒U盘或专用杀毒电脑开展病毒查杀工作，防范病毒感染",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0079",
+      "rule_type": "mandatory",
+      "content": "使用二次措施单进行管控",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0080",
+      "rule_type": "mandatory",
+      "content": "严格执行现场勘查、编制施工方案和二次措施单等管控要求",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0081",
+      "rule_type": "mandatory",
+      "content": "根据断电影响范围开展通信电源负载、设备供电接线（含错接线、并联接线等）等检查，检查步骤和检查结果应以现场勘查表、施工方案等形式做好记录",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0082",
+      "rule_type": "mandatory",
+      "content": "填报排查情况，提交调度机构检修批票人员审核",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0083",
+      "rule_type": "mandatory",
+      "content": "遵循以下要求：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_133\", \"title\": \"4.2.1.1 对于屏柜、压板、把手、空开",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "空开"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0084",
+      "rule_type": "mandatory",
+      "content": "同时包含端子编号、回路编号和回路用途",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0085",
+      "rule_type": "mandatory",
+      "content": "采用取下、装上、断开、合上、连上、打开、投入、退出、拔出、插入、切换至、拆除、接入等含有明确操作行为的规范动词",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "取下"
+    },
+    {
+      "rule_id": "rule_0086",
+      "rule_type": "mandatory",
+      "content": "采用《中国南方电网有限责任公司电力安全工作规程》规范的格式（见附录1）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0087",
+      "rule_type": "mandatory",
+      "content": "的工作票编号、二次措施单编号及按执行顺序列写的二次安全措施序号、执行时间、执行人、安全技术措施内容（主要包括密封安措和回路安措）、恢复时间、恢复人、监护人、工作负责人、编制人、见证人等，具体要求如下：",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0088",
+      "rule_type": "mandatory",
+      "content": "用“ ”符号划去或在空白第一行填写“以下空白”的字样",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0089",
+      "rule_type": "mandatory",
+      "content": "的时间栏填写执行和恢复的具体时间",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0090",
+      "rule_type": "mandatory",
+      "content": "在每天执行(恢复)的第一项加注日期",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0091",
+      "rule_type": "mandatory",
+      "content": "分别填写在措施单的相邻两行",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0092",
+      "rule_type": "mandatory",
+      "content": "征得工作负责人同意，按照“谁修改谁同意谁签字”原则在备注栏进行签名确认，修改方式主要包括：错别字的修改应在其上方修改，同时在错别字横划三道",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0093",
+      "rule_type": "mandatory",
+      "content": "在漏字处下方划“∧”符号，在“∧”的上方写上所漏的字",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0094",
+      "rule_type": "mandatory",
+      "content": "遵循以下要求：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_147\", \"title\": \"1）操作地点：在XX屏柜（编号和名称）操作",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0095",
+      "rule_type": "mandatory",
+      "content": "逐项填写，对于不拆除二次线的其他绝缘密封操作可合并填写",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0096",
+      "rule_type": "mandatory",
+      "content": "按功能分行填写，并列出密封端子对应的间隔及数量，防止关键回路漏密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0097",
+      "rule_type": "mandatory",
+      "content": "进行现场勘查，填写和现场实际情况一致的二次措施单，二次措施单应重点体现施工设备与运行设备关键回路的安全隔离措施，不涉及运行设备关键回路的拆接线应使用二次拆接线表（格式参考见附录2）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0098",
+      "rule_type": "mandatory",
+      "content": "结合图纸，以及现场实际接线，勘察二次接线的电缆号、回路号、端子号，确认屏位拆除、安装部分、电缆路径走向",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0099",
+      "rule_type": "mandatory",
+      "content": "在设备停电前10个工作日会同施工方案（含二次拆接线表）送运维部门审批",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0100",
+      "rule_type": "mandatory",
+      "content": "在设备停电前5个工作日会同业主单位运维班组人员完成现场核对",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0101",
+      "rule_type": "mandatory",
+      "content": "在业主单位运维班组人员的见证下完成",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0102",
+      "rule_type": "mandatory",
+      "content": "在二次措施单每一页的“备注栏”签名确认措施实施的正确性，并注明见证日期",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0103",
+      "rule_type": "mandatory",
+      "content": "彻底将欲拆除的屏柜或设备与运行设备进行隔离",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0104",
+      "rule_type": "mandatory",
+      "content": "两端解开，剪掉裸露部分，再进行绝缘包扎并固定好",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0105",
+      "rule_type": "mandatory",
+      "content": "确认电压回路、电流回路和直流回路电位状态正确，拆除后应确认拆除的回路均处于不带电状态",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0106",
+      "rule_type": "mandatory",
+      "content": "直接对控制电缆进行裁剪",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0107",
+      "rule_type": "mandatory",
+      "content": "两侧配合拆除，遵循“先拆电源端、再拆负载端”的原则",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0108",
+      "rule_type": "mandatory",
+      "content": "遵循“先拆负电端、再拆正电端”的原则，并同步在负载端测量电位变化进行验证",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0109",
+      "rule_type": "mandatory",
+      "content": "使用布帘或封条对相关运行的回路和压板进行隔离",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0110",
+      "rule_type": "mandatory",
+      "content": "遵循“先接正电端、再接负电端”的原则，接入正电端后需确认未接入的负电端电位正常，接入完成后，应在接点端的接线端子上测量电位正常，以确保电缆线芯接触良好",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "接入"
+    },
+    {
+      "rule_id": "rule_0111",
+      "rule_type": "mandatory",
+      "content": "在工作票或二次措施单中予以明确，在其上开展相关二次工作时，应执行本实施细则",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0112",
+      "rule_type": "mandatory",
+      "content": "先进行作业风险评估，并制定预控措施，办理工作票和填写二次措施单或二次拆接线记录",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0113",
+      "rule_type": "mandatory",
+      "content": "记录回路变更情况，作业结束后按记录进行恢复",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0114",
+      "rule_type": "mandatory",
+      "content": "对不属于更换对象的交流插件进行固定或隔离，防止误拔出交流插件造成CT开路",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "CT"
+      ],
+      "related_action": "拔出"
+    },
+    {
+      "rule_id": "rule_0115",
+      "rule_type": "mandatory",
+      "content": "及时检查现场情况，立即查明原因，并汇报调度",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0116",
+      "rule_type": "mandatory",
+      "content": "急处置的二次安全措施可参照以下执行：\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_181\", \"title\"",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0117",
+      "rule_type": "mandatory",
+      "content": "先退出智能终端所有出口硬压板，最后投入装置检修压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "智能终端",
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0118",
+      "rule_type": "mandatory",
+      "content": "先退出智能终端检修压板，再检查装置、报文正常，测量出口硬压板电位正常后，方可投入出口硬压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "智能终端",
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0119",
+      "rule_type": "mandatory",
+      "content": "退出相关保护功能软压板后再重启装置",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "退出"
+    },
+    {
+      "rule_id": "rule_0120",
+      "rule_type": "mandatory",
+      "content": "保持该装置重启时状态，应评估受影响的范围，必要时申请一次设备停电",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0121",
+      "rule_type": "mandatory",
+      "content": "体现作业前实施的安全措施，重点体现二次电压、二次电流、通道尾纤、不经压板的联跳及闭锁等回路的物理隔离，工作时的作业步骤、作业方法、作业记录等不需要写入二次措施单",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "尾纤"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0122",
+      "rule_type": "mandatory",
+      "content": "通过测试仪直接向过程层交换机网络光口加量并开展传动试验",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "过程层交换机"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0123",
+      "rule_type": "mandatory",
+      "content": "结合定检策略、现场实际情况，考虑以下安全措施：\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_188\", \"t",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0124",
+      "rule_type": "mandatory",
+      "content": "先拔出装置过程层光纤，再投入跳母联、分段等运行间隔GOOSE发送软压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "光纤"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0125",
+      "rule_type": "mandatory",
+      "content": "先退出跳母联、分段等运行间隔GOOSE发送软压板，再恢复装置过程层光纤",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "光纤"
+      ],
+      "related_action": "退出"
+    },
+    {
+      "rule_id": "rule_0126",
+      "rule_type": "mandatory",
+      "content": "确认涉及运行设备的跳闸、启失灵、联闭锁等GOOSE发送、接收软压板在退出状态，装置检修硬压板在投入状态",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0127",
+      "rule_type": "mandatory",
+      "content": "在测控屏通过短接线短接五防锁或遥控分合闸端子开展开关传动试验",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0128",
+      "rule_type": "mandatory",
+      "content": "根据二次设计图纸及设备现场实际情况进行修编，以满足现场实际作业安全管控的要求，应详细列出二次安全措施的位置、回路号、端子号、压板编号等具体内容，并按二次措施单格式填写及执行",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0129",
+      "rule_type": "mandatory",
+      "content": "列入二次措施单\", \"context\": \"sec_2_43\", \"references\": [], \"metadata\": {\"source\": \"4.1.3 二次措施单体现的二次安全措施内容\"}}",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0130",
+      "rule_type": "mandatory",
+      "content": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证、回路直流电阻测量，确认电流回路正确\", \"context\": \"sec_2_84\", \"references\": []",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0131",
+      "rule_type": "mandatory",
+      "content": "使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证、回路直流电阻测量，确认电流回路正确\", \"context\": \"sec_2_84\", \"references\": []",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0132",
+      "rule_type": "mandatory",
+      "content": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应防止误碰\", \"context\": \"sec_2_95\", \"references\": [], \"metadata\": ",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0133",
+      "rule_type": "mandatory",
+      "content": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝缘胶布贴住或用塑料扣板扣住端子",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0134",
+      "rule_type": "mandatory",
+      "content": "征得工作负责人或监护人同意\", \"context\": \"sec_2_95\", \"references\": [], \"metadata\": {\"source\": \"2）若工作设备与其他运行设备组合在同一",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0135",
+      "rule_type": "mandatory",
+      "content": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝缘胶布贴住或用塑料扣板扣住端子",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0136",
+      "rule_type": "mandatory",
+      "content": "立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应防止误碰\", \"context\": \"sec_2_95\", \"references\": [], \"metadata\": ",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0137",
+      "rule_type": "mandatory",
+      "content": "对同屏运行设备（含装置、压板、端子排、空气开关及切换开关等）采取防护措施，如用绝缘胶布贴住或用塑料扣板扣住端子",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0138",
+      "rule_type": "mandatory",
+      "content": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用防尘塞密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "光纤"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0139",
+      "rule_type": "mandatory",
+      "content": "立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用防尘塞密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "光纤"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0140",
+      "rule_type": "recommendation",
+      "content": "与工作票同步填写，其正确性、完备性和具体组织执行由工作负责人负责",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0141",
+      "rule_type": "recommendation",
+      "content": "设置过多，防止安全措施设置过度造成漏恢复",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0142",
+      "rule_type": "recommendation",
+      "content": "先退出GOOSE接收软压板，后退出GOOSE发送软压板，再投入检修硬压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0143",
+      "rule_type": "recommendation",
+      "content": "先退出检修硬压板，后投入GOOSE发送软压板，确认相应GOOSE报文无误后，再投入GOOSE接收软压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0144",
+      "rule_type": "recommendation",
+      "content": "采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的安全措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0145",
+      "rule_type": "recommendation",
+      "content": "采用单一逻辑隔离安全措施作为现场作业时虚回路上可靠隔离的安全措施\", \"context\": \"sec_2_114\", \"references\": [], \"metadata\": {\"source\": ",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0146",
+      "rule_type": "action",
+      "content": "、短接、接地、拆除、接入、绝缘密封等技术措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0147",
+      "rule_type": "action",
+      "content": "点或可判断的断开点，不存在电气或通信连接的可能",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0148",
+      "rule_type": "action",
+      "content": "出口硬压板、拆除二次电缆及拔出光纤、尾纤等",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板",
+        "光纤",
+        "尾纤"
+      ],
+      "related_action": "拔出"
+    },
+    {
+      "rule_id": "rule_0149",
+      "rule_type": "action",
+      "content": "装置检修压板、退出GOOSE软压板等",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "退出"
+    },
+    {
+      "rule_id": "rule_0150",
+      "rule_type": "action",
+      "content": "或连接二次回路的连接元件",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0151",
+      "rule_type": "action",
+      "content": "或连接二次回路的连接元件",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0152",
+      "rule_type": "action",
+      "content": "或连接二次回路的把手",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0153",
+      "rule_type": "action",
+      "content": "、误投退、误加量导致人身风险或运行设备停运、损坏的措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0154",
+      "rule_type": "action",
+      "content": "旧保护屏涉及的运\", \"content\": \"行回路、新保护屏二次回路接入运行设备两个作业阶段的工作票及二\\n次安全措施单应分别独立开具并实施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "接入"
+    },
+    {
+      "rule_id": "rule_0155",
+      "rule_type": "action",
+      "content": "开关电机电源空气开关或取下熔断器",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "熔断器"
+      ],
+      "related_action": "取下"
+    },
+    {
+      "rule_id": "rule_0156",
+      "rule_type": "action",
+      "content": "刀闸或地刀控制电源和电机电源或取下熔断器",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "熔断器"
+      ],
+      "related_action": "取下"
+    },
+    {
+      "rule_id": "rule_0157",
+      "rule_type": "action",
+      "content": "二次电压空开",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "空开"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0158",
+      "rule_type": "action",
+      "content": "涉及运行设备的跳、合闸及联跳出口压板（含相应的GOOSE发送软压板）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0159",
+      "rule_type": "action",
+      "content": "失灵启动回路压板（含相应的GOOSE发送、接收软压板）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0160",
+      "rule_type": "action",
+      "content": "闭锁开出回路压板（含相应的GOOSE发送软压板）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0161",
+      "rule_type": "action",
+      "content": "远跳发信回路压板（含相应的GOOSE发送软压板）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0162",
+      "rule_type": "action",
+      "content": "光缆跳闸装置（含智能终端）的检修压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "智能终端",
+        "压板",
+        "光缆"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0163",
+      "rule_type": "action",
+      "content": "安自装置的站间或套间通信通道(包括退出通道压板和断开通道开关)",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0164",
+      "rule_type": "action",
+      "content": "涉及运行设备的遥控出口压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0165",
+      "rule_type": "action",
+      "content": "保护、安自装置远方操作硬压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0166",
+      "rule_type": "action",
+      "content": "或连上二次电流回路端子连接片",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "连上"
+    },
+    {
+      "rule_id": "rule_0167",
+      "rule_type": "action",
+      "content": "或连上二次电压回路端子连接片",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "连上"
+    },
+    {
+      "rule_id": "rule_0168",
+      "rule_type": "action",
+      "content": "或插入保护、安自装置的光纤通道尾纤或接口装置的同轴电缆",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "光纤",
+        "尾纤"
+      ],
+      "related_action": "插入"
+    },
+    {
+      "rule_id": "rule_0169",
+      "rule_type": "action",
+      "content": "或插入过程层光纤接口尾纤",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "光纤",
+        "尾纤"
+      ],
+      "related_action": "插入"
+    },
+    {
+      "rule_id": "rule_0170",
+      "rule_type": "action",
+      "content": "或插入网采网跳智能变电站对时通信尾纤",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "尾纤"
+      ],
+      "related_action": "插入"
+    },
+    {
+      "rule_id": "rule_0171",
+      "rule_type": "action",
+      "content": "或接入不经端子连接片的二次电压回路二次线",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "接入"
+    },
+    {
+      "rule_id": "rule_0172",
+      "rule_type": "action",
+      "content": "或接入不经端子连接片的运行设备位置开入等回路二次线",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "接入"
+    },
+    {
+      "rule_id": "rule_0173",
+      "rule_type": "action",
+      "content": "或接入不经压板的联跳、失灵启动、闭锁开出等回路二次线",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "接入"
+    },
+    {
+      "rule_id": "rule_0174",
+      "rule_type": "action",
+      "content": "或接入交直流电源线、断开或闭合开关、投入或退出熔断器、密封电缆头等",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "熔断器"
+      ],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0175",
+      "rule_type": "action",
+      "content": "点不宜设置过多，防止安全措施设置过度造成漏恢复",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0176",
+      "rule_type": "action",
+      "content": "的压板一致，防止关键出口回路封错、漏密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0177",
+      "rule_type": "action",
+      "content": "电流或电压端子连接片后应紧固，防止因连接片自动滑落造成虚断的情况",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0178",
+      "rule_type": "action",
+      "content": "前应使用钳形电流表或查看装置电流采样确认状态，恢复时应结合现场实际进行唯一接地点验证、回路直流电阻测量，确认电流回路正确",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0179",
+      "rule_type": "action",
+      "content": "工作设备所在屏柜上的二次电流输入、输出回路端子连接片，短接二次电流输出回路装置侧端子，并密封非工作侧电流端子",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0180",
+      "rule_type": "action",
+      "content": "工作设备所在屏柜上的二次电流输入、输出回路端子连接片，短接二次电流输出回路装置侧端子",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0181",
+      "rule_type": "action",
+      "content": "检修CT对应的二次电流回路端子连接片",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "CT",
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0182",
+      "rule_type": "action",
+      "content": "的原则（在电流端子靠近CT侧短接）",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "CT",
+        "端子"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0183",
+      "rule_type": "action",
+      "content": "相应的保护装置或保护功能投入压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "保护装置",
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0184",
+      "rule_type": "action",
+      "content": "”、“在哪里断开、在哪里密封”等风险，确保二次安全措施正确、完备",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0185",
+      "rule_type": "action",
+      "content": "空气开关、打开端子连接片或拆除接线等物理隔离措施",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "打开"
+    },
+    {
+      "rule_id": "rule_0186",
+      "rule_type": "action",
+      "content": "点应优先选择电压空气开关或带连接片的电压端子，带电侧（非工作侧）密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "端子"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0187",
+      "rule_type": "action",
+      "content": "二次电压回路接线，并用绝缘胶布包扎完好",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0188",
+      "rule_type": "action",
+      "content": "保护绕组、测量绕组、计量绕组的电压空开，并拆除开口三角电压、N600电缆线芯，用绝缘胶布包扎完好",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "空开"
+      ],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0189",
+      "rule_type": "action",
+      "content": "开口三角电压二次回路连接片或拆除其二次线，核相确认开口三角电压正常后再接入系统，防止PT开口三角电压极性错误导致主变零序过压保护误动作",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "PT"
+      ],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0190",
+      "rule_type": "action",
+      "content": "二次回路的外部电缆前，应征得工作负责人或监护人同意",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0191",
+      "rule_type": "action",
+      "content": "并确认无电压后，应立即用绝缘胶布分别包扎好电缆芯线头金属裸露部分，且应拆一芯包扎一芯，拆除过程中应防止误碰",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "拆除"
+    },
+    {
+      "rule_id": "rule_0192",
+      "rule_type": "action",
+      "content": "的汇控柜门、在跳闸继电器或跳闸回路前设置隔离档板、断开刀闸电机电源等",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "断开"
+    },
+    {
+      "rule_id": "rule_0193",
+      "rule_type": "action",
+      "content": "失灵保护或线路远跳功能",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0194",
+      "rule_type": "action",
+      "content": "、拔出光纤等工作均应制定安全措施，确保不发生保护不正确动作事件",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "光纤"
+      ],
+      "related_action": "拔出"
+    },
+    {
+      "rule_id": "rule_0195",
+      "rule_type": "action",
+      "content": "GOOSE发送、接收软压板①",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0196",
+      "rule_type": "action",
+      "content": "GOOSE接收软压板，后退出GOOSE发送软压板，再投入检修硬压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0197",
+      "rule_type": "action",
+      "content": "检修硬压板，后投入GOOSE发送软压板，确认相应GOOSE报文无误后，再投入GOOSE接收软压板",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "压板"
+      ],
+      "related_action": "投入"
+    },
+    {
+      "rule_id": "rule_0198",
+      "rule_type": "action",
+      "content": "过程层光纤后，应立即用防尘帽密封，并确保光纤的弯曲程度符合相关规范要求，暂不使用的收发光口也应用防尘塞密封",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [
+        "光纤"
+      ],
+      "related_action": "密封"
+    },
+    {
+      "rule_id": "rule_0199",
+      "rule_type": "action",
+      "content": "全站五防系统进行遥控，防止遥控误出口",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": ""
+    },
+    {
+      "rule_id": "rule_0200",
+      "rule_type": "action",
+      "content": "网络前，应核实设备接入网口的IP地址、MAC地址、装置的地址、61850报告实例号等信息与站内网络运行中设备不冲突",
+      "context": "",
+      "source_section": "",
+      "related_equipment": [],
+      "related_action": "接入"
+    }
+  ],
+  "procedures": [
+    {
+      "procedure_id": "proc_0001",
+      "name": "流程_0001",
+      "steps": [
+        "864731\", \"paragraph_count\": 266, \"table_count\": 1}, \"sections\": [{\"section_id\": \"sec_2_0\", \"title\": \"1 总则\", \"content\": \"为进一步规范继电保护、安全自动装置、通信设备、自动化监控系统、网络安全防护设备等厂站二次设备及其二次回路工作安全技术措施单，防范现场作业造成人身、电网、设备、网",
+        "1—2023工作票实施规范 第一部分：发电厂和变电站\\nQ/CSG 125008—2016 电气操作导则\\nQ/CSG 1204099-2021 中国南方电网电力监控系统网络安全技术规范\\n南方电网厂站二次设备及其二次回路工作安全技术措施单管理要求(2025年版）\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_2\", \"title\":",
+        "1厂站二次设备\", \"content\": \"厂站对电力生产全过程进行监视、控制、测量和保护的设备，包含继电保护、安全自动化装置、通信设备、自动化监控系统、网络安全防护设备等。以下简称“二次设备”。\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_4\", \"title\": \"3.2厂站二次回路\", \"content\": \"实现厂站二次设备",
+        "3厂站二次设备及其二次回路工作安全技术措施\", \"content\": \"在厂站二次设备及其二次回路上或相关一次设备上工作时，为防范人身、电网、设备或电力监控网络安全事故事件应采取的隔离措施，如二次回路断开、短接、接地、拆除、接入、绝缘密封等技术措施。以下简称“二次安全措施”。\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_6\", \"t",
+        "4 厂站二次设备及回路工作安全技术措施单\", \"content\": \"为确保工作票所列安全措施以外的二次设备及回路工作安全技术措施规范、有效落实的书面记录，是工作票的必要补充。以下简称“二次措施单”。\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_7\", \"title\": \"3.5 电缆跳闸装置\", \"content\": \"采用机械继",
+        "6 光缆跳闸装置\", \"content\": \"采用GOOSE通信方式并通过光缆跳闸的保护装置。\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_9\", \"title\": \"3.7 物理隔离\", \"content\": \"使二次回路有明显断开点或可判断的断开点，不存在电气或通信连接的可能。如退出出口硬压板、拆除二次电缆及拔出光纤、尾纤等。\\",
+        "8 逻辑隔离\", \"content\": \"通过检修机制或装置软压板使二次回路隔离。如投入装置检修压板、退出GOOSE软压板等。\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_11\", \"title\": \"3.9 密封\", \"content\": \"通过绝缘胶布或专用工具，对工作中不允许触碰或改变状态的端子、压板、空开、把手、装置、元器件",
+        "10 硬压板\", \"content\": \"装设于屏柜面板上用于断开或连接二次回路的连接元件。一般指保护、测控、安自装置的功能压板、出口压板、闭锁压板、检修压板等。\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_13\", \"title\": \"3.11 软压板\", \"content\": \"保护、测控、安自装置内部用于实现某个功能投退或处理",
+        "12 端子连接片\", \"content\": \"装设于端子排上用于断开或连接二次回路的连接元件。一般指二次电压回路端子连接片、二次电流回路端子连接片等。\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_15\", \"title\": \"3.13 切换把手\", \"content\": \"装设于屏柜面板上用于断开或连接二次回路的把手。一般指远方/就",
+        "14关联运行屏柜\", \"content\": \"与检修屏柜有回路联系且柜内有与运行设备有关联的回路的非改造屏柜。\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_17\", \"title\": \"3.15关键回路\", \"content\": \"可导致运行设备跳合闸、刀闸、地刀误分合或导致电压短路或反充电、电流开路或分流的回路，如电压、电流、控制",
+        "1 二次安全措施实施细则\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_20\", \"title\": \"4.1.1 总体要求\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_21\", \"title\": \"4.1.1.1在厂站",
+        "1.1.2二次安全措施应在工作票或二次措施单中体现，具体要求详见4.1.2和4.1.3。应使用二次措施单的工作：\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_23\", \"title\": \"1）在运行设备的二次回路上进行拆、接线工作，防范作业过程中误碰、误短接、误断开、误投退、误加量导致人身风险或运行设备停运",
+        "在对检修设备执行隔离措施时，需拆断、短接和恢复同运行设备有联系的二次回路工作。\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_25\", \"title\": \"3）其它需要使用二次措施单控制作业风险的工作。\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"secti",
+        "1.1.3 二次措施单作为工作票必要的补充，是现场作业风险防控的重要手段，宜与工作票同步填写，其正确性、完备性和具体组织执行由工作负责人负责。因工作需要，工作过程中需变更、增加二次隔离措施时，应修订或重新填写二次措施单。\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_27\", \"title\": \"4.1.1.",
+        "1.2 工作票体现的二次安全措施内容\", \"content\": \"工作负责人应考虑以下安全措施，如需执行时，应在工作票中体现，工作票内的二次安全措施应在工作票许可前实施，并由工作许可人与工作负责人确认：\\n\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_29\", \"title\": \"1）断开开关电机电源空气开关或取下熔断器；\", \"con",
+        "断开刀闸或地刀控制电源和电机电源或取下熔断器；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_31\", \"title\": \"3）断开二次电压空开；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_32\", \"title\":",
+        "退出涉及运行设备的跳、合闸及联跳出口压板（含相应的GOOSE发送软压板）；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_33\", \"title\": \"5）退出失灵启动回路压板（含相应的GOOSE发送、接收软压板）；\", \"content\": \"\", \"level\": 2, \"children\": []}, ",
+        "退出闭锁开出回路压板（含相应的GOOSE发送软压板）；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_35\", \"title\": \"7）退出远跳发信回路压板（含相应的GOOSE发送软压板）；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\"",
+        "投入光缆跳闸装置（含智能终端）的检修压板；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_37\", \"title\": \"9）断开安自装置的站间或套间通信通道(包括退出通道压板和断开通道开关)；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id",
+        "退出涉及运行设备的遥控出口压板；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_39\", \"title\": \"11）退出保护、安自装置远方操作硬压板；\", \"content\": \"\", \"level\": 2, \"children\": []}, {\"section_id\": \"sec_2_40\", \"title"
+      ],
+      "prerequisites": [],
+      "precautions": [],
+      "source_section": ""
+    }
+  ],
+  "statistics": {
+    "term_tags": {},
+    "rule_types": {
+      "mandatory": 139,
+      "recommendation": 6,
+      "action": 126
+    },
+    "action_distribution": {
+      "拆除": 22,
+      "密封": 16,
+      "投入": 16,
+      "断开": 15,
+      "接入": 13,
+      "退出": 7,
+      "拔出": 6,
+      "打开": 4,
+      "取下": 3,
+      "插入": 3,
+      "装上": 3,
+      "连上": 2,
+      "切换至": 1
+    }
+  }
+}

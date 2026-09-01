@@ -1,0 +1,92 @@
+{
+  "station_name": "YY变电站",
+  "sheet_number": "2026-0625",
+  "work_ticket_number": "",
+  "items": [
+    {
+      "seq": "1",
+      "category": "",
+      "subcategory": "",
+      "content": "核实二次措施单与现场实际接线一致",
+      "location": "YY变电站",
+      "execute_mark": "",
+      "execute_time": "",
+      "restore_mark": "",
+      "restore_time": ""
+    },
+    {
+      "seq": "",
+      "category": "密封安措",
+      "subcategory": "",
+      "content": "",
+      "location": "",
+      "execute_mark": "",
+      "execute_time": "",
+      "restore_mark": "",
+      "restore_time": ""
+    },
+    {
+      "seq": "2",
+      "category": "密封安措",
+      "subcategory": "压板密封",
+      "content": "220kV 线路保护逐一密封工作票中列明退出的涉及运行设备的压板",
+      "location": "YY变电站B屏",
+      "execute_mark": "",
+      "execute_time": "",
+      "restore_mark": "",
+      "restore_time": ""
+    },
+    {
+      "seq": "",
+      "category": "回路安措",
+      "subcategory": "",
+      "content": "",
+      "location": "",
+      "execute_mark": "",
+      "execute_time": "",
+      "restore_mark": "",
+      "restore_time": ""
+    },
+    {
+      "seq": "3",
+      "category": "回路安措",
+      "subcategory": "电流回路",
+      "content": "220kV 线路保护确认线路CT无流后，打开二次电流回路端子连接片",
+      "location": "YY变电站@屏",
+      "execute_mark": "",
+      "execute_time": "",
+      "restore_mark": "",
+      "restore_time": ""
+    },
+    {
+      "seq": "4",
+      "category": "回路安措",
+      "subcategory": "电压回路",
+      "content": "220kV 线路保护打开二次电压回路端子连接片",
+      "location": "YY变电站A屏",
+      "execute_mark": "",
+      "execute_time": "",
+      "restore_mark": "",
+      "restore_time": ""
+    },
+    {
+      "seq": "5",
+      "category": "回路安措",
+      "subcategory": "光纤通道",
+      "content": "220kV 线路保护拔出保护光纤通道尾纤，并用防尘套密封",
+      "location": "YY变电站B屏",
+      "execute_mark": "",
+      "execute_time": "",
+      "restore_mark": "",
+      "restore_time": ""
+    }
+  ],
+  "preparer": "",
+  "approver": "",
+  "executor": "",
+  "supervisor": "",
+  "restorer": "",
+  "witness": "",
+  "notes": "",
+  "created_at": "2026-09-01T12:41:31.991356"
+}
