@@ -4,8 +4,14 @@
 
 这里是我开发成果的中心仓库，包含可复用的工具、命令行工具、自动化脚本等开发成品。
 
+<div align="center">
+
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
+[![GitHub forks](https://img.shields.io/github/forks/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts/forks)
+
+</div>
 
 ---
 
@@ -43,10 +49,11 @@ dev-artifacts/
 ├── mcp_server.py         # MCP Server
 ├── web.html              # Web 可视化界面
 ├── pyproject.toml        # 项目配置
-└── README.md             # 使用说明
+├── README.md             # 使用说明
+├── commodity-mlp/        # 商品MLP分析模块
+├── crypto-mlp/           # 加密货币MLP分析模块
+└── reports/              # 分析报告目录
 ```
-
-未来将持续添加更多开发成果。
 
 ---
 
@@ -54,13 +61,13 @@ dev-artifacts/
 
 这是**通用开发成果库**，不是单一垂直项目的仓库。
 
-包含：
+**包含：**
 - ✅ 经过验证的可复用工具
 - ✅ 命令行工具（CLI）
 - ✅ 自动化脚本
 - ✅ 可独立部署的项目
 
-不包含：
+**不包含：**
 - ❌ 短剧内容（去 [awesome-ai-short-drama](https://github.com/Zeon7744/awesome-ai-short-drama)）
 - ❌ Vibe Coding 工具库（去 [baibai](https://github.com/Zeon7744/baibai)）
 
@@ -68,11 +75,11 @@ dev-artifacts/
 
 ## 📋 相关仓库
 
-| 仓库 | 定位 |
-|------|------|
-| [baibai](https://github.com/Zeon7744/baibai) | Vibe Coding 通用工具库 |
-| [awesome-ai-short-drama](https://github.com/Zeon7744/awesome-ai-short-drama) | AI 短剧创作全链路 |
-| [dev-artifacts](https://github.com/Zeon7744/dev-artifacts) | 开发成果成品库 |
+| 仓库 | 定位 | 链接 |
+|------|------|------|
+| [baibai](https://github.com/Zeon7744/baibai) | Vibe Coding 通用工具库 | 查看 → |
+| [awesome-ai-short-drama](https://github.com/Zeon7744/awesome-ai-short-drama) | AI 短剧创作全链路 | 查看 → |
+| [crypto-mlp-high-confidence](https://github.com/Zeon7744/crypto-mlp-high-confidence) | 加密货币高精度分析 | 查看 → |
 
 ---
 
@@ -88,5 +95,10 @@ MIT License
 
 ---
 
-*由 [Zeon7744](https://github.com/Zeon7744) 维护*  
+<div align="center">
+
+**由 [Zeon7744](https://github.com/Zeon7744) 维护**
+
 *开发成果 · 可复用 · 经得起验证*
+
+</div>
