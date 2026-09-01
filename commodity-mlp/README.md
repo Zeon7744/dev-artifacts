@@ -223,3 +223,123 @@ MIT License - 自由使用、修改和分发
 
 **仓库归属**：dev-artifacts（通用开发成果成品库）  
 **标签**：`ml-finance`, `python`, `cli-tools`, `rest-api`, `lstm`, `dev-artifacts`
+
+---
+
+## 📈 v4 新增功能
+
+### 1. 多数据源支持
+- **yfinance**: 国际数据源（默认）
+- **Akshare**: 国内期货数据源
+- **CSV/Excel**: 本地文件导入
+- **模拟数据**: 无网络环境备用
+
+```python
+from data_fetcher_v4 import CommodityDataFetcher
+
+fetcher = CommodityDataFetcher(primary_source='akshare', cache_enabled=True)
+df = fetcher.get_data('GC=F', days=365)
+```
+
+### 2. 增强特征工程
+- **波动率特征**: 历史波动率、ATR、波动率位置
+- **动量特征**: ROC、连续涨跌天数、大单流向
+- **市场情绪**: 涨跌比、成交量Z-score
+- **季节性**: 月份效应、周末效应
+
+```python
+from feature_engineering_v3 import AdvancedFeatureEngineer
+
+engineer = AdvancedFeatureEngineer()
+features = engineer.engineer_features(df)
+targets = engineer.prepare_targets(df, forward_days=5)
+```
+
+### 3. 优化风险管理
+- **动态仓位控制**: 基于信号置信度和波动率
+- **智能止损止盈**: 自适应止损止盈点位
+- **日亏损熔断**: 触发后自动停止交易
+- **风险等级评估**: 低/中/高/紧急四级
+
+```python
+from risk_manager_v2 import RiskManager, RiskLevel
+
+rm = RiskManager(initial_capital=100000)
+signal = rm.generate_signal(model_prediction=0.75, price=1950, volatility=0.15)
+trade = rm.execute_trade("GC=F", signal, price=1950, quantity=10)
+metrics = rm.get_risk_metrics()
+```
+
+### 4. 超参数优化
+- **Optuna集成**: 自动化超参数搜索
+- **多目标优化**: 准确率、F1、AUC加权
+- **剪枝策略**: 早停避免无效试验
+- **可视化**: 优化历史、参数重要性、轮廓图
+
+```python
+from hyperparameter_optimizer_v2 import MLPHyperparameterOptimizer
+
+optimizer = MLPHyperparameterOptimizer(n_trials=50)
+best_params = optimizer.optimize(X_train, y_train, X_val, y_val)
+best_model = optimizer.get_best_model(X_train, y_train)
+```
+
+### 5. 本地缓存机制
+- **自动缓存**: 首次获取后本地存储
+- **增量更新**: 仅更新缺失数据
+- **缓存失效**: 超过7天自动刷新
+
+```python
+# 缓存路径: ./cache/
+# 文件命名: {symbol}_{source}_data.pkl
+```
+
+---
+
+## 🔧 完整工作流示例
+
+```python
+# 1. 数据获取
+fetcher = CommodityDataFetcher(primary_source='yfinance')
+df = fetcher.get_data('GC=F', days=500)
+
+# 2. 特征工程
+engineer = AdvancedFeatureEngineer()
+features = engineer.engineer_features(df)
+targets = engineer.prepare_targets(df, forward_days=5)
+
+# 3. 模型训练
+from mlp_model_advanced import MLPModel
+model = MLPModel(input_size=30, hidden_layers=(128, 64))
+model.fit(features, targets)
+
+# 4. 超参数优化（可选）
+from hyperparameter_optimizer_v2 import MLPHyperparameterOptimizer
+optimizer = MLPHyperparameterOptimizer(n_trials=30)
+best_params = optimizer.optimize(features, targets, ...)
+best_model = optimizer.get_best_model(features, targets)
+
+# 5. 风险管理
+from risk_manager_v2 import RiskManager
+rm = RiskManager(initial_capital=100000)
+prediction = best_model.predict_one(features.iloc[-1])
+signal = rm.generate_signal(prediction, df['Close'].iloc[-1], 0.15)
+trade = rm.execute_trade("GC=F", signal, df['Close'].iloc[-1], 10)
+
+# 6. 回测
+from backtest import BacktestEngine
+engine = BacktestEngine(model=best_model, risk_manager=rm)
+results = engine.run(df, symbol='GC=F')
+```
+
+---
+
+## 📊 v4 性能对比
+
+| 指标 | v3 | v4 | 提升 |
+|------|-----|-----|------|
+| 特征数量 | 20 | 40+ | +100% |
+| 数据源 | 1 | 4 | 新增Akshare/本地/缓存 |
+| 风险管理 | 基础 | 高级 | 动态仓位/熔断机制 |
+| 超参数优化 | 手动 | Optuna自动 | 自动化搜索 |
+| 内存优化 | - | 本地缓存 | 减少重复请求 |
