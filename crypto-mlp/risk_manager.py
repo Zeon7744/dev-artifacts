@@ -266,6 +266,10 @@ class CryptoRiskManager:
         Returns:
             RiskMetrics对象
         """
+        # 确保是pandas Series
+        if isinstance(returns, np.ndarray):
+            returns = pd.Series(returns)
+        
         if len(returns) < 2:
             return RiskMetrics(0, 0, 0, 0, 0, RiskLevel.LOW)
         
@@ -376,6 +380,15 @@ class CryptoRiskManager:
         signal['risk_level'] = risk.value
         
         return signal
+
+    def test_signal(self) -> Dict:
+        """测试生成交易信号"""
+        return self.generate_trade_signal(
+            prediction='up',
+            confidence=0.75,
+            volatility=0.02,
+            account_balance=10000
+        )
 
 
 if __name__ == '__main__':
