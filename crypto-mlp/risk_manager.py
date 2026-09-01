@@ -98,7 +98,29 @@ class CryptoRiskManager:
         self.last_circuit_breaker_time = None
         self.circuit_breaker_threshold = 0.10  # 10%回撤触发
     
-    def calculate_position_size(self, 
+    def calculate_Kelly_fraction(self, win_rate: float, avg_win: float, avg_loss: float) -> float:
+        """
+        计算Kelly公式比例
+        
+        Args:
+            win_rate: 胜率
+            avg_win: 平均盈利
+            avg_loss: 平均亏损
+        
+        Returns:
+            Kelly比例
+        """
+        if win_rate <= 0.5 or avg_loss == 0:
+            return 0.0
+        
+        b = avg_win / abs(avg_loss)  # 盈亏比
+        p = win_rate
+        q = 1 - p
+        
+        kelly = p - q / b
+        return max(0, min(kelly, 0.25))  # 限制最大25%
+    
+    def calculate_position_size(self,
                                 symbol: str,
                                 account_balance: float,
                                 win_rate: float,
