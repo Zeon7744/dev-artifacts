@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "investment-mcp": {
+      "command": "python",
+      "args": [
+        "/Coze/Drive/红剑/dev-artifacts/investment-mcp/server_core.py"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}
