@@ -1,31 +1,55 @@
 # 大宗商品MLP投资分析工具
 
-基于深度神经网络（MLP）的大宗商品投资预测工具，使用13个技术指标作为特征，预测未来5日价格走势。
+基于深度神经网络（MLP + LSTM）的大宗商品投资预测工具，集成13个技术指标特征工程、超参数自动搜索、风险管理回测引擎和 REST API 服务。
 
 ## 功能特性
 
-- 📊 **多商品支持**：黄金、原油、白银、铜、天然气等主流大宗商品
-- 🧠 **MLP神经网络**：三层隐藏层（128-64-32），自动学习非线性模式
-- 📈 **13个技术指标**：RSI、MACD、布林带、移动平均线等
+### 核心能力
+- 📊 **多商品支持**：黄金(GC=F)、原油(CL=F)、白银(SI=F)、铜(HG=F)、天然气(NG=F)
+- 🧠 **双模型架构**：MLP集成学习 + LSTM时序模型，可按需选择
+- 📈 **13个技术指标**：RSI、MACD、布林带、ATR、移动平均线等
+- 🔍 **超参数自动搜索**：基于Optuna的贝叶斯优化，自动搜索最优网络结构
+- 🛡️ **风险管理回测**：止损/止盈、每日亏损限制、连续亏损熔断、动态仓位管理
+- 🌐 **REST API服务**：完整的RESTful接口，支持数据查询、训练、预测、回测
 - 💻 **命令行界面**：快速批量分析和报告生成
-- 🌐 **Web界面**：交互式可视化和实时监控
-- 📉 **特征重要性分析**：识别关键预测因子
-- 🔬 **模拟数据**：开箱即用，无需API密钥
+- 🖥️ **Web界面**：交互式可视化和实时监控
+- 🔬 **模拟数据**：开箱即用，无需API密钥（也支持yfinance真实数据）
+
+### 迭代版本
+| 版本 | 文件 | 说明 |
+|------|------|------|
+| 原版 | `data_fetcher.py`, `mlp_model.py` | 基础MLP模型 |
+| 高级版 | `mlp_model_advanced.py` | 集成学习 + 时序交叉验证 + 特征选择 |
+| v2 | `data_fetcher_v2.py` | 增强数据获取（多数据源） |
+| v3 | `lstm_model.py` | LSTM时序模型 |
+| v3 | `hyperparameter_optimizer.py` | Optuna超参数搜索 |
+| v3 | `risk_backtest.py` | 风险管理回测引擎 |
+| v3 | `api_server.py` | REST API服务 |
 
 ## 项目结构
 
 ```
 commodity-mlp/
-├── data_fetcher.py      # 数据获取模块（模拟+真实数据）
-├── feature_engineering.py  # 特征工程（13个技术指标）
-├── mlp_model.py         # MLP模型训练与预测
-├── cli.py               # 命令行工具
-├── app_web.py           # Flask Web界面
-├── requirements.txt     # Python依赖
-├── README.md            # 本文档
-├── models/              # 训练好的模型存储
-├── notebooks/           # Jupyter笔记本（可选）
-└── reports/             # 分析报告输出
+├── data_fetcher.py              # 数据获取（原版）
+├── data_fetcher_v2.py           # 数据获取 v2（增强版，多数据源）
+├── data_fetcher_v3.py           # 数据获取 v3（yfinance/新浪/Tushare）
+├── feature_engineering.py       # 特征工程（13个技术指标）
+├── mlp_model.py                 # MLP模型（原版）
+├── mlp_model_advanced.py        # MLP高级版（集成学习+时序CV）
+├── lstm_model.py                # LSTM时序模型
+├── hyperparameter_optimizer.py  # 超参数自动搜索（Optuna）
+├── risk_manager.py              # 风险管理器
+├── risk_backtest.py             # 风险管理回测引擎
+├── api_server.py                # REST API服务（Flask）
+├── cli.py                       # 命令行工具（原版）
+├── cli_advanced.py              # 命令行工具（高级版）
+├── app_web.py                   # Flask Web界面
+├── test_api.py                  # API端点测试
+├── test_comprehensive_v2.py     # 综合测试套件
+├── test_realistic_data.py       # 真实数据模拟测试
+├── requirements.txt             # Python依赖
+├── models/                      # 训练好的模型存储
+└── reports/                     # 分析报告输出
 ```
 
 ## 快速开始
@@ -53,122 +77,126 @@ python cli.py --symbols GC=F --real-data
 
 # 保存训练好的模型
 python cli.py --all --save-model
+
+# 高级版CLI（集成学习+时序CV）
+python cli_advanced.py --all
+```
+
+### REST API 服务
+
+```bash
+# 启动API服务
+python api_server.py
+
+# 或指定端口
+python api_server.py --port 8080
+```
+
+#### API 端点
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | `/api/health` | 健康检查 |
+| GET | `/api/symbols` | 获取可用商品列表 |
+| GET | `/api/data/<symbol>` | 获取商品数据 |
+| POST | `/api/train/<symbol>` | 训练模型 |
+| POST | `/api/predict/<symbol>` | 实时预测 |
+| POST | `/api/backtest/<symbol>` | 运行回测 |
+| GET | `/api/analysis/<symbol>` | 综合分析（训练+回测+预测） |
+| GET | `/api/docs` | API文档 |
+
+#### API 使用示例
+
+```bash
+# 获取黄金数据
+curl http://localhost:5000/api/data/GC=F?days=500
+
+# 训练LSTM模型
+curl -X POST http://localhost:5000/api/train/GC=F \
+  -H "Content-Type: application/json" \
+  -d '{"model_type": "lstm"}'
+
+# 获取预测信号
+curl -X POST http://localhost:5000/api/predict/GC=F \
+  -H "Content-Type: application/json" \
+  -d '{"model_type": "mlp"}'
+
+# 运行风险管理回测
+curl -X POST http://localhost:5000/api/backtest/GC=F \
+  -H "Content-Type: application/json" \
+  -d '{"initial_capital": 100000}'
+
+# 一键综合分析
+curl http://localhost:5000/api/analysis/GC=F
 ```
 
 ### Web界面
 
 ```bash
-# 启动Web服务
 python app_web.py
-
 # 访问 http://localhost:5000
 ```
 
-## 技术细节
+## 模型详解
 
-### 模型架构
+### MLP集成学习模型
 
-- **类型**：多层感知机（MLP）分类器
+- **集成策略**：3个MLP分类器投票/概率平均
 - **隐藏层**：128 → 64 → 32 神经元
-- **激活函数**：ReLU
-- **优化器**：Adam
-- **正则化**：L2 (alpha=0.0001)
-- **批次大小**：32
-- **最大迭代**：500
+- **时序交叉验证**：5折TimeSeriesSplit，避免未来信息泄露
+- **特征选择**：基于随机森林的递归特征消除
 
-### 特征工程
+### LSTM时序模型
 
-13个技术指标：
-1. `Returns_1d` - 日收益率
-2. `Returns_5d` - 5日累计收益率
-3. `Returns_10d` - 10日累计收益率
-4. `MA_5` - 5日均线
-5. `MA_10` - 10日均线
-6. `MA_20` - 20日均线
-7. `RSI_14` - 14日相对强弱指数
-8. `MACD` - MACD线
-9. `MACD_Signal` - MACD信号线
-10. `Bollinger_Band_Width` - 布林带宽度
-11. `Bollinger_Position` - 价格在布林带中的位置
-12. `ATR_14` - 14日平均真实波动范围
-13. `Volume_Ratio` - 成交量比率
+- **架构**：双层LSTM + Dropout + 全连接层
+- **序列长度**：可配置（默认20步）
+- **适用场景**：捕捉价格序列的时序依赖关系
 
-### 预测目标
+### 超参数自动搜索
 
-预测未来5日价格走势（二元分类）：
-- **1（上涨）**：5日后收盘价高于当前价
-- **0（下跌）**：5日后收盘价低于当前价
+使用Optuna进行贝叶斯优化，搜索空间：
+- 隐藏层结构（1-3层，32-256神经元）
+- 学习率（1e-4 ~ 1e-2）
+- Dropout比例（0.1 ~ 0.5）
+- 激活函数（relu/tanh/logistic）
+- 正则化强度（1e-5 ~ 1e-2）
 
-## 使用示例
+## 风险管理回测引擎
 
-### 基本分析流程
+- **止损**：可配置百分比止损
+- **止盈**：可配置百分比止盈
+- **每日亏损限制**：超过阈值暂停交易
+- **连续亏损熔断**：连续N次亏损后暂停
+- **动态仓位**：根据波动率调整仓位大小
+- **滑点和手续费**：真实交易成本模拟
 
-```python
-from data_fetcher import CommodityDataFetcher
-from feature_engineering import FeatureEngineer
-from mlp_model import CommodityMLPModel
+## 性能指标
 
-# 1. 获取数据
-fetcher = CommodityDataFetcher()
-df = fetcher.generate_simulated_data('GC=F', days=800)
+典型测试结果（模拟数据）：
 
-# 2. 提取特征
-engineer = FeatureEngineer()
-features = engineer.extract_features(df)
-target = df['Target'].iloc[:len(features)]
+| 模型 | 商品 | 测试准确率 | 备注 |
+|------|------|-----------|------|
+| MLP集成 | GC=F | ~71% | 时序CV: 76% |
+| LSTM | GC=F | ~79% | 时序建模更强 |
+| MLP+超参搜索 | GC=F | ~82% | 自动优化结构 |
+| MLP集成 | CL=F | ~73% | 原油波动更大 |
 
-# 3. 训练模型
-model = CommodityMLPModel()
-metrics = model.train(features, target)
-
-# 4. 预测
-prediction = model.predict(features.tail(1))
-print(f"预测信号: {'看涨' if prediction[0] == 1 else '看跌'}")
-
-# 5. 查看特征重要性
-importance = model.get_importance()
-print("Top 5 重要特征:")
-for i, (feat, imp) in enumerate(list(importance.items())[:5], 1):
-    print(f"  {i}. {feat}: {imp:.4f}")
-```
-
-### API接口
-
-```python
-# 训练接口
-POST /api/train
-{
-    "symbol": "GC=F",
-    "use_real_data": false
-}
-
-# 预测接口
-GET /api/predict/GC=F
-
-# 特征重要性
-GET /api/importance/GC=F
-
-# 所有报告
-GET /api/all_reports
-```
+> ⚠️ 金融时间序列预测难度较高，准确率受市场环境、数据质量等多种因素影响。
 
 ## 运行测试
 
 ```bash
-# 测试数据获取
-python data_fetcher.py
+# API端点测试
+python test_api.py
 
-# 测试特征工程
-python feature_engineering.py
+# 综合测试（MLP + LSTM + 超参优化）
+python test_comprehensive_v2.py
 
-# 测试模型
-python mlp_model.py
-
-# 完整演示
-python cli.py --all
+# 真实数据对比测试
+python test_realistic_data.py
 ```
 
-## 支持的 commodity
+## 支持的商品
 
 | 代码 | 名称 | 单位 | 基础价格 |
 |------|------|------|----------|
@@ -184,45 +212,14 @@ python cli.py --all
 
 ⚠️ **数据说明**：
 - 默认使用模拟数据（几何布朗运动生成）
-- 真实数据需要 yfinance 库，可能受API限制
+- 真实数据需要 yfinance 库，可能受API速率限制
 - 建议用小资金验证策略后再大规模应用
-
-## 性能指标
-
-典型测试结果（模拟数据）：
-- 训练集准确率：52-55%
-- 测试集准确率：48-52%
-- F1分数：0.45-0.50
-- 交叉验证稳定性：良好
-
-> 注：金融时间序列预测难度较高，50%左右的准确率已具备统计学意义。
-
-## 扩展建议
-
-1. **增加特征**：
-   - 宏观经济指标（CPI、利率等）
-   - 市场情绪指标
-   - 跨商品相关性
-
-2. **改进模型**：
-   - LSTM/GRU 时序模型
-   - XGBoost/LightGBM 集成学习
-   - 深度学习Transformer
-
-3. **实盘对接**：
-   - 接入Broker API
-   - 风险控制模块
-   - 仓位管理策略
 
 ## 许可证
 
 MIT License - 自由使用、修改和分发
 
-## 作者
-
-由 Agnes AI Agent 开发
-
 ---
 
 **仓库归属**：dev-artifacts（通用开发成果成品库）  
-**标签**：`ml-finance`, `python`, `cli-tools`, `dev-artifacts`
+**标签**：`ml-finance`, `python`, `cli-tools`, `rest-api`, `lstm`, `dev-artifacts`

@@ -16,6 +16,23 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
+class EnsemblePredictor:
+    """集成预测器（模块顶层，支持pickle序列化）"""
+    def __init__(self, models, classes):
+        self.models = models
+        self.classes = classes
+    
+    def predict(self, X):
+        predictions = np.array([model.predict(X) for model in self.models])
+        return np.array([np.bincount(pred).argmax() for pred in predictions.T])
+    
+    def predict_proba(self, X):
+        probas = np.array([model.predict_proba(X)[:, 1] for model in self.models])
+        # 返回 (n_samples, 2) 格式：[P(0), P(1)]
+        mean_p1 = np.mean(probas, axis=0)
+        return np.column_stack([1 - mean_p1, mean_p1])
+
+
 class AdvancedCommodityMLP:
     """高级大宗商品MLP预测模型 - 集成学习+时序CV"""
     
@@ -198,19 +215,6 @@ class AdvancedCommodityMLP:
     
     def _create_ensemble_predictor(self):
         """创建集成预测器"""
-        class EnsemblePredictor:
-            def __init__(self, models, classes):
-                self.models = models
-                self.classes = classes
-            
-            def predict(self, X):
-                predictions = np.array([model.predict(X) for model in self.models])
-                return np.array([np.bincount(pred).argmax() for pred in predictions.T])
-            
-            def predict_proba(self, X):
-                probas = np.array([model.predict_proba(X)[:, 1] for model in self.models])
-                return np.mean(probas, axis=0)
-        
         classes = np.array([0, 1])
         if hasattr(self.ensemble_models[0], 'classes_'):
             classes = self.ensemble_models[0].classes_

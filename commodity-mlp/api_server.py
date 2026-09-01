@@ -21,6 +21,7 @@ from feature_engineering import FeatureEngineer
 from mlp_model_advanced import AdvancedCommodityMLP
 from lstm_model import CommodityLSTMModel
 from risk_manager import RiskManager
+from risk_backtest import RiskBacktestEngine
 
 app = Flask(__name__)
 CORS(app)  # 允许跨域请求
@@ -52,14 +53,23 @@ def get_symbols():
     })
 
 
-@app.route('/api/data/<symbol>', methods=['GET'])
+@app.route('/api/data/<path:symbol>', methods=['GET'])
 def get_data(symbol: str):
     """获取商品数据"""
     days = request.args.get('days', 800, type=int)
     use_real = request.args.get('real', 'false').lower() == 'true'
     
     fetcher = CommodityDataFetcher()
-    df = fetcher.get_data(symbol, days=days)
+    
+    if symbol not in fetcher.get_available_symbols():
+        return jsonify({'error': f'不支持的商品代码: {symbol}'}), 404
+    
+    if use_real:
+        df = fetcher.fetch_real_data(symbol)
+        if df is None or df.empty:
+            df = fetcher.generate_simulated_data(symbol, days)
+    else:
+        df = fetcher.generate_simulated_data(symbol, days)
     
     if df is None or df.empty:
         return jsonify({'error': f'无法获取{symbol}数据'}), 404
@@ -77,7 +87,7 @@ def get_data(symbol: str):
     return jsonify(data)
 
 
-@app.route('/api/train/<symbol>', methods=['POST'])
+@app.route('/api/train/<path:symbol>', methods=['POST'])
 def train_model(symbol: str):
     """训练模型"""
     model_type = request.json.get('model_type', 'mlp')
@@ -87,8 +97,11 @@ def train_model(symbol: str):
         fetcher = CommodityDataFetcher()
         engineer = FeatureEngineer()
         
+        if symbol not in fetcher.get_available_symbols():
+            return jsonify({'error': f'不支持的商品代码: {symbol}'}), 404
+        
         # 获取数据
-        df = fetcher.get_data(symbol)
+        df = fetcher.generate_simulated_data(symbol)
         features = engineer.extract_features(df)
         target = df['Target'].iloc[:len(features)]
         
@@ -136,7 +149,7 @@ def train_model(symbol: str):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/predict/<symbol>', methods=['POST'])
+@app.route('/api/predict/<path:symbol>', methods=['POST'])
 def predict(symbol: str):
     """实时预测"""
     model_type = request.json.get('model_type', 'mlp')
@@ -155,8 +168,11 @@ def predict(symbol: str):
         fetcher = CommodityDataFetcher()
         engineer = FeatureEngineer()
         
+        if symbol not in fetcher.get_available_symbols():
+            return jsonify({'error': f'不支持的商品代码: {symbol}'}), 404
+        
         # 获取最新数据
-        df = fetcher.get_data(symbol, days=100)
+        df = fetcher.generate_simulated_data(symbol, days=100)
         features = engineer.extract_features(df)
         
         # 预测
@@ -187,7 +203,7 @@ def predict(symbol: str):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/backtest/<symbol>', methods=['POST'])
+@app.route('/api/backtest/<path:symbol>', methods=['POST'])
 def backtest(symbol: str):
     """运行回测"""
     model_type = request.json.get('model_type', 'mlp')
@@ -199,8 +215,11 @@ def backtest(symbol: str):
         fetcher = CommodityDataFetcher()
         engineer = FeatureEngineer()
         
+        if symbol not in fetcher.get_available_symbols():
+            return jsonify({'error': f'不支持的商品代码: {symbol}'}), 404
+        
         # 获取数据
-        df = fetcher.get_data(symbol)
+        df = fetcher.generate_simulated_data(symbol)
         features = engineer.extract_features(df)
         target = df['Target'].iloc[:len(features)]
         
@@ -224,12 +243,19 @@ def backtest(symbol: str):
         # 生成预测和信号
         predictions = model.predict(features)
         probabilities = model.predict_proba(features)
-        signals = pd.Series(np.where(probabilities[:, 1] > 0.6, 1,
-                              np.where(probabilities[:, 0] > 0.6, -1, 0)))
+        
+        # 对齐signals与df的索引（features因dropna可能比df短）
+        offset = len(df) - len(features)
+        full_signals = pd.Series(0, index=df.index)
+        full_probs = np.zeros(len(df))
+        signal_values = pd.Series(np.where(probabilities[:, 1] > 0.6, 1,
+                                    np.where(probabilities[:, 0] > 0.6, -1, 0)))
+        full_signals.iloc[offset:] = signal_values.values
+        full_probs[offset:] = np.max(probabilities, axis=1) if probabilities.ndim > 1 else probabilities
         
         # 运行回测
-        backtest = RiskBacktestEngine(initial_capital=initial_capital)
-        results = backtest.run_backtest(df, signals, probabilities)
+        backtest_engine = RiskBacktestEngine(initial_capital=initial_capital)
+        results = backtest_engine.run_backtest(df, full_signals, full_probs)
         
         return jsonify({
             'symbol': symbol,
@@ -242,7 +268,7 @@ def backtest(symbol: str):
         return jsonify({'error': str(e)}), 500
 
 
-@app.route('/api/analysis/<symbol>', methods=['GET'])
+@app.route('/api/analysis/<path:symbol>', methods=['GET'])
 def analysis(symbol: str):
     """综合分析（训练+回测+预测）"""
     model_type = request.args.get('model_type', 'mlp')
@@ -251,8 +277,11 @@ def analysis(symbol: str):
         fetcher = CommodityDataFetcher()
         engineer = FeatureEngineer()
         
+        if symbol not in fetcher.get_available_symbols():
+            return jsonify({'error': f'不支持的商品代码: {symbol}'}), 404
+        
         # 获取数据
-        df = fetcher.get_data(symbol)
+        df = fetcher.generate_simulated_data(symbol)
         features = engineer.extract_features(df)
         target = df['Target'].iloc[:len(features)]
         
@@ -268,12 +297,18 @@ def analysis(symbol: str):
         predictions = model.predict(features)
         probabilities = model.predict_proba(features)
         
-        # 回测
-        signals = pd.Series(np.where(probabilities[:, 1] > 0.6, 1,
-                              np.where(probabilities[:, 0] > 0.6, -1, 0)))
+        # 对齐signals与df的索引
+        offset = len(df) - len(features)
+        full_signals = pd.Series(0, index=df.index)
+        full_probs = np.zeros(len(df))
+        signal_values = pd.Series(np.where(probabilities[:, 1] > 0.6, 1,
+                                    np.where(probabilities[:, 0] > 0.6, -1, 0)))
+        full_signals.iloc[offset:] = signal_values.values
+        full_probs[offset:] = np.max(probabilities, axis=1) if probabilities.ndim > 1 else probabilities
         
-        backtest = RiskBacktestEngine(initial_capital=100000)
-        bt_results = backtest.run_backtest(df, signals, probabilities)
+        # 回测
+        backtest_engine = RiskBacktestEngine(initial_capital=100000)
+        bt_results = backtest_engine.run_backtest(df, full_signals, full_probs)
         
         # 最新预测
         latest_pred = int(predictions[-1])
@@ -319,7 +354,7 @@ def get_docs():
             'GET /api/docs': '本接口'
         },
         'examples': {
-            'train': {'method': 'POST', 'url': '/api/train/GC=F', 'body': {'model_type': 'mlp', 'use_real': false}},
+            'train': {'method': 'POST', 'url': '/api/train/GC=F', 'body': {'model_type': 'mlp', 'use_real': False}},
             'predict': {'method': 'POST', 'url': '/api/predict/GC=F', 'body': {'model_type': 'mlp'}},
             'backtest': {'method': 'POST', 'url': '/api/backtest/GC=F', 'body': {'model_type': 'mlp', 'initial_capital': 100000}},
             'analysis': {'method': 'GET', 'url': '/api/analysis/GC=F?model_type=mlp'}
