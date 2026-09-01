@@ -228,10 +228,10 @@ class CryptoAdvancedAnalyzer:
         scaler = RobustScaler()
         X_scaled = scaler.fit_transform(X_selected)
         
-        # 添加标签噪声（模拟市场不可预测性）
-        noise = np.random.normal(0, 0.1, len(y))
+        # 添加标签噪声（模拟市场不可预测性）- 降低噪声比例
+        noise = np.random.normal(0, 0.08, len(y))  # 降低噪声标准差
         y_noisy = y.copy()
-        mask = (y_noisy == 1) & (noise > 0.15) | ((y_noisy == 0) & (noise < -0.15))
+        mask = (y_noisy == 1) & (noise > 0.12) | ((y_noisy == 0) & (noise < -0.12))
         y_noisy[mask] = 1 - y_noisy[mask]
         
         # 时序分割
@@ -375,56 +375,74 @@ class CryptoAdvancedAnalyzer:
         # 多模型预测
         predictions = []
         probabilities = []
+        model_confidences = []
         
         for name, model in self.models.items():
             prob = model.predict_proba(X)[0]
             pred = model.predict(X)[0]
             predictions.append(pred)
             probabilities.append(prob)
+            # 记录模型自信度（预测类的概率）
+            model_confidences.append(max(prob))
         
-        # 集成投票
-        pred_array = np.array(predictions)
-        vote_up = np.sum(pred_array == 1)
-        vote_down = np.sum(pred_array == 0)
-        final_prediction = 1 if vote_up > vote_down else 0
+        # 集成投票 - 基于CV得分和预测自信度的加权投票
+        cv_scores = self.training_stats.get('cv_scores', {})
+        base_weights = {name: max(0.05, cv_scores.get(name, 0.5)) 
+                       for name in self.models}
         
-        # 加权平均概率（基于CV得分）
-        weights = {name: max(0.1, self.training_stats['cv_scores'].get(name, 0.5)) 
-                   for name in self.models}
-        total_weight = sum(weights.values())
-        weights = {k: v/total_weight for k, v in weights.items()}
-        
-        avg_prob = np.zeros(2)
+        # 考虑预测自信度调整权重（低自信度模型降权）
+        adjusted_weights = {}
         for name, prob in zip(self.models.keys(), probabilities):
-            avg_prob += weights[name] * prob
+            base_w = base_weights[name]
+            pred_conf = max(prob)  # 预测类的概率
+            # 如果模型预测很犹豫（接近0.5），降低权重
+            if pred_conf < 0.6:
+                adjusted_weights[name] = base_w * 0.3
+            else:
+                adjusted_weights[name] = base_w
+        total_weight = sum(adjusted_weights.values())
+        weights = {k: v/total_weight for k, v in adjusted_weights.items()}
         
-        # 置信度计算（结合投票一致性和概率，并校准）
-        vote_consistency = max(vote_up, vote_down) / len(predictions)
-        prob_confidence = avg_prob[final_prediction]
+        # 加权概率平均
+        weighted_prob = np.zeros(2)
+        for name, prob in zip(self.models.keys(), probabilities):
+            weighted_prob += weights[name] * prob
         
-        # 原始置信度：投票一致性60% + 概率置信度40%
-        raw_confidence = 0.6 * vote_consistency + 0.4 * prob_confidence
+        # 加权投票判断方向
+        weighted_vote_up = sum(weights[n] for n, p in zip(self.models.keys(), predictions) if p == 1)
+        weighted_vote_down = sum(weights[n] for n, p in zip(self.models.keys(), predictions) if p == 0)
+        final_prediction = 1 if weighted_vote_up > weighted_vote_down else 0
+        
+        # 投票一致性（考虑权重）
+        vote_consistency = max(weighted_vote_up, weighted_vote_down)
+        
+        # 置信度计算 - 直接使用加权概率
+        prob_confidence = weighted_prob[final_prediction]
+        
+        # 原始置信度：投票一致性80% + 概率置信度20%
+        raw_confidence = 0.8 * vote_consistency + 0.2 * prob_confidence
         
         # 使用CV准确率校准置信度
         cv_accuracy = self.training_stats.get('avg_accuracy', 0.5)
-        # 校准：限制最大置信度不超过CV准确率，但保持最低50%
-        # 公式：confidence = min(raw, cv) * 0.7 + 0.15
-        calibrated_confidence = min(raw_confidence, cv_accuracy) * 0.7 + 0.15
+        # 公式：confidence = raw * cv + (1 - raw) * 0.5
+        # 高CV时直接信任预测，低CV时保守
+        calibrated_confidence = raw_confidence * cv_accuracy + (1 - raw_confidence) * 0.5
         confidence = calibrated_confidence
         
         # 如果置信度太低，返回"HOLD"
-        if confidence < 0.55:
+        if confidence < 0.60:
             final_prediction = -1  # HOLD
         
         result = {
             'prediction': 'up' if final_prediction == 1 else ('down' if final_prediction == 0 else 'hold'),
             'confidence': confidence,
-            'probability_up': avg_prob[1],
-            'probability_down': avg_prob[0],
+            'probability_up': float(weighted_prob[1]),
+            'probability_down': float(weighted_prob[0]),
             'vote_distribution': {
-                'up': int(vote_up),
-                'down': int(vote_down),
-                'total': len(predictions)
+                'up': int(weighted_vote_up),
+                'down': int(weighted_vote_down),
+                'total': len(predictions),
+                'weighted_consistency': float(vote_consistency)
             },
             'model_details': {}
         }
@@ -433,11 +451,12 @@ class CryptoAdvancedAnalyzer:
         for name, (pred, prob) in zip(self.models.keys(), zip(predictions, probabilities)):
             result['model_details'][name] = {
                 'prediction': 'up' if pred == 1 else 'down',
-                'confidence': float(max(prob))
+                'confidence': float(max(prob)),
+                'weight': float(weights.get(name, 0.2))
             }
         
         logger.info(f"预测结果: {result['prediction']} (置信度{confidence:.1%})")
-        logger.info(f"模型投票: {vote_up}涨 vs {vote_down}跌")
+        logger.info(f"模型投票: {int(weighted_vote_up)}涨 vs {int(weighted_vote_down)}跌")
         
         return result
     
@@ -566,3 +585,26 @@ if __name__ == '__main__':
     print(f"特征数: {result['training_stats']['n_features']}")
     
     print("\n" + "="*60)
+
+# === 调试模式 ===
+if __name__ == '__main__':
+    import logging
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    
+    analyzer = CryptoAdvancedAnalyzer(coin='BTC', timeframe='4h')
+    result = analyzer.analyze(account_balance=10000)
+    
+    # 调试输出
+    print("\n=== 置信度计算调试 ===")
+    vote = result['prediction']['vote_distribution']
+    vote_consistency = vote.get('weighted_consistency', max(vote['up'], vote['down']) / vote['total'])
+    prob_confidence = result['prediction']['probability_down'] if result['prediction']['prediction'] == 'down' else result['prediction']['probability_up']
+    raw = 0.8 * vote_consistency + 0.2 * prob_confidence
+    cv = result['training_stats']['avg_accuracy']
+    calibrated = raw * cv + (1 - raw) * 0.5
+    print(f"投票一致性(加权): {vote_consistency:.4f}")
+    print(f"概率置信度: {prob_confidence:.4f}")
+    print(f"原始置信度: {raw:.4f}")
+    print(f"CV准确率: {cv:.4f}")
+    print(f"校准后置信度: {calibrated:.4f}")
+    print(f"最终置信度: {result['prediction']['confidence']:.4f}")
