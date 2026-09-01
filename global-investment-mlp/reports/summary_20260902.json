@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-09-02T00:05:39.636049",
+  "market_summary": {
+    "total_funds_analyzed": 20,
+    "avg_return_1y": 0.25332356160337466,
+    "avg_sharpe": 0.9079291050415786,
+    "market_sentiment": "bullish"
+  },
+  "top_hotspots": [
+    "E-commerce",
+    "Cloud Computing",
+    "EV",
+    "Biotech",
+    "Fintech"
+  ],
+  "key_recommendations": [
+    {
+      "sector": "E-commerce",
+      "action": "overweight",
+      "expected_return": -0.08951066464591072
+    },
+    {
+      "sector": "Cloud Computing",
+      "action": "overweight",
+      "expected_return": 0.33108345636245895
+    },
+    {
+      "sector": "EV",
+      "action": "neutral",
+      "expected_return": -0.013948238726489976
+    },
+    {
+      "sector": "Biotech",
+      "action": "neutral",
+      "expected_return": 0.3061623131798121
+    },
+    {
+      "sector": "Fintech",
+      "action": "neutral",
+      "expected_return": 0.17328433814216612
+    }
+  ],
+  "risk_level": "medium"
+}
