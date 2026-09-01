@@ -3,7 +3,8 @@
     "short-drama-creator": {
       "command": "python",
       "args": [
-        "/Coze/Drive/红剑/dev-artifacts/short-drama-mcp/main.py"
+        "python",
+        "/app/data/dev-artifacts/short-drama-mcp/main.py"
       ],
       "env": {
         "PYTHONIOENCODING": "utf-8"
