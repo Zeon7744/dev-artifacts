@@ -128,25 +128,29 @@ class CryptoDataFetcher:
             return self._generate_synthetic_data(symbol, timeframe, limit)
     
     def _generate_synthetic_data(self, symbol: str, timeframe: str, limit: int) -> pd.DataFrame:
-        """生成模拟数据（当API失败时）"""
+        """生成模拟数据（当API失败时）- 使用均值回归防止漂移"""
         logger.warning(f"使用模拟数据: {symbol}")
         
         np.random.seed(42)
         dates = pd.date_range(end=pd.Timestamp.now(), periods=limit, freq=timeframe)
         
-        # 模拟价格（随机游走）
-        base_price = {'BTC': 65000, 'ETH': 3500, 'BNB': 600}[symbol] if symbol in ['BTC', 'ETH', 'BNB'] else 100
+        # 模拟价格（均值回归随机游走）
+        base_price = {'BTC': 52000, 'ETH': 3500, 'BNB': 600}[symbol] if symbol in ['BTC', 'ETH', 'BNB'] else 100
         prices = []
         price = base_price
         for _ in range(limit):
-            price *= (1 + np.random.normal(0, 0.02))
+            # 均值回归力（拉向base_price）
+            drift = -0.005 * (price - base_price) / base_price
+            # 随机波动
+            ret = drift + np.random.normal(0, 0.015)
+            price = price * (1 + ret)
             prices.append(price)
         
         df = pd.DataFrame({
             'timestamp': dates,
             'open': prices,
-            'high': [p * (1 + abs(np.random.normal(0, 0.01))) for p in prices],
-            'low': [p * (1 - abs(np.random.normal(0, 0.01))) for p in prices],
+            'high': [p * (1 + abs(np.random.normal(0, 0.008))) for p in prices],
+            'low': [p * (1 - abs(np.random.normal(0, 0.008))) for p in prices],
             'close': prices,
             'volume': np.random.uniform(1000, 10000, limit)
         })

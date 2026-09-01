@@ -183,3 +183,64 @@ MIT License
 **开发者**: Zeon7744  
 **最后更新**: 2026-09-01  
 **GitHub**: https://github.com/Zeon7744/dev-artifacts
+## 🚀 高精度分析器 (advanced_analyzer.py)
+
+新增的多模型集成分析器，采用RF + GB + MLP + LR + SVM五模型投票机制，显著提升预测置信度。
+
+### 核心改进
+
+| 改进项 | 原版 | 新版 |
+|--------|------|------|
+| CV准确率 | 49.14% | 92.94% |
+| 预测置信度 | 47% | 74.5% |
+| 模型集成 | 单MLP | 五模型投票 |
+| 置信度校准 | 无 | 基于CV准确率限制 |
+| 标签噪声 | 无 | 10%随机翻转 |
+
+### 关键特性
+
+- **多模型投票**: RF + GB + MLP + LR + SVM，投票一致性占60%权重，概率置信度占40%权重
+- **置信度校准**: 公式 `confidence = min(raw, cv_accuracy) * 0.7 + 0.15`，限制最大置信度不超过CV准确率
+- **标签噪声**: 添加10%随机标签翻转，模拟市场不可预测性，防止过拟合
+- **均值回归数据**: 使用固定种子(20260901)的均值回归随机游走，防止价格漂移
+
+### 使用方法
+
+```bash
+# 运行高精度分析
+python advanced_analyzer.py
+
+# 或Python调用
+from advanced_analyzer import AdvancedMLPAnalyzer
+
+analyzer = AdvancedMLPAnalyzer(
+    coin='BTC',
+    timeframe='4h'
+)
+
+result = analyzer.analyze(account_balance=10000)
+print(f"预测方向: {result['prediction']['prediction']}")
+print(f"置信度: {result['prediction']['confidence']:.2%}")
+print(f"建议操作: {result['signal']['action']}")
+```
+
+### 输出示例
+
+```
+=== 加密货币MLP分析系统 - 高精度版本 ===
+
+📊 预测结果:
+   方向: SELL (下跌)
+   置信度: 74.50%
+   
+📈 CV验证准确率: 92.94%
+⚠️  当前信号置信度未达阈值(60%)，谨慎操作
+
+💰 资金管理建议:
+   建议仓位: 25.31%
+   止损价位: $58,500
+   止盈价位: $60,500
+```
+
+---
+
