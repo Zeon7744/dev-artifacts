@@ -5,6 +5,7 @@
 
 import re
 import json
+import sys
 from pathlib import Path
 from typing import List, Dict, Tuple
 
@@ -81,15 +82,13 @@ def parse_episodes(content: str) -> List[Tuple[int, str]]:
     episodes = []
     
     # 匹配第X集：集名 的格式
-    pattern = r'##\s*第(\d+)集[：:]\s*(.+?)(?=\n##\s*第|\Z)'
+    pattern = r'##\s*第(\d+)集[：:]\s*(.+?)(?=\n##\s*第\d+集|\Z)'
     matches = list(re.finditer(pattern, content, re.DOTALL))
     
-    for i, match in enumerate(matches):
+    for match in matches:
         ep_num = int(match.group(1))
-        # 获取该集的内容（到下一集或结尾）
-        start = match.end()
-        end = matches[i + 1].start() if i + 1 < len(matches) else len(content)
-        ep_content = content[start:end].strip()
+        # group(2) 包含标题名和内容
+        ep_content = match.group(2).strip()
         episodes.append((ep_num, ep_content))
     
     return episodes

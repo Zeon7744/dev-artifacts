@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""
-短剧创作 MCP 服务器
-集成剧本校验、爽点统计、大纲生成等创作工具
+"""短剧创作 MCP 服务器
+集成剧本校验、爽点统计、集纲生成等创作工具
 MCP 2026-07-28 规范（无状态）
 """
 
@@ -24,11 +23,14 @@ sys.path.insert(0, str(SCRIPT_DIR / "tools"))
 from tools.format_checker import check_markdown_file, scan_files, CheckResult
 from tools.stats_analyzer import analyze_content, classify_content
 from tools.classifier import classify_content as classify_file
-from tools.shuang_analyzer import count_shuang_points, get_shuang_details
+from tools.shuang_analyzer import count_shuang_points
 from tools.platform_checker import check_platform_compliance, PLATFORM_RULES
 from tools.outline_generator import generate_episode_outline
 
-mcp = FastMCP("short-drama-creator")
+if MCP_AVAILABLE:
+    mcp = FastMCP("short-drama-creator")
+else:
+    mcp = None
 
 
 @mcp.tool()
@@ -77,44 +79,28 @@ def check_script_format(filepath: str, strict_mode: bool = False) -> str:
     - 禁止括号：【、】
     - 标题格式：第X集：集名
     - 结尾格式：第X集完
-    - 对话长度：≤15字
-    - 章节完整性
+    - 对话长度：≤15字（strict_mode）
     
     Args:
         filepath: 剧本文件路径
         strict_mode: 严格模式（额外检查对话字数）
     
     Returns:
-        JSON 格式的校验结果，包含 score、issues、summary
+        JSON 格式的校验结果
     """
     try:
         result = check_markdown_file(filepath)
-        
-        # 扩展检查
         issues = list(result.issues)
         
         if strict_mode:
             with open(filepath, 'r', encoding='utf-8') as f:
                 content = f.read()
-            
-            # 检查对话长度
-            dialogues = [d for d in content.split('\n') if '"' in d]
-            long_dialogues = []
-            for d in dialogues:
-                # 提取引号内的对话
-                import re
-                matches = re.findall(r'"([^"]+)"', d)
-                for match in matches:
-                    if len(match) > 15:
-                        long_dialogues.append({
-                            "dialogue": match[:30] + "..." if len(match) > 30 else match,
-                            "length": len(match)
-                        })
-            
+            import re
+            dialogues = re.findall(r'"([^"]+)"', content)
+            long_dialogues = [d for d in dialogues if len(d) > 15]
             if long_dialogues:
                 issues.append(f"发现 {len(long_dialogues)} 处超长对话（>15字）")
         
-        # 计算最终分数
         score = max(0, 100 - len(issues) * 15)
         
         output = {
@@ -126,9 +112,7 @@ def check_script_format(filepath: str, strict_mode: bool = False) -> str:
             "passed": score >= 80,
             "recommendation": "可通过" if score >= 80 else "需修改" if score >= 60 else "不合格"
         }
-        
         return json.dumps(output, ensure_ascii=False, indent=2)
-        
     except Exception as e:
         return json.dumps({"error": str(e)}, ensure_ascii=False)
 
@@ -137,17 +121,11 @@ def check_script_format(filepath: str, strict_mode: bool = False) -> str:
 def count_shuang_points(filepath: str) -> str:
     """统计爽点密度
     
-    分析剧本中的爽点元素：
-    - 打脸反转
-    - 实力展现
-    - 危机解除
-    - 身份揭露
-    
     Args:
         filepath: 剧本文件路径
     
     Returns:
-        JSON 格式的统计结果，包含总爽点数、每集详情、密度分析
+        JSON 格式的统计结果
     """
     try:
         result = count_shuang_points(filepath)
@@ -160,18 +138,13 @@ def count_shuang_points(filepath: str) -> str:
 def generate_episode_outline(novel_content: str, total_episodes: int = 10, genre: str = "玄幻重生") -> str:
     """根据小说生成集纲大纲
     
-    分析小说内容，按照短剧规范生成集数大纲：
-    - 每集标题格式：第X集：集名
-    - 核心情节提炼
-    - 爽点/甜点设计建议
-    
     Args:
-        novel_content: 小说原文内容
+        novel_content: 小说原文内容或文件路径
         total_episodes: 目标集数（默认10集）
         genre: 题材类型（默认玄幻重生）
     
     Returns:
-        JSON 格式的集纲大纲，包含每集的标题、情节、爽点建议
+        JSON 格式的集纲大纲
     """
     try:
         result = generate_episode_outline(novel_content, total_episodes, genre)
@@ -184,19 +157,11 @@ def generate_episode_outline(novel_content: str, total_episodes: int = 10, genre
 def check_platform_compliance(filepath: str) -> str:
     """检查红果短剧平台投稿规范
     
-    检查项：
-    - 标题格式：第X集：集名
-    - 结尾格式：第X集完
-    - 对话长度：≤15字
-    - 爽点密度：≥3爽点/集
-    - 禁止元素：军事、系统文、迷信内容
-    - 最低字数：每集≥500字
-    
     Args:
         filepath: 剧本文件路径
     
     Returns:
-        JSON 格式的合规检查结果，包含各项检测结果和总体结论
+        JSON 格式的合规检查结果
     """
     try:
         result = check_platform_compliance(filepath)
@@ -209,19 +174,11 @@ def check_platform_compliance(filepath: str) -> str:
 def classify_content(filepath: str) -> str:
     """内容分类 - 自动识别文件类型
     
-    分类类型：
-    - 短剧剧本
-    - 短篇小说
-    - 教程文档
-    - 工具脚本
-    - 配置文件
-    - 其他
-    
     Args:
         filepath: 文件路径
     
     Returns:
-        JSON 格式的分类结果，包含类型、置信度、匹配关键词
+        JSON 格式的分类结果
     """
     try:
         result = classify_file(filepath)

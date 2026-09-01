@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "short-drama-mcp"
+version = "1.0.0"
+description = "短剧创作 MCP 服务器 - 剧本校验、爽点统计、集纲生成"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Zeon7744", email = "zeon7744@gmail.com"}
+]
+keywords = ["short-drama", "mcp", "screenplay", "content-creation", "ai-tools"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Artistic Software :: Graphics",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "mcp>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+short-drama-mcp = "main:run_server"
+
+[project.urls]
+Homepage = "https://github.com/Zeon7744/awesome-ai-short-drama"
+Documentation = "https://github.com/Zeon7744/awesome-ai-short-drama/tree/main/dev-artifacts/short-drama-mcp"
+Repository = "https://github.com/Zeon7744/awesome-ai-short-drama.git"
+Issues = "https://github.com/Zeon7744/awesome-ai-short-drama/issues"
+
+[tool.setuptools.packages.find]
+include = ["*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I"]

@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "short-drama-mcp": {
+    "short-drama-creator": {
       "command": "python",
       "args": [
-        "/Coze/Drive/红剑/dev-artifacts/short-drama-mcp/server.py"
+        "/Coze/Drive/红剑/dev-artifacts/short-drama-mcp/main.py"
       ],
       "env": {
         "PYTHONIOENCODING": "utf-8"
