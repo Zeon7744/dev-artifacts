@@ -10,7 +10,11 @@
 | **Agent市场** | 创建/发布/对话AI Agent | 多LLM Provider、熔断器降级、Ollama本地优先 |
 | **社区中心** | 帖子/评论/分享 | 实时统计、标签系统 |
 | **智能运维** | 系统监控、告警、自动化修复 | 指标采集、LLM健康检查 |
-| **用户系统** | JWT认证、角色权限 | bcrypt加密、API Key管理 |
+| **用户系统** | JWT认证、角色权限 | pbkdf2_sha256加密、API Key管理 |
+| **实时通信** | WebSocket消息推送、房间订阅 | 分组广播、JWT鉴权、指数退避重连 |
+| **定时调度** | Cron定时执行工作流 | APScheduler AsyncIO、任务历史 |
+| **RAG知识库** | 文档上传、向量检索、AI问答 | 分块向量化、Ollama嵌入+哈希降级 |
+| **插件系统** | 自定义工作流节点、插件市场 | 插件注册表、内置文本/JSON/数学节点 |
 
 ## 技术架构
 
@@ -120,3 +124,32 @@ MIT
 *AI驱动 · 自动化 · 智能运维*
 
 </div>
+
+
+## 端到端验证结果（2026-09-03）
+
+**基础功能 14/14 通过**：健康检查、注册/登录、JWT鉴权、工作流创建与DAG执行、Agent创建与对话降级、社区发帖/评论/浏览计数、系统统计。
+
+**新功能 15/15 通过 + WebSocket 4/4 + 插件节点工作流**：
+- 插件：列表/类型/schema/安装，3个内置节点
+- RAG：知识库创建、文档分块向量化、向量检索、LLM降级问答（检索结果正常返回）
+- 调度：cron创建/非法cron拒绝(400)/任务列表/历史/取消
+- WebSocket：合法连接欢迎消息、ping/pong、房间订阅、非法token拒绝(4001)
+- 插件节点接入工作流引擎：text_format 大写转换、math_calc 计算 `3*(4+5)=27` 全链成功
+
+### 启动方式
+
+```bash
+# 后端
+cd backend && pip install -e ".[dev]"
+uvicorn app.main:app --reload --port 8000
+
+# 前端
+cd frontend && npm install --registry=https://registry.npmmirror.com
+npm run dev   # http://localhost:3000 （/api 已代理到 8000）
+```
+
+### 降级设计
+- **LLM**：优先本地 Ollama，未启动时 OpenAI 兜底，均不可用时 Agent/RAG 优雅返回提示
+- **RAG 嵌入**：优先 Ollama nomic-embed-text，失败降级为确定性哈希向量（零外部依赖可运行）
+- **数据库**：默认 SQLite（/tmp 可覆盖 DATABASE_URL），零配置启动
