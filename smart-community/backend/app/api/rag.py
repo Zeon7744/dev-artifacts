@@ -4,14 +4,15 @@ RAG 知识库 API
 路由（由 main.py 以 prefix="/api/rag" 挂载，与其他 api 模块约定一致）：
 - POST /kb            创建知识库
 - GET  /kb            列出我的知识库
-- POST /kb/{kb_id}/docs   上传文档（切分 -> 向量化 -> 入库）
+- POST /kb/{kb_id}/docs   上传文档（JSON：title/content，切分 -> 向量化 -> 入库）
+- POST /kb/{kb_id}/upload 上传文件（multipart/form-data，支持 .txt/.md/.pdf/.docx）
 - GET  /kb/{kb_id}/docs   列出文档
 - POST /kb/{kb_id}/query  检索 + LLM 问答（LLM 不可用时降级，sources 照常返回）
 """
 import logging
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -20,6 +21,7 @@ from ..core.auth import get_current_user
 from ..core.database import get_session
 from ..models.database import User
 from ..rag.embeddings import Embedder
+from ..rag.file_parser import ParserDependencyMissing, extract_text
 from ..rag.models import KnowledgeBase, KnowledgeChunk, KnowledgeDoc
 from ..rag.vector_store import VectorStore, split_text
 from ..services.llm_service import LLMService
@@ -145,24 +147,28 @@ async def list_kb(
 
 # ============ 文档管理 ============
 
-@router.post("/kb/{kb_id}/docs")
-async def upload_doc(
-    kb_id: int,
-    req: DocCreate,
-    user: User = Depends(get_current_user),
-    db: AsyncSession = Depends(get_session),
-):
-    """上传文档：切分正文 -> 向量化 -> 切片入库 -> 更新统计。
+async def _ingest_text(
+    db: AsyncSession,
+    kb: KnowledgeBase,
+    title: str,
+    content: str,
+    source: Optional[str] = None,
+) -> dict:
+    """文本入库共用流程：建文档记录 -> 切分 -> 向量化 -> 切片入库 -> 更新统计。
+
+    供 POST /docs（JSON 文本）与 POST /upload（文件解析）两个端点复用，
+    保证两者行为一致。
 
     文档初始状态为 ingesting，全部成功后置为 ready；
-    向量化 / 入库失败置为 failed 并返回 500。
-    """
-    kb = await _get_owned_kb(db, kb_id, user)
+    向量化 / 入库失败置为 failed 并抛出 HTTPException(500)。
 
+    Returns:
+        就绪文档的响应字典
+    """
     doc = KnowledgeDoc(
         kb_id=kb.id,
-        title=req.title,
-        source=req.source,
+        title=title,
+        source=source,
         status="ingesting",
         chunk_count=0,
     )
@@ -171,7 +177,7 @@ async def upload_doc(
 
     try:
         # 1. 切分（段落优先，~500 字符，50 字符重叠）
-        pieces = split_text(req.content, chunk_size=500, overlap=50)
+        pieces = split_text(content, chunk_size=500, overlap=50)
         if not pieces:
             raise ValueError("文档内容切分为空")
 
@@ -187,8 +193,8 @@ async def upload_doc(
                 "chunk_index": idx,
                 "embedding": embeddings[idx],
                 "metadata": {
-                    "title": req.title,
-                    "source": req.source,
+                    "title": title,
+                    "source": source,
                     "chunk_index": idx,
                 },
             }
@@ -216,11 +222,11 @@ async def upload_doc(
     except Exception as exc:
         await db.rollback()
         # 回滚后文档可能已不存在（flush 未提交），重新建失败记录
-        logger.error("文档入库失败 kb_id=%s title=%s: %s", kb_id, req.title, exc)
+        logger.error("文档入库失败 kb_id=%s title=%s: %s", kb.id, title, exc)
         failed_doc = KnowledgeDoc(
             kb_id=kb.id,
-            title=req.title,
-            source=req.source,
+            title=title,
+            source=source,
             status="failed",
             chunk_count=0,
         )
@@ -228,6 +234,68 @@ async def upload_doc(
         db.add(failed_doc)
         await db.commit()
         raise HTTPException(status_code=500, detail=f"文档处理失败: {exc}")
+
+
+@router.post("/kb/{kb_id}/docs")
+async def upload_doc(
+    kb_id: int,
+    req: DocCreate,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_session),
+):
+    """上传文档（JSON 文本）：切分正文 -> 向量化 -> 切片入库 -> 更新统计。"""
+    kb = await _get_owned_kb(db, kb_id, user)
+    return await _ingest_text(db, kb, req.title, req.content, req.source)
+
+
+@router.post("/kb/{kb_id}/upload")
+async def upload_file(
+    kb_id: int,
+    file: UploadFile = File(..., description="知识库文件（.txt/.md/.pdf/.docx，≤10MB）"),
+    title: Optional[str] = Form(None, description="文档标题，缺省使用文件名"),
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_session),
+):
+    """上传文件构建知识库文档（multipart/form-data）。
+
+    流程：鉴权 + 校验 KB 归属 -> 读取文件字节 -> 解析提取文本
+    -> 与 /docs 相同的切分 / 向量化 / 入库流程。
+
+    - 解析库缺失（pypdf / python-docx 未安装）：返回 501；
+    - 其他失败（文件类型不支持、过大、解析为空、入库失败等）：返回 500。
+    """
+    kb = await _get_owned_kb(db, kb_id, user)
+
+    filename = file.filename or "未命名文件"
+    doc_title = (title or "").strip() or filename
+
+    try:
+        raw = await file.read()
+    except Exception as exc:
+        logger.error("读取上传文件失败 kb_id=%s file=%s: %s", kb_id, filename, exc)
+        raise HTTPException(status_code=500, detail=f"文件读取失败: {exc}")
+
+    try:
+        content = extract_text(filename, raw)
+    except ParserDependencyMissing as exc:
+        # 解析库未安装：明确返回 501，提示安装依赖
+        logger.warning("文件解析依赖缺失 kb_id=%s file=%s: %s", kb_id, filename, exc)
+        raise HTTPException(
+            status_code=501,
+            detail={
+                "message": str(exc),
+                "hint": f"请在后端环境安装依赖：pip install {exc.package}",
+            },
+        )
+    except ValueError as exc:
+        # 文件类型不支持 / 超限 / 内容为空等
+        logger.warning("文件解析被拒绝 kb_id=%s file=%s: %s", kb_id, filename, exc)
+        raise HTTPException(status_code=500, detail=f"文件解析失败: {exc}")
+    except Exception as exc:
+        logger.error("文件解析失败 kb_id=%s file=%s: %s", kb_id, filename, exc)
+        raise HTTPException(status_code=500, detail=f"文件解析失败: {exc}")
+
+    return await _ingest_text(db, kb, doc_title, content, source=filename)
 
 
 @router.get("/kb/{kb_id}/docs")

@@ -1,0 +1,52 @@
+# ============================================================
+# Smart Community - docker-compose 编排
+# 启动：docker compose up -d --build
+# 访问：http://localhost  （前端 Nginx，自动反代 /api 到后端）
+# ============================================================
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    image: smart-community-backend:latest
+    container_name: smart-community-backend
+    restart: unless-stopped
+    environment:
+      # sqlite 数据库存放在持久化 volume 中
+      DATABASE_URL: "sqlite+aiosqlite:////data/smart_community.db"
+      # 生产部署请务必修改 SECRET_KEY（JWT 签名密钥）
+      SECRET_KEY: "please-change-this-secret-key-in-production"
+      DEBUG: "false"
+      # LLM 配置（按需启用）
+      # LLM_PROVIDER: "ollama"
+      # OLLAMA_BASE_URL: "http://host.docker.internal:11434"
+      # OPENAI_API_KEY: ""
+    volumes:
+      - backend_data:/data
+    expose:
+      - "8000"
+    # 如需直接访问后端 API/文档，可取消下面端口映射
+    # ports:
+    #   - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    image: smart-community-frontend:latest
+    container_name: smart-community-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_started
+
+volumes:
+  backend_data:

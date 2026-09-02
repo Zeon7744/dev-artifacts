@@ -11,7 +11,7 @@ from .core.database import init_db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup：初始化数据库 + 启动定时调度器
+    # Startup：初始化数据库 + 启动定时调度器 + 加载已发布自定义插件
     await init_db()
     scheduler = None
     try:
@@ -21,6 +21,12 @@ async def lifespan(app: FastAPI):
         scheduler = scheduler_service
     except Exception as e:
         print(f"[lifespan] 调度器启动失败（不影响主服务）: {e}")
+    try:
+        from .plugins.loader import load_published_plugins
+        count = await load_published_plugins()
+        print(f"[lifespan] 已加载 {count} 个已发布自定义插件")
+    except Exception as e:
+        print(f"[lifespan] 自定义插件加载失败（不影响主服务）: {e}")
     yield
     # Shutdown
     if scheduler is not None:
@@ -54,20 +60,23 @@ app.include_router(agents.router, prefix="/api/agents", tags=["Agent"])
 app.include_router(community.router, prefix="/api/community", tags=["社区"])
 app.include_router(system.router, prefix="/api/system", tags=["系统"])
 
-# 新功能模块（realtime/scheduler 路由内部已含 /api 前缀；rag/plugins 用 prefix 挂载）
+# 新功能模块（realtime/scheduler/notifications 路由内部已含 /api 前缀；rag/plugins 用 prefix 挂载）
 from .api import realtime as realtime_api
 from .api import scheduler as scheduler_api
+from .api import notifications as notifications_api
 from .api import rag as rag_api
 from .api import plugins as plugins_api
 app.include_router(realtime_api.router, tags=["实时通信"])
 app.include_router(scheduler_api.router, tags=["定时调度"])
+app.include_router(notifications_api.router, tags=["通知中心"])
 app.include_router(rag_api.router, prefix="/api/rag", tags=["知识库RAG"])
 app.include_router(plugins_api.router, prefix="/api/plugins", tags=["插件系统"])
 
-# 导入 RAG / 插件 ORM 模型以触发表注册（init_db 建表时使用）
+# 导入 RAG / 插件 / 通知 ORM 模型以触发表注册（init_db 建表时使用）
 try:
     from .rag import models as _rag_models  # noqa: F401
     from .plugins import models as _plugin_models  # noqa: F401
+    from .notifications import models as _notif_models  # noqa: F401
 except Exception:
     pass
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api } from '../hooks/useAuth'
-import { BookOpen, Plus, Search, FileText, Database, Loader2 } from 'lucide-react'
+import { BookOpen, Plus, Search, FileText, Database, Loader2, Upload } from 'lucide-react'
 
 export default function KnowledgePage() {
   const [kbs, setKbs] = useState([])
@@ -12,6 +12,8 @@ export default function KnowledgePage() {
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState(null)
   const [busy, setBusy] = useState('')
+  const [uploadMsg, setUploadMsg] = useState(null)
+  const [uploadErr, setUploadErr] = useState(false)
 
   const loadKbs = async () => {
     try { const { data } = await api.get('/rag/kb'); setKbs(data || []) } catch (e) {}
@@ -41,6 +43,29 @@ export default function KnowledgePage() {
       await api.post(`/rag/kb/${selectedKb}/docs`, { title: docTitle, content: docContent })
       setDocTitle(''); setDocContent('')
       selectKb(selectedKb); loadKbs()
+    } finally { setBusy('') }
+  }
+
+  const uploadFile = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = '' // 允许重复选择同一文件
+    if (!file || !selectedKb) return
+    setBusy('file'); setUploadMsg(null); setUploadErr(false)
+    try {
+      const form = new FormData()
+      form.append('file', file)
+      // multipart 请求不要手动设置 Content-Type，浏览器会自动带 boundary
+      const { data } = await api.post(`/rag/kb/${selectedKb}/upload`, form)
+      setUploadMsg(`上传成功：${data.title}（${data.chunk_count} 个片段）`)
+      setUploadErr(false)
+      selectKb(selectedKb); loadKbs()
+    } catch (err) {
+      const detail = err.response?.data?.detail
+      const msg = typeof detail === 'object' && detail !== null
+        ? (detail.message || JSON.stringify(detail))
+        : (detail || err.message)
+      setUploadMsg(`上传失败：${msg}`)
+      setUploadErr(true)
     } finally { setBusy('') }
   }
 
@@ -110,6 +135,20 @@ export default function KnowledgePage() {
                 className="mt-3 w-full py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 rounded-lg text-white text-sm flex items-center justify-center gap-2">
                 {busy === 'doc' ? <Loader2 size={15} className="animate-spin" /> : <Plus size={15} />} 上传并索引
               </button>
+              <div className="mt-2 flex items-center gap-2">
+                <label
+                  className="flex-1 py-2 border border-indigo-500/40 bg-indigo-500/10 hover:bg-indigo-500/20 rounded-lg text-indigo-300 text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50">
+                  {busy === 'file' ? <Loader2 size={15} className="animate-spin" /> : <Upload size={15} />}
+                  上传文件 (.txt/.md/.pdf/.docx)
+                  <input type="file" accept=".txt,.md,.pdf,.docx" className="hidden"
+                    disabled={busy === 'file'} onChange={uploadFile} />
+                </label>
+              </div>
+              {uploadMsg && (
+                <p className={`mt-2 text-xs px-2 py-1.5 rounded ${uploadErr ? 'bg-red-500/10 text-red-400' : 'bg-green-500/10 text-green-400'}`}>
+                  {uploadMsg}
+                </p>
+              )}
               <div className="mt-4 space-y-1.5">
                 {docs.map((d) => (
                   <div key={d.id} className="flex items-center justify-between text-xs bg-[#0a0a0f] rounded px-3 py-2">

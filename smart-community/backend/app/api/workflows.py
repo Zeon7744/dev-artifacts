@@ -193,6 +193,29 @@ async def run_workflow(
 
     await db.commit()
 
+    # 实时通知：工作流执行结果推送到用户铃铛（旁路，失败不影响响应）
+    try:
+        from ..notifications import notify_user
+
+        ok = execution.status == TaskStatus.SUCCESS
+        await notify_user(
+            user_id=user.id,
+            category="workflow",
+            level="success" if ok else "error",
+            title=f"工作流「{workflow.name}」执行{'成功' if ok else '失败'}",
+            content=(
+                f"手动触发的工作流已执行完成，状态：{execution.status.value}。"
+                if ok else f"工作流执行失败：{execution.error_message or '未知错误'}"
+            ),
+            data={
+                "workflow_id": workflow.id,
+                "execution_id": execution.id,
+                "status": execution.status.value,
+            },
+        )
+    except Exception:
+        pass
+
     return {
         "execution_id": execution.id,
         "status": execution.status.value,

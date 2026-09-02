@@ -209,6 +209,30 @@ class SchedulerService:
             logger.info(
                 "工作流 %s 定时执行完成，状态=%s", workflow_id, run_status
             )
+
+            # 实时通知：定时任务执行结果推送到工作流所属用户
+            try:
+                from ..notifications import notify_user
+
+                await notify_user(
+                    user_id=workflow.user_id,
+                    category="schedule",
+                    level="success" if run_status == "success" else "error",
+                    title=f"定时任务「{workflow.name}」执行{'成功' if run_status == 'success' else '失败'}",
+                    content=(
+                        f"cron {workflow.schedule_cron} 触发的工作流已完成。"
+                        if run_status == "success"
+                        else f"定时执行失败：{execution.error_message or '未知错误'}"
+                    ),
+                    data={
+                        "workflow_id": workflow_id,
+                        "execution_id": execution.id,
+                        "cron": workflow.schedule_cron,
+                        "status": run_status,
+                    },
+                )
+            except Exception:
+                pass
         except Exception as e:
             # 兜底：任何未预期异常都不允许抛出到调度器
             logger.exception("定时任务 workflow_%s 执行失败: %s", workflow_id, e)

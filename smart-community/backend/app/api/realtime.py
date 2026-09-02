@@ -79,6 +79,8 @@ async def websocket_endpoint(websocket: WebSocket, token: str = "", room: str = 
 
     # ---- 接入阶段：接受连接并加入初始房间 ----
     await manager.connect(websocket, room)
+    # 自动加入该用户的专属房间，用于接收通知中心的定向推送
+    await manager.join_room(websocket, f"user/{user_id}")
     try:
         await manager.send_personal(
             websocket,

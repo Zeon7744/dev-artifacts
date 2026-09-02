@@ -92,11 +92,13 @@ async def create_custom_plugin(
 ):
     """开发者提交自定义插件（需登录认证）。
 
-    安全说明（MVP）：
+    安全模型：
     - node_type 不得与内置插件冲突，也不得与已有插件重复（冲突返回 409）；
-    - code 字段仅做持久化存储，服务端不会执行；
-      后续版本需经审核 + 沙箱运行环境后才允许注册执行；
-    - 提交后 is_published=False，管理员审核发布后才会出现在插件市场。
+    - code 提交时经沙箱静态校验（AST 白名单），违规直接拒绝（400）；
+    - 提交后 is_published=False，可通过 /custom/{id}/test 在沙箱中试跑，
+      再由作者通过 /custom/{id}/publish 发布上架；
+    - 自定义插件 execute 为同步函数，运行在受限沙箱（无 import/文件/网络，
+      循环步数限制，5 秒超时）。
     """
     # 内置 node_type 冲突检查
     if registry.get(req.node_type) is not None:
@@ -107,6 +109,15 @@ async def create_custom_plugin(
     if existing.scalar_one_or_none() is not None:
         raise HTTPException(status_code=409, detail="node_type 已被占用，请更换")
 
+    # 代码沙箱静态校验：违规代码直接拒绝
+    if req.code:
+        from ..plugins.sandbox import SandboxError, validate_code
+
+        try:
+            validate_code(req.code)
+        except SandboxError as exc:
+            raise HTTPException(status_code=400, detail=f"插件代码未通过安全校验: {exc}")
+
     plugin = Plugin(
         name=req.name,
         version="1.0.0",
@@ -116,7 +127,7 @@ async def create_custom_plugin(
         code=req.code,
         config_schema=req.config_schema,
         is_builtin=False,
-        is_published=False,  # MVP：提交后待审核，不直接上架
+        is_published=False,  # 提交后需试跑并发布
         install_count=0,
         tags=req.tags,
     )
@@ -127,7 +138,80 @@ async def create_custom_plugin(
         "id": plugin.id,
         "node_type": plugin.node_type,
         "status": "pending_review",
-        "message": "插件元数据已提交，code 仅存储不会执行；待管理员审核发布后上架市场",
+        "message": "插件已提交并通过安全校验，可通过 /api/plugins/custom/{id}/test 试跑后发布",
+    }
+
+
+class PluginTestRequest(BaseModel):
+    """插件沙箱试跑请求"""
+
+    config: Dict[str, Any] = Field(default_factory=dict, description="节点配置")
+    ctx: Dict[str, Any] = Field(default_factory=dict, description="模拟上下文（input_data 等）")
+
+
+@router.post("/custom/{plugin_id}/test")
+async def test_custom_plugin(
+    plugin_id: int,
+    req: PluginTestRequest,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_session),
+):
+    """在安全沙箱中试跑自定义插件（不发布、不影响线上）。仅插件作者可试跑。"""
+    from ..plugins.sandbox import SandboxError, run_plugin_code
+
+    result = await db.execute(select(Plugin).where(Plugin.id == plugin_id))
+    plugin = result.scalar_one_or_none()
+    if plugin is None or plugin.author_id != user.id:
+        raise HTTPException(status_code=404, detail="插件不存在")
+
+    if not plugin.code:
+        raise HTTPException(status_code=400, detail="该插件没有可执行代码")
+
+    try:
+        output, elapsed_ms = await run_plugin_code(plugin.code, req.config, req.ctx)
+    except SandboxError as exc:
+        return {"success": False, "error": str(exc)}
+    return {"success": True, "output": output, "elapsed_ms": elapsed_ms}
+
+
+@router.post("/custom/{plugin_id}/publish")
+async def publish_custom_plugin(
+    plugin_id: int,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_session),
+):
+    """发布自定义插件：沙箱校验通过后上架并立即注册到引擎（作者操作）。"""
+    from ..plugins.sandbox import CustomSandboxPlugin, SandboxError, _compile_plugin
+
+    result = await db.execute(select(Plugin).where(Plugin.id == plugin_id))
+    plugin = result.scalar_one_or_none()
+    if plugin is None or plugin.author_id != user.id:
+        raise HTTPException(status_code=404, detail="插件不存在")
+    if not plugin.code:
+        raise HTTPException(status_code=400, detail="插件缺少可执行代码，无法发布")
+
+    # 发布前再次沙箱编译校验
+    try:
+        _compile_plugin(plugin.code)
+    except SandboxError as exc:
+        raise HTTPException(status_code=400, detail=f"安全校验未通过: {exc}")
+
+    plugin.is_published = True
+    await db.commit()
+
+    # 立即注册到全局 registry（无需重启）
+    try:
+        from ..plugins.base import registry
+
+        registry.register(CustomSandboxPlugin(plugin))
+    except Exception:
+        pass
+
+    return {
+        "id": plugin.id,
+        "node_type": plugin.node_type,
+        "status": "published",
+        "message": "插件已发布上架，工作流引擎立即可用",
     }
 
 

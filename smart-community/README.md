@@ -106,10 +106,47 @@ npm run dev
 - [x] LLM多Provider服务
 - [x] 前端React SPA
 - [x] 可视化工作流编辑器（ReactFlow）
-- [ ] WebSocket实时通信
-- [ ] 定时调度器（APScheduler）
-- [ ] RAG知识库集成
-- [ ] 插件系统
+- [x] WebSocket实时通信（房间广播 + 事件主动推送）
+- [x] 定时调度器（APScheduler，重启自动恢复）
+- [x] RAG知识库集成（向量检索 + PDF/Word/Markdown文件上传）
+- [x] 插件系统（内置插件 + 自定义插件安全沙箱执行）
+- [x] 通知中心（WS实时推送 + 持久化未读）
+- [x] 容器化部署（Dockerfile + docker-compose）
+- [x] pytest 自动化测试
+
+
+## 第三轮功能增强（2026-09-03）
+
+### 通知中心（双通道）
+- **实时通道**：WebSocket 连接后自动加入 `user/{id}` 专属房间；工作流执行完成、定时任务触发等事件主动推送
+- **持久通道**：通知落库（notifications 表），离线/断线重连后拉取未读历史
+- API：`GET /api/notifications`、`/unread-count`、`POST /read-all`、`/{id}/read`
+- 前端：顶栏铃铛实时角标、类别/级别标识、一键全部已读
+
+### 自定义插件安全沙箱
+自定义插件以源码提交，经过四重安全限制后可直接在工作流引擎中执行：
+1. **AST 静态校验**：禁止 import/global/nonlocal/with，禁止下划线属性与名称，禁止 eval/exec/open/getattr 等危险内建
+2. **受限内建环境**：仅暴露安全内建 + json/math/re/datetime 白名单模块，无文件系统/网络入口
+3. **循环步数插桩**：while/for 注入步数守卫，死循环 ~10 万次迭代内被 RuntimeError 终止
+4. **线程级超时**：独立线程执行 + 5 秒墙钟超时，daemon 线程不阻塞服务
+
+API：`POST /api/plugins/custom`（提交即校验，恶意代码 400 拒绝）、`/custom/{id}/test`（沙箱试跑）、`/custom/{id}/publish`（发布即注册，无需重启）；服务启动时自动加载已发布插件。
+
+### RAG 文件上传
+- `POST /api/rag/kb/{id}/upload`：multipart 上传 .txt/.md/.pdf/.docx（10MB 上限）
+- 解析库（pypdf/python-docx）延迟导入，缺失时返回 501 与安装提示，不影响其他格式
+- 前端知识库页内置文件上传入口，上传后自动刷新文档列表
+
+### 前端工作流构建器增强
+- 节点面板新增「插件节点」分组（emerald 色系），从 `/api/plugins` 实时拉取
+- 插件节点选中后按 config_schema 动态渲染配置表单（text/textarea/number/select/checkbox）
+- 保存工作流时插件节点类型（plugin.*）与完整配置一并写入 DAG 定义
+
+### 验证结果
+- **通知 + 沙箱 E2E 23/23 通过**：通知列表/未读/已读/401、合规插件提交、恶意代码拒绝、沙箱试跑、死循环终止、发布上架、插件节点全链工作流执行（total=60）、WS 实时通知帧、通知持久化
+- **回归**：基础 14 项、四大模块 15 项全部保持通过
+- **文件上传**：txt/docx/pdf 上传切分入库成功，空白页 PDF 与不支持格式正确报错，缺依赖返回 501
+
 
 ## License
 
