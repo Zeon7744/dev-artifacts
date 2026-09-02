@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "financial-news-mcp": {
+      "command": "python",
+      "args": [
+        "python",
+        "/app/data/dev-artifacts/financial-news-mcp/main.py"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}

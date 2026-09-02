@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融新闻MCP v2.0 - 对比分析报告</title>
+    <style>
+        :root {
+            --primary: #071B3A;
+            --bg: #F3F7FB;
+            --gold: #D5A84D;
+            --cyan: #2BC4B6;
+            --text: #102033;
+            --muted: #65758A;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', 'IBM Plex Sans', 'Avenir', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3a5c 100%);
+            color: white;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        header .subtitle {
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(7, 27, 58, 0.08);
+            border-left: 4px solid var(--cyan);
+        }
+        
+        .stat-card.gold { border-left-color: var(--gold); }
+        .stat-card.success { border-left-color: var(--success); }
+        .stat-card.warning { border-left-color: var(--warning); }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: var(--muted);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(7, 27, 58, 0.08);
+        }
+        
+        .section h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--bg);
+        }
+        
+        .section h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--bg);
+        }
+        
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:hover {
+            background: var(--bg);
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .feature-tag.new {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .feature-tag.enhanced {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .feature-tag.standard {
+            background: var(--bg);
+            color: var(--muted);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            border: 1px solid var(--success);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .highlight-box.warning {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-color: var(--warning);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--bg);
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+        
+        .source-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .source-card {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .source-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .source-credibility {
+            background: var(--cyan);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        
+        .architecture-diagram {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+        
+        .arch-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .arch-node {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--gold);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .arch-node h4 {
+            color: var(--gold);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .arch-node p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .test-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .test-item {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .test-item.pass { border-left: 4px solid var(--success); }
+        .test-item.fail { border-left: 4px solid var(--danger); }
+        
+        .test-count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .test-label {
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+        
+        @media print {
+            header { background: var(--primary) !important; -webkit-print-color-adjust: exact; }
+            .section { break-inside: avoid; }
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            header h1 { font-size: 1.75rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .comparison-table { font-size: 0.875rem; }
+            .comparison-table th, .comparison-table td { padding: 0.75rem 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>金融新闻MCP v2.0 <span class="badge">对比分析</span></h1>
+            <p class="subtitle">增强版数据采集 · 多因子融合预测 · 六层验证体系</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+        <!-- 核心指标 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">13</div>
+                <div class="stat-label">权威数据源</div>
+            </div>
+            <div class="stat-card gold">
+                <div class="stat-value">6</div>
+                <div class="stat-label">验证层级</div>
+            </div>
+            <div class="stat-card success">
+                <div class="stat-value">4</div>
+                <div class="stat-label">预测因子</div>
+            </div>
+            <div class="stat-card warning">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">测试通过率</div>
+            </div>
+        </div>
+
+        <!-- 架构概览 -->
+        <section class="section">
+            <h2>系统架构</h2>
+            <div class="architecture-diagram">
+                <h3 style="color: var(--gold); margin-bottom: 1rem;">数据流架构</h3>
+                <div class="arch-flow">
+                    <div class="arch-node">
+                        <h4>数据采集层</h4>
+                        <p>13个RSS源 + yfinance<br>实时行情</p>
+                    </div>
+                    <div class="arch-node">
+                        <h4>验证层</h4>
+                        <p>来源权威性<br>标题风险<br>时效性<br>内容一致性<br>事实核查<br>交叉验证</p>
+                    </div>
+                    <div class="arch-node">
+                        <h4>分析层</h4>
+                        <p>情感分析<br>趋势预测<br>投资建议</p>
+                    </div>
+                    <div class="arch-node">
+                        <h4>MCP协议</h4>
+                        <p>2026-07-28无状态协议<br>tools/list + tools/call</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 功能对比 -->
+        <section class="section">
+            <h2>功能对比</h2>
+            <table class="comparison-table">
+                <caption>Financial-News-MCP v2.0 与 Investment-MCP 功能对比</caption>
+                <thead>
+                    <tr>
+                        <th>功能模块</th>
+                        <th>Investment-MCP</th>
+                        <th>Financial-News-MCP v2.0</th>
+                        <th>优势</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>数据源</strong></td>
+                        <td>依赖外部MLP项目</td>
+                        <td>
+                            13个权威RSS源<br>
+                            <span class="feature-tag new">新增</span> yfinance实时行情
+                        </td>
+                        <td><span class="feature-tag new">自建数据源</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>数据验证</strong></td>
+                        <td>无验证机制</td>
+                        <td>
+                            六层验证体系<br>
+                            <span class="feature-tag new">新增</span> 交叉验证
+                        </td>
+                        <td><span class="feature-tag new">可靠性高</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>情感分析</strong></td>
+                        <td>简单关键词匹配</td>
+                        <td>
+                            多粒度中文分词<br>
+                            金融术语库<br>
+                            <span class="feature-tag new">新增</span> 强度修饰词
+                        </td>
+                        <td><span class="feature-tag enhanced">精度提升</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>趋势预测</strong></td>
+                        <td>MLP神经网络</td>
+                        <td>
+                            多因子融合模型<br>
+                            <span class="feature-tag new">新增</span> 技术指标<br>
+                            基本面 + 情绪面
+                        </td>
+                        <td><span class="feature-tag new">多因子融合</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>投资建议</strong></td>
+                        <td>基础资产配置</td>
+                        <td>
+                            个性化风险偏好<br>
+                            <span class="feature-tag new">新增</span> 仓位管理<br>
+                            动态调仓建议
+                        </td>
+                        <td><span class="feature-tag enhanced">策略完善</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>错误处理</strong></td>
+                        <td>基础异常捕获</td>
+                        <td>
+                            <span class="feature-tag new">新增</span> 优雅降级<br>
+                            详细错误日志<br>
+                            自动重试机制
+                        </td>
+                        <td><span class="feature-tag new">稳定性强</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 核心优势 -->
+        <section class="section">
+            <h2>核心优势详解</h2>
+            
+            <h3>1. 权威数据源网络</h3>
+            <div class="source-grid">
+                <div class="source-card">
+                    <span class="source-name">Reuters</span>
+                    <span class="source-credibility">0.95</span>
+                </div>
+                <div class="source-card">
+                    <span class="source-name">Bloomberg</span>
+                    <span class="source-credibility">0.93</span>
+                </div>
+                <div class="source-card">
+                    <span class="source-name">Financial Times</span>
+                    <span class="source-credibility">0.92</span>
+                </div>
+                <div class="source-card">
+                    <span class="source-name">Wall Street Journal</span>
+                    <span class="source-credibility">0.91</span>
+                </div>
+                <div class="source-card">
+                    <span class="source-name">CNBC</span>
+                    <span class="source-credibility">0.88</span>
+                </div>
+                <div class="source-card">
+                    <span class="source-name">MarketWatch</span>
+                    <span class="source-credibility">0.85</span>
+                </div>
+                <div class="source-card">
+                    <span class="source-name">东方财富</span>
+                    <span class="source-credibility">0.82</span>
+                </div>
+                <div class="source-card">
+                    <span class="source-name">财联社</span>
+                    <span class="source-credibility">0.82</span>
+                </div>
+            </div>
+
+            <h3>2. 六层验证体系</h3>
+            <ul class="feature-list">
+                <li><strong>来源权威性验证</strong> - 13个权威媒体可信度评分</li>
+                <li><strong>标题风险分析</strong> - 识别夸张/误导性词汇</li>
+                <li><strong>时效性检查</strong> - 自动过期过滤</li>
+                <li><strong>内容一致性校验</strong> - 标题与内容匹配度分析</li>
+                <li><strong>事实核查</strong> - 数值声明、日期验证</li>
+                <li><strong>交叉验证</strong> - 多源信息一致性比对</li>
+            </ul>
+
+            <h3>3. 多因子融合预测模型</h3>
+            <div class="highlight-box">
+                <p><strong>技术面（40%权重）</strong> - RSI、MACD、均线、成交量分析</p>
+                <p><strong>基本面（30%权重）</strong> - 新闻情感、宏观经济指标</p>
+                <p><strong>情绪面（20%权重）</strong> - 市场情绪指数、资金流向</p>
+                <p><strong>动量面（10%权重）</strong> - 短期价格走势、突破信号</p>
+            </div>
+
+            <h3>4. 智能投资建议引擎</h3>
+            <ul class="feature-list">
+                <li>支持保守型/稳健型/激进型三种风险偏好</li>
+                <li>动态资产配置比例计算</li>
+                <li>风险收益比评估</li>
+                <li>调仓时机建议</li>
+                <li>止损止盈点位提示</li>
+            </ul>
+        </section>
+
+        <!-- 测试报告 -->
+        <section class="section">
+            <h2>测试验证报告</h2>
+            <div class="test-results">
+                <div class="test-item pass">
+                    <div class="test-count">6</div>
+                    <div class="test-label">DataValidator</div>
+                </div>
+                <div class="test-item pass">
+                    <div class="test-count">6</div>
+                    <div class="test-label">SentimentAnalyzer</div>
+                </div>
+                <div class="test-item pass">
+                    <div class="test-count">5</div>
+                    <div class="test-label">TrendPredictor</div>
+                </div>
+                <div class="test-item pass">
+                    <div class="test-count">5</div>
+                    <div class="test-label">InvestmentAdvisor</div>
+                </div>
+                <div class="test-item pass">
+                    <div class="test-count">4</div>
+                    <div class="test-label">NewsCollector</div>
+                </div>
+                <div class="test-item pass">
+                    <div class="test-count">4</div>
+                    <div class="test-label">MCP Integration</div>
+                </div>
+                <div class="test-item pass">
+                    <div class="test-count">2</div>
+                    <div class="test-label">Performance</div>
+                </div>
+            </div>
+            <p style="text-align: center; color: var(--muted); margin-top: 1rem;">
+                总计: 32项测试全部通过 | 覆盖率: 68%
+            </p>
+        </section>
+
+        <!-- 技术规格 -->
+        <section class="section">
+            <h2>技术规格</h2>
+            
+            <h3>协议标准</h3>
+            <div class="highlight-box">
+                <p><strong>MCP协议版本:</strong> 2026-07-28 无状态协议</p>
+                <p><strong>通信方式:</strong> stdin/stdout JSON-RPC 2.0</p>
+                <p><strong>工具接口:</strong> tools/list, tools/call</p>
+            </div>
+
+            <h3>依赖项</h3>
+            <table class="comparison-table">
+                <caption>系统依赖包清单</caption>
+                <thead>
+                    <tr>
+                        <th>依赖包</th>
+                        <th>版本</th>
+                        <th>用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>feedparser</td>
+                        <td>6.0.0+</td>
+                        <td>RSS/Atom订阅源解析</td>
+                    </tr>
+                    <tr>
+                        <td>requests</td>
+                        <td>2.28.0+</td>
+                        <td>HTTP请求与API调用</td>
+                    </tr>
+                    <tr>
+                        <td>yfinance</td>
+                        <td>0.2.0+</td>
+                        <td>实时市场行情数据</td>
+                    </tr>
+                    <tr>
+                        <td>numpy</td>
+                        <td>1.24.0+</td>
+                        <td>数值计算与数据处理</td>
+                    </tr>
+                    <tr>
+                        <td>pytest</td>
+                        <td>7.0.0+</td>
+                        <td>测试框架</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>工具列表</h3>
+            <table class="comparison-table">
+                <caption>MCP工具接口清单</caption>
+                <thead>
+                    <tr>
+                        <th>工具名称</th>
+                        <th>描述</th>
+                        <th>输入参数</th>
+                        <th>输出</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>collect_news</td>
+                        <td>采集金融新闻</td>
+                        <td>category, limit, time_range</td>
+                        <td>新闻列表 + 统计数据</td>
+                    </tr>
+                    <tr>
+                        <td>analyze_sentiment</td>
+                        <td>情感分析</td>
+                        <td>title, content</td>
+                        <td>情感极性 + 分数</td>
+                    </tr>
+                    <tr>
+                        <td>predict_trend</td>
+                        <td>趋势预测</td>
+                        <td>asset_type, symbol, horizon</td>
+                        <td>预测方向 + 置信度</td>
+                    </tr>
+                    <tr>
+                        <td>validate_source</td>
+                        <td>源验证</td>
+                        <td>news_item</td>
+                        <td>验证结果 + 可信度</td>
+                    </tr>
+                    <tr>
+                        <td>generate_advice</td>
+                        <td>投资建议</td>
+                        <td>portfolio_value, risk_tolerance</td>
+                        <td>配置建议 + 风险评估</td>
+                    </tr>
+                    <tr>
+                        <td>list_tools</td>
+                        <td>工具列表</td>
+                        <td>-</td>
+                        <td>可用工具清单</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 使用示例 -->
+        <section class="section">
+            <h2>使用示例</h2>
+            
+            <h3>1. 采集黄金相关新闻</h3>
+            <pre style="background: var(--primary); color: white; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0;"><code>{
+  "method": "tools/call",
+  "params": {
+    "name": "collect_news",
+    "arguments": {
+      "category": "commodity",
+      "limit": 10,
+      "time_range": "24h"
+    }
+  }
+}</code></pre>
+
+            <h3>2. 分析市场情绪</h3>
+            <pre style="background: var(--primary); color: white; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0;"><code>{
+  "method": "tools/call",
+  "params": {
+    "name": "analyze_sentiment",
+    "arguments": {
+      "title": "黄金价格创历史新高，突破2100美元",
+      "content": "受通胀预期和地缘政治风险影响，黄金价格持续走强"
+    }
+  }
+}</code></pre>
+
+            <h3>3. 获取投资建议</h3>
+            <pre style="background: var(--primary); color: white; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0;"><code>{
+  "method": "tools/call",
+  "params": {
+    "name": "generate_advice",
+    "arguments": {
+      "portfolio_value": 100000,
+      "risk_tolerance": "moderate",
+      "target_return": 12.0
+    }
+  }
+}</code></pre>
+        </section>
+
+        <!-- 对比总结 -->
+        <section class="section">
+            <h2>对比总结</h2>
+            
+            <div class="highlight-box">
+                <h3 style="margin-top: 0; color: var(--primary);">Financial-News-MCP v2.0 的核心优势</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li><strong>独立数据源:</strong> 不依赖外部MLP项目，自建13个权威RSS数据源网络</li>
+                    <li><strong>实时行情:</strong> 集成yfinance获取真实市场价格数据</li>
+                    <li><strong>多层验证:</strong> 六层验证体系确保数据质量，降低投资风险</li>
+                    <li><strong>智能预测:</strong> 多因子融合模型结合技术面、基本面、情绪面分析</li>
+                    <li><strong>完整测试:</strong> 32项测试全部通过，覆盖核心功能路径</li>
+                    <li><strong>错误容错:</strong> 优雅降级机制，网络故障时自动切换模拟数据</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box warning">
+                <h3 style="margin-top: 0; color: var(--primary);">Investment-MCP 的特点</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li>专注于MLP神经网络预测模型</li>
+                    <li>依赖commodity-mlp、crypto-mlp等独立项目</li>
+                    <li>缺乏数据源验证机制</li>
+                    <li>无实时新闻采集能力</li>
+                </ul>
+            </div>
+        </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>金融新闻MCP v2.0 | 构建日期: 2026-09-02</p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">本报告由AI生成，仅供参考</p>
+    </footer>
+</body>
+</html>

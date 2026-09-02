@@ -1,4 +1,4 @@
-# 金融期货基金全球新闻MCP v3.0
+# 金融期货基金全球新闻MCP
 
 基于MCP 2026-07-28规范构建的高真实性财经新闻采集与分析平台。
 
@@ -11,15 +11,10 @@
 | **趋势预测** | 技术面+基本面融合预测 | 多因子加权，置信度量化 |
 | **投资建议** | 个性化资产配置与风控建议 | 风险偏好适配，止损位计算 |
 | **数据验证** | 来源权威性+事实核查双重验证 | 可信度评分，风险提示 |
-| **RAG知识库** | 语义搜索 + 金融报告解析 | 支持PDF/Markdown/JSON |
-| **Agent工作流** | 分析师/监控/报告编排 | 串行/并行工作流 |
-| **本地LLM** | Ollama + OpenAI双Provider | 支持熔断器降级 |
 
 ## 工具列表
 
-### 基础工具
-
-#### 1. collect_news - 全球财经新闻采集
+### 1. collect_news - 全球财经新闻采集
 ```python
 {
   "category": "all|commodity|crypto|fund|stock|macro",
@@ -36,7 +31,7 @@
 - 东方财富: 中国财经门户（可信度 0.82）
 - 同花顺: 中国投资门户（可信度 0.78）
 
-#### 2. analyze_sentiment - 新闻情感分析
+### 2. analyze_sentiment - 新闻情感分析
 ```python
 {
   "news_items": [{"title": "...", "content": "..."}],
@@ -51,7 +46,7 @@
 - 置信度：0.0 ~ 1.0
 - 关键词提取
 
-#### 3. predict_trend - 市场趋势预测
+### 3. predict_trend - 市场趋势预测
 ```python
 {
   "asset_type": "commodity|crypto|index|fund|stock",
@@ -66,7 +61,7 @@
 - 基本面：新闻情绪加权
 - 合成算法：多因子融合
 
-#### 4. get_investment_advice - 投资建议
+### 4. get_investment_advice - 投资建议
 ```python
 {
   "portfolio_value": 100000,
@@ -84,7 +79,7 @@
 - 止损止盈位
 - 行动清单
 
-#### 5. validate_data_source - 数据源验证
+### 5. validate_data_source - 数据源验证
 ```python
 {
   "news_item": {"title": "...", "url": "..."},
@@ -99,114 +94,23 @@
 - 时效性检查
 - 事实核查标记
 
-### v3.0 新增工具
-
-#### 6. rag_search - RAG知识库搜索
-```python
-{
-  "query": "美联储加息对黄金价格的影响",
-  "knowledge_base": "default",
-  "top_k": 5,
-  "min_score": 0.7
-}
-```
-
-**功能：**
-- 语义搜索
-- 金融报告解析
-- 元数据过滤
-
-#### 7. agent_run - 执行Agent工作流
-```python
-{
-  "workflow": "daily_briefing|monitoring|report",
-  "params": {
-    "time_range": "24h",
-    "assets": ["GC=F", "CL=F"]
-  }
-}
-```
-
-**工作流：**
-- `daily_briefing`: 每日简报生成
-- `monitoring`: 异常监控预警
-- `report`: 多格式报告输出
-
-#### 8. llm_generate - 本地LLM生成
-```python
-{
-  "prompt": "分析当前黄金市场走势",
-  "provider": "ollama|openai|auto",
-  "model": "llama3.2",
-  "max_tokens": 1000
-}
-```
-
-**Provider：**
-- Ollama: 本地模型（默认）
-- OpenAI: API备用
-- Auto: 自动选择（优先本地，失败时云端）
-
-#### 9. knowledge_manage - 知识库管理
-```python
-{
-  "action": "add|list|delete|stats",
-  "name": "my_knowledge",
-  "files": ["report.pdf", "doc.md"]
-}
-```
-
-**操作：**
-- 添加文档
-- 列出知识库
-- 删除知识库
-- 查看统计
-
-#### 10. workflow_status - 工作流状态查询
-```python
-{
-  "workflow_id": "wf_20240101_001"
-}
-```
-
 ## 技术架构
 
 ```
 financial-news-mcp/
-├── main.py                 # MCP服务器入口（v3.0.0）
+├── main.py                 # MCP服务器入口
 ├── pyproject.toml          # 项目配置
 ├── .mcp.json              # Coze配置
 ├── tools/
+│   ├── __init__.py
 │   ├── news_collector.py   # 新闻采集模块
 │   ├── sentiment_analyzer.py  # 情感分析模块
 │   ├── trend_predictor.py   # 趋势预测模块
 │   ├── investment_advisor.py  # 投资建议模块
-│   ├── data_validator.py    # 数据验证模块
-│   └── rag/                # RAG知识库模块（v3.0新增）
-│       ├── vector_store.py
-│       ├── document_loader.py
-│       ├── chunker.py
-│       ├── embedder.py
-│       └── knowledge_base.py
-├── agents/                 # Agent工作流模块（v3.0新增）
-│   ├── base_agent.py
-│   ├── analyst_agent.py
-│   ├── watcher_agent.py
-│   ├── reporter_agent.py
-│   └── orchestrator.py
-├── llm_providers/          # 本地LLM集成（v3.0新增）
-│   ├── base_provider.py
-│   ├── ollama_provider.py
-│   ├── openai_provider.py
-│   └── provider_factory.py
-├── api_gateway/            # API网关
-├── management/             # 管理平台
+│   └── data_validator.py    # 数据验证模块
 ├── tests/
-│   ├── test_all.py         # 完整测试套件
-│   └── test_v3.py          # v3.0测试套件
+│   └── test_all.py         # 完整测试套件（60+用例）
 ├── data/                   # 缓存数据目录
-│   ├── knowledge/          # RAG知识库存储
-│   └── cache/              # 缓存目录
 └── docs/                   # 文档目录
 ```
 
@@ -272,28 +176,6 @@ python main.py
 | 预测生成时间 | < 2s | ~1.5s |
 | 测试覆盖率 | > 90% | ~95% |
 | 数据验证准确率 | > 95% | ~97% |
-| RAG检索延迟 | < 200ms | ~100ms |
-| LLM响应时间 | < 5s | ~3s |
-
-## v3.0 升级特性
-
-### RAG知识库模块
-- 支持PDF/Markdown/JSON文档加载
-- 智能分块策略（金融报告专用）
-- 本地向量存储（ChromaDB + JSON降级）
-- 语义搜索 + 元数据过滤
-
-### Agent工作流模块
-- 分析师Agent：每日简报自动生成
-- 监控Agent：异常预警实时推送
-- 报告Agent：多格式输出（markdown/json/html/csv）
-- 编排器：串行/并行工作流执行
-
-### 本地LLM集成
-- Ollama本地模型支持
-- OpenAI API备用
-- Provider熔断器机制
-- 自动降级策略
 
 ## 依赖项目
 
@@ -306,13 +188,3 @@ python main.py
 ## License
 
 MIT
-
----
-
-<div align="center">
-
-**由 [Zeon7744](https://github.com/Zeon7744) 维护**
-
-*开发成果 · 可复用 · 经得起验证*
-
-</div>

@@ -11,7 +11,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from .config import settings
-from .database import User, UserRole
+from .database import get_session
+from ..models.database import User, UserRole
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 security = HTTPBearer()
@@ -49,7 +50,6 @@ async def get_current_user(
             detail="Invalid or expired token",
         )
 
-    from .database import get_session
     async with get_session() as session:
         result = await session.execute(select(User).where(User.id == user_id))
         user = result.scalar_one_or_none()

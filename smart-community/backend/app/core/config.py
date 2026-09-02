@@ -24,7 +24,7 @@ class Settings:
     # 数据库
     DATABASE_URL: str = os.getenv(
         "DATABASE_URL",
-        f"sqlite+aiosqlite:///{BASE_DIR / 'data' / 'community.db'}"
+        f"sqlite+aiosqlite:////tmp/smart_community.db"
     )
 
     # Redis (可选, 用于缓存和任务队列)
