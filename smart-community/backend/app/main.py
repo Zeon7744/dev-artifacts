@@ -13,11 +13,38 @@ from .core.database import init_db
 async def lifespan(app: FastAPI):
     # Startup：初始化数据库 + 启动定时调度器 + 加载已发布自定义插件
     await init_db()
+    # 轻量迁移：为旧库 plugins 表补齐审核流字段
+    try:
+        from .core.database import engine
+        from .plugins.models import migrate_plugin_review_columns
+        await migrate_plugin_review_columns(engine)
+    except Exception as e:
+        print(f"[lifespan] 插件表迁移失败（不影响主服务）: {e}")
+    # 引导管理员：username=admin 的账号自动提权为 ADMIN（部署开箱即用）
+    try:
+        from .core.database import async_session
+        from .models.database import User, UserRole
+        from sqlalchemy import select
+
+        async with async_session() as db:
+            admin_user = (await db.execute(select(User).where(User.username == "admin"))).scalar_one_or_none()
+            if admin_user is not None and admin_user.role != UserRole.ADMIN:
+                admin_user.role = UserRole.ADMIN
+                await db.commit()
+                print("[lifespan] 已将 admin 账号提权为管理员")
+    except Exception as e:
+        print(f"[lifespan] 管理员引导失败（不影响主服务）: {e}")
     scheduler = None
     try:
         from .scheduler.scheduler_service import scheduler_service
         scheduler_service.start()
         await scheduler_service.sync_schedules()
+        # 系统健康检查周期任务（LLM 状态变化告警）
+        try:
+            from .system_health import register_health_job
+            register_health_job(scheduler_service, minutes=5)
+        except Exception as e:
+            print(f"[lifespan] 健康检查任务注册失败（不影响主服务）: {e}")
         scheduler = scheduler_service
     except Exception as e:
         print(f"[lifespan] 调度器启动失败（不影响主服务）: {e}")

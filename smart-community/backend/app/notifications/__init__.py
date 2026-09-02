@@ -2,6 +2,7 @@
 from .service import (
     list_notifications,
     mark_read,
+    notify_admins,
     notify_system,
     notify_user,
     unread_count,
@@ -9,6 +10,7 @@ from .service import (
 
 __all__ = [
     "notify_user",
+    "notify_admins",
     "notify_system",
     "list_notifications",
     "unread_count",

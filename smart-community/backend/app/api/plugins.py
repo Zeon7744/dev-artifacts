@@ -6,13 +6,41 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from ..core.database import get_session
-from ..core.auth import get_current_user
-from ..models.database import User
+from ..core.auth import get_current_user, require_role
+from ..models.database import User, UserRole
 # 导入 plugins 包：触发内置插件注册，并确保 plugins 表已注册到 Base.metadata
 from ..plugins import registry
 from ..plugins.models import Plugin
 
 router = APIRouter()
+
+
+def _register_to_registry(plugin: Plugin) -> None:
+    """将已发布插件注册到全局 registry（立即生效，无需重启）。异常由调用方决定处理。"""
+    from ..plugins.base import registry as reg
+    from ..plugins.sandbox import CustomSandboxPlugin
+
+    reg.register(CustomSandboxPlugin(plugin))
+
+
+def _plugin_dict(plugin: Plugin) -> dict:
+    """自定义插件序列化（作者/审核面板共用）。"""
+    return {
+        "id": plugin.id,
+        "name": plugin.name,
+        "version": plugin.version,
+        "description": plugin.description,
+        "node_type": plugin.node_type,
+        "config_schema": plugin.config_schema or {},
+        "tags": plugin.tags or [],
+        "is_published": bool(plugin.is_published),
+        "review_status": plugin.review_status or "pending_review",
+        "review_comment": plugin.review_comment,
+        "install_count": plugin.install_count or 0,
+        "author_id": plugin.author_id,
+        "created_at": plugin.created_at.isoformat() if plugin.created_at else None,
+        "reviewed_at": plugin.reviewed_at.isoformat() if plugin.reviewed_at else None,
+    }
 
 
 class CustomPluginCreate(BaseModel):
@@ -95,8 +123,9 @@ async def create_custom_plugin(
     安全模型：
     - node_type 不得与内置插件冲突，也不得与已有插件重复（冲突返回 409）；
     - code 提交时经沙箱静态校验（AST 白名单），违规直接拒绝（400）；
-    - 提交后 is_published=False，可通过 /custom/{id}/test 在沙箱中试跑，
-      再由作者通过 /custom/{id}/publish 发布上架；
+    - 提交后 review_status=pending_review，可通过 /custom/{id}/test 沙箱试跑；
+    - 普通作者调用 /custom/{id}/publish 为「提交审核」，管理员审核通过后上架；
+      管理员调用 publish 直接发布；
     - 自定义插件 execute 为同步函数，运行在受限沙箱（无 import/文件/网络，
       循环步数限制，5 秒超时）。
     """
@@ -127,18 +156,34 @@ async def create_custom_plugin(
         code=req.code,
         config_schema=req.config_schema,
         is_builtin=False,
-        is_published=False,  # 提交后需试跑并发布
+        is_published=False,  # 审核通过后才上架
+        review_status="pending_review",
         install_count=0,
         tags=req.tags,
     )
     db.add(plugin)
     await db.commit()
     await db.refresh(plugin)
+
+    # 通知管理员有新插件待审（旁路，失败不影响提交）
+    try:
+        from ..notifications import notify_admins
+
+        await notify_admins(
+            category="plugin",
+            level="info",
+            title=f"新插件待审核：{plugin.name}",
+            content=f"开发者 {user.username} 提交了插件 {plugin.node_type}，请前往插件审核处理。",
+            data={"plugin_id": plugin.id, "node_type": plugin.node_type, "action": "review"},
+        )
+    except Exception:
+        pass
+
     return {
         "id": plugin.id,
         "node_type": plugin.node_type,
         "status": "pending_review",
-        "message": "插件已提交并通过安全校验，可通过 /api/plugins/custom/{id}/test 试跑后发布",
+        "message": "插件已提交并通过安全校验，沙箱试跑后将由管理员审核上架",
     }
 
 
@@ -174,14 +219,33 @@ async def test_custom_plugin(
     return {"success": True, "output": output, "elapsed_ms": elapsed_ms}
 
 
+@router.get("/custom/mine")
+async def list_my_plugins(
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_session),
+):
+    """查看我提交的所有插件及其审核状态（作者面板）。"""
+    result = await db.execute(
+        select(Plugin)
+        .where(Plugin.author_id == user.id)
+        .order_by(Plugin.created_at.desc())
+    )
+    return [_plugin_dict(p) for p in result.scalars().all()]
+
+
 @router.post("/custom/{plugin_id}/publish")
 async def publish_custom_plugin(
     plugin_id: int,
     user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_session),
 ):
-    """发布自定义插件：沙箱校验通过后上架并立即注册到引擎（作者操作）。"""
-    from ..plugins.sandbox import CustomSandboxPlugin, SandboxError, _compile_plugin
+    """发布/提交审核自定义插件。
+
+    - 管理员调用：沙箱编译校验通过后直接上架并注册到引擎；
+    - 普通作者调用：将插件置为待审核（pending_review），通知管理员审核；
+      审核通过后才会上架。
+    """
+    from ..plugins.sandbox import SandboxError, _compile_plugin
 
     result = await db.execute(select(Plugin).where(Plugin.id == plugin_id))
     plugin = result.scalar_one_or_none()
@@ -196,23 +260,164 @@ async def publish_custom_plugin(
     except SandboxError as exc:
         raise HTTPException(status_code=400, detail=f"安全校验未通过: {exc}")
 
-    plugin.is_published = True
+    is_admin = user.role == UserRole.ADMIN
+
+    if is_admin:
+        # 管理员直接发布
+        plugin.is_published = True
+        plugin.review_status = "approved"
+        plugin.reviewed_by = user.id
+        from datetime import datetime
+
+        plugin.reviewed_at = datetime.utcnow()
+        await db.commit()
+        try:
+            _register_to_registry(plugin)
+        except Exception:
+            pass
+        return {
+            "id": plugin.id,
+            "node_type": plugin.node_type,
+            "status": "published",
+            "message": "插件已发布上架，工作流引擎立即可用",
+        }
+
+    # 普通作者：提交审核
+    plugin.review_status = "pending_review"
+    plugin.is_published = False
     await db.commit()
 
-    # 立即注册到全局 registry（无需重启）
     try:
-        from ..plugins.base import registry
+        from ..notifications import notify_admins
 
-        registry.register(CustomSandboxPlugin(plugin))
+        await notify_admins(
+            category="plugin",
+            level="info",
+            title=f"插件提交审核：{plugin.name}",
+            content=f"开发者 {user.username} 请求发布插件 {plugin.node_type}。",
+            data={"plugin_id": plugin.id, "node_type": plugin.node_type, "action": "review"},
+        )
     except Exception:
         pass
 
     return {
         "id": plugin.id,
         "node_type": plugin.node_type,
-        "status": "published",
-        "message": "插件已发布上架，工作流引擎立即可用",
+        "status": "pending_review",
+        "message": "已提交审核，管理员通过后插件将自动上架",
     }
+
+
+class PluginReviewRequest(BaseModel):
+    """管理员审核请求"""
+
+    comment: str = ""
+
+
+@router.get("/admin/pending")
+async def admin_list_pending(
+    admin: User = Depends(require_role(UserRole.ADMIN)),
+    db: AsyncSession = Depends(get_session),
+):
+    """管理员：待审核插件列表。"""
+    result = await db.execute(
+        select(Plugin)
+        .where(Plugin.review_status == "pending_review", Plugin.is_builtin == False)  # noqa: E712
+        .order_by(Plugin.created_at.asc())
+    )
+    return [_plugin_dict(p) for p in result.scalars().all()]
+
+
+@router.post("/admin/{plugin_id}/approve")
+async def admin_approve_plugin(
+    plugin_id: int,
+    req: PluginReviewRequest,
+    admin: User = Depends(require_role(UserRole.ADMIN)),
+    db: AsyncSession = Depends(get_session),
+):
+    """管理员：审核通过 → 上架并立即注册到引擎，通知作者。"""
+    from datetime import datetime
+
+    from ..plugins.sandbox import SandboxError, _compile_plugin
+
+    result = await db.execute(select(Plugin).where(Plugin.id == plugin_id))
+    plugin = result.scalar_one_or_none()
+    if plugin is None:
+        raise HTTPException(status_code=404, detail="插件不存在")
+
+    if not plugin.code:
+        raise HTTPException(status_code=400, detail="插件缺少可执行代码，无法上架")
+    try:
+        _compile_plugin(plugin.code)
+    except SandboxError as exc:
+        raise HTTPException(status_code=400, detail=f"安全校验未通过: {exc}")
+
+    plugin.is_published = True
+    plugin.review_status = "approved"
+    plugin.reviewed_by = admin.id
+    plugin.reviewed_at = datetime.utcnow()
+    plugin.review_comment = req.comment or None
+    await db.commit()
+
+    try:
+        _register_to_registry(plugin)
+    except Exception:
+        pass
+
+    try:
+        from ..notifications import notify_user
+
+        await notify_user(
+            plugin.author_id,
+            category="plugin",
+            level="success",
+            title=f"插件「{plugin.name}」审核通过",
+            content=req.comment or "您的插件已通过审核并上架，工作流引擎立即可用。",
+            data={"plugin_id": plugin.id, "node_type": plugin.node_type, "status": "approved"},
+        )
+    except Exception:
+        pass
+
+    return {"id": plugin.id, "node_type": plugin.node_type, "status": "approved"}
+
+
+@router.post("/admin/{plugin_id}/reject")
+async def admin_reject_plugin(
+    plugin_id: int,
+    req: PluginReviewRequest,
+    admin: User = Depends(require_role(UserRole.ADMIN)),
+    db: AsyncSession = Depends(get_session),
+):
+    """管理员：审核驳回 → 通知作者并说明原因。"""
+    from datetime import datetime
+
+    result = await db.execute(select(Plugin).where(Plugin.id == plugin_id))
+    plugin = result.scalar_one_or_none()
+    if plugin is None:
+        raise HTTPException(status_code=404, detail="插件不存在")
+
+    plugin.is_published = False
+    plugin.review_status = "rejected"
+    plugin.reviewed_by = admin.id
+    plugin.reviewed_at = datetime.utcnow()
+    plugin.review_comment = req.comment or "未通过审核"
+    await db.commit()
+
+    try:
+        from ..notifications import notify_user
+
+        await notify_user(
+            plugin.author_id,
+            category="plugin",
+            level="warning",
+            title=f"插件「{plugin.name}」审核未通过",
+            content=req.comment or "您的插件未通过审核，可修改后重新提交。",
+            data={"plugin_id": plugin.id, "node_type": plugin.node_type, "status": "rejected"},
+        )
+    except Exception:
+        pass
+
+    return {"id": plugin.id, "node_type": plugin.node_type, "status": "rejected"}
 
 
 @router.get("/{node_type}/schema")

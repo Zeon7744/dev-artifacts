@@ -113,6 +113,38 @@ npm run dev
 - [x] 通知中心（WS实时推送 + 持久化未读）
 - [x] 容器化部署（Dockerfile + docker-compose）
 - [x] pytest 自动化测试
+- [x] 社区互动通知（评论/点赞实时通知作者）
+- [x] Agent SSE 流式对话（打字机效果）
+- [x] 插件管理员审核流（提交→审核→上架/驳回）
+- [x] 系统健康监控（LLM 状态变化告警广播）
+
+
+## 第四轮功能增强（2026-09-03）
+
+### 社区互动通知
+- 评论、回复、点赞事件实时通知帖子作者（落库 + WS 推送），自己互动自己不通知
+- 社区页新增帖子详情弹窗：浏览全文、点赞、评论一条龙
+
+### Agent SSE 流式对话
+- `POST /api/agents/chat/stream`：text/event-stream，事件协议 `meta` → 多个 `token` → `done`
+- LLMService 新增 `generate_stream`：Ollama `/api/chat` stream 与 OpenAI SSE 双通道解析；LLM 不可用时降级文本同样按 token 小块吐出，前端打字机体验一致
+- 前端对话面板升级为多轮气泡 + 逐字增量渲染 + 流式光标动画（fetch + ReadableStream 解析 SSE）
+
+### 插件管理员审核流
+- 插件模型新增 review_status（pending_review/approved/rejected）、审核人/时间/意见字段，启动时自动轻量迁移（SQLite ADD COLUMN + 历史已发布插件回填 approved）
+- 普通作者：提交（自动 AST 安全校验）→ 沙箱试跑 → 提交审核（通知管理员）；管理员：待审列表 → 通过（自动上架+注册引擎+通知作者）/ 驳回（附原因+通知作者）
+- 管理员本人发布直接上架；`username=admin` 账号启动自动提权 ADMIN
+- API：`GET /api/plugins/custom/mine`、`GET /api/plugins/admin/pending`、`POST /api/plugins/admin/{id}/approve|reject`
+- 前端插件页新增「开发者中心」（提交/试跑/我的插件状态）与管理员待审面板（通过/驳回）
+
+### 系统健康监控
+- `app/system_health.py`：每 5 分钟检查 LLM provider 可用性，状态翻转（故障/恢复）时通知全体管理员 + global 房间实时广播，内存基线去重避免刷屏
+
+### 验证结果
+- **固化 E2E 冒烟 24/24 通过**（`scripts/e2e_smoke.py`，随机用户可重复执行）：覆盖认证、工作流 DAG、插件提交/恶意拒绝/试跑/审核流全链、审核通知、社区评论点赞通知、SSE 事件序列、RAG、cron 调度、WebSocket
+- **pytest 31/31 通过**（新增 test_round4.py 7 项：互动通知/审核通过流/驳回流/管理员直发/SSE）
+- 健康检查任务手动验证：基线不告警、状态不变不重复通知、周期任务注册成功
+
 
 
 ## 第三轮功能增强（2026-09-03）

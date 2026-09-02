@@ -1,5 +1,8 @@
 """Agent API - 创建/发布/调用Agent"""
+import json
+
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Optional, List, Dict
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -66,3 +69,48 @@ async def chat_with_agent(req: AgentChat, user: User = Depends(get_current_user)
         response = f"[本地LLM未就绪] 已收到你的消息：{req.message[:200]}。请启动 Ollama 或配置 OPENAI_API_KEY 后获得 AI 回复。"
         provider = "fallback"
     return {"response": response, "agent": agent.name, "provider": provider}
+
+
+@router.post("/chat/stream")
+async def chat_stream(req: AgentChat, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_session)):
+    """Agent 流式对话（SSE）。
+
+    返回 text/event-stream，事件协议：
+      event: meta   data: {"agent": "..."}
+      event: token  data: {"text": "..."}     # 多次
+      event: done   data: {"provider": "llm|fallback"}
+    LLM 不可用时同样走 token 事件吐出降级提示，前端打字机体验一致。
+    """
+    result = await db.execute(select(Agent).where(Agent.id == req.agent_id))
+    agent = result.scalar_one_or_none()
+    if not agent:
+        raise HTTPException(status_code=404, detail="Agent not found")
+
+    agent_name = agent.name
+    system_prompt = agent.system_prompt or "You are a helpful assistant."
+    llm = LLMService()
+
+    async def event_gen():
+        def sse(event: str, payload: dict) -> str:
+            return f"event: {event}\ndata: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+        yield sse("meta", {"agent": agent_name})
+        provider = "llm"
+        head = ""  # 累积开头文本，用于识别降级提示
+        try:
+            async for chunk in llm.generate_stream(req.message, system_prompt=system_prompt):
+                if len(head) < 20:
+                    head += chunk
+                yield sse("token", {"text": chunk})
+        except Exception:
+            provider = "fallback"
+            yield sse("token", {"text": f"[本地LLM未就绪] 已收到你的消息：{req.message[:200]}。"})
+        if "[本地LLM未就绪]" in head:
+            provider = "fallback"
+        yield sse("done", {"provider": provider})
+
+    return StreamingResponse(
+        event_gen(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )

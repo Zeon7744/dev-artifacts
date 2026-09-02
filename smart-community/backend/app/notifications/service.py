@@ -162,3 +162,44 @@ async def mark_read(user_id: int, notification_id: Optional[int] = None) -> int:
             row.is_read = True
         await db.commit()
         return len(rows)
+
+
+async def notify_admins(
+    category: str,
+    title: str,
+    content: str = "",
+    level: str = "warning",
+    data: Optional[Dict[str, Any]] = None,
+) -> int:
+    """向所有管理员（role=admin）发送通知：落库 + WS 推送到各自 user 房间。
+
+    用于插件审核请求、系统健康告警等运维场景。旁路设计，任何异常都不抛出。
+    返回实际发送的管理员数量。
+    """
+    try:
+        from sqlalchemy import select
+
+        from ..models.database import User, UserRole
+
+        async with async_session() as db:
+            admins = (
+                await db.execute(select(User).where(User.role == UserRole.ADMIN))
+            ).scalars().all()
+            admin_ids = [a.id for a in admins]
+
+        for admin_id in admin_ids:
+            try:
+                await notify_user(
+                    admin_id,
+                    category=category,
+                    title=title,
+                    content=content,
+                    level=level,
+                    data=data,
+                )
+            except Exception:
+                logger.warning("管理员通知发送失败 admin=%s title=%s", admin_id, title)
+        return len(admin_ids)
+    except Exception:
+        logger.exception("notify_admins 执行失败 title=%s", title)
+        return 0

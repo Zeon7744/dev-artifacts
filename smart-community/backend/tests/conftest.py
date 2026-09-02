@@ -117,3 +117,20 @@ async def auth(client: AsyncClient) -> dict:
     """函数级 fixture：为当前测试创建一个独立新用户（带认证头）。"""
     name = os.environ.get("PYTEST_CURRENT_TEST", "case").split("::")[-1][:20]
     return await register_and_login(client, prefix=name)
+
+
+@pytest_asyncio.fixture
+async def admin_auth(client: AsyncClient) -> dict:
+    """函数级 fixture：创建一个管理员角色用户（直接通过 ORM 提权），返回认证头。"""
+    auth_info = await register_and_login(client, prefix="admin")
+    # 通过独立会话把该用户提升为 admin
+    from app.core.database import async_session
+    from app.models.database import User, UserRole
+    from sqlalchemy import update
+
+    async with async_session() as db:
+        await db.execute(
+            update(User).where(User.username == auth_info["username"]).values(role=UserRole.ADMIN)
+        )
+        await db.commit()
+    return auth_info

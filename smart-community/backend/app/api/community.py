@@ -76,6 +76,28 @@ async def add_comment(post_id: int, req: CommentCreate, user: User = Depends(get
     db.add(comment)
     post.comment_count += 1
     await db.commit()
+
+    # 互动通知：评论/回复通知帖子作者（自己评论自己不通知；旁路，失败不影响主流程）
+    try:
+        if post.author_id and post.author_id != user.id:
+            from ..notifications import notify_user
+
+            snippet = req.content[:60]
+            if req.parent_id:
+                title = f"{user.username} 回复了你的评论"
+            else:
+                title = f"{user.username} 评论了你的帖子「{post.title[:20]}」"
+            await notify_user(
+                post.author_id,
+                category="community",
+                level="info",
+                title=title,
+                content=snippet,
+                data={"post_id": post_id, "comment_id": comment.id, "action": "comment"},
+            )
+    except Exception:
+        pass
+
     return {"id": comment.id, "status": "created"}
 
 @router.post("/posts/{post_id}/like")
@@ -85,4 +107,21 @@ async def like_post(post_id: int, user: User = Depends(get_current_user), db: As
         raise HTTPException(status_code=404, detail="Post not found")
     post.like_count += 1
     await db.commit()
+
+    # 互动通知：点赞通知帖子作者（自己点赞自己不通知）
+    try:
+        if post.author_id and post.author_id != user.id:
+            from ..notifications import notify_user
+
+            await notify_user(
+                post.author_id,
+                category="community",
+                level="info",
+                title=f"{user.username} 赞了你的帖子「{post.title[:20]}」",
+                content="",
+                data={"post_id": post_id, "action": "like"},
+            )
+    except Exception:
+        pass
+
     return {"id": post.id, "like_count": post.like_count}
