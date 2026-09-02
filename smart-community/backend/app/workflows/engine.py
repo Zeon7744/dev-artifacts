@@ -103,9 +103,24 @@ class NodeExecutor:
         }
 
     async def execute(self, node: Dict, ctx: ExecutionContext) -> NodeResult:
-        node_type = NodeType(node.get("type", "action"))
-        handler = self._handlers.get(node_type, self._exec_action)
+        node_type_str = node.get("type", "action")
         start = datetime.utcnow()
+
+        # 插件节点：类型以 "plugin." 开头时路由到插件注册表
+        if isinstance(node_type_str, str) and node_type_str.startswith("plugin."):
+            try:
+                output = await self._exec_plugin(node, ctx)
+                elapsed = int((datetime.utcnow() - start).total_seconds() * 1000)
+                return NodeResult(node_id=node["id"], status=NodeStatus.SUCCESS,
+                                  output=output, duration_ms=elapsed)
+            except Exception as e:
+                elapsed = int((datetime.utcnow() - start).total_seconds() * 1000)
+                logger.error(f"Plugin node {node['id']} failed: {e}")
+                return NodeResult(node_id=node["id"], status=NodeStatus.FAILED,
+                                  error=str(e), duration_ms=elapsed)
+
+        node_type = NodeType(node_type_str)
+        handler = self._handlers.get(node_type, self._exec_action)
         try:
             output = await handler(node, ctx)
             elapsed = int((datetime.utcnow() - start).total_seconds() * 1000)
@@ -124,6 +139,17 @@ class NodeExecutor:
                 error=str(e),
                 duration_ms=elapsed,
             )
+
+    async def _exec_plugin(self, node: Dict, ctx: ExecutionContext) -> Dict:
+        """插件节点 - 从插件注册表查找并执行自定义插件"""
+        from ..plugins.base import registry
+        node_type = node.get("type", "")
+        plugin = registry.get(node_type)
+        if plugin is None:
+            raise ValueError(f"未安装的插件节点类型: {node_type}")
+        config = node.get("config", {})
+        result = await plugin.execute(config, ctx)
+        return result if isinstance(result, dict) else {"result": result}
 
     async def _exec_trigger(self, node: Dict, ctx: ExecutionContext) -> Dict:
         """触发器节点 - 传递输入数据"""

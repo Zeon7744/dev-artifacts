@@ -8,6 +8,9 @@ import WorkflowBuilderPage from './pages/WorkflowBuilderPage'
 import AgentsPage from './pages/AgentsPage'
 import CommunityPage from './pages/CommunityPage'
 import SystemPage from './pages/SystemPage'
+import SchedulerPage from './pages/SchedulerPage'
+import KnowledgePage from './pages/KnowledgePage'
+import PluginsPage from './pages/PluginsPage'
 
 function ProtectedRoute({ children }) {
   const token = useAuthStore((s) => s.token)
@@ -27,6 +30,9 @@ export default function App() {
           <Route path="agents" element={<AgentsPage />} />
           <Route path="community" element={<CommunityPage />} />
           <Route path="system" element={<SystemPage />} />
+          <Route path="scheduler" element={<SchedulerPage />} />
+          <Route path="knowledge" element={<KnowledgePage />} />
+          <Route path="plugins" element={<PluginsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

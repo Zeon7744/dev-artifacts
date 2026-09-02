@@ -14,8 +14,9 @@ from .config import settings
 from .database import get_session
 from ..models.database import User, UserRole
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-security = HTTPBearer()
+# 使用 pbkdf2_sha256：passlib 内置纯 Python 实现，避免 bcrypt 5.x 兼容问题
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
+security = HTTPBearer(auto_error=True)
 
 
 def hash_password(password: str) -> str:
@@ -38,6 +39,7 @@ def create_access_token(user_id: int, role: str) -> str:
 
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
+    db: AsyncSession = Depends(get_session),
 ) -> User:
     """从JWT中提取当前用户"""
     token = credentials.credentials
@@ -50,12 +52,11 @@ async def get_current_user(
             detail="Invalid or expired token",
         )
 
-    async with get_session() as session:
-        result = await session.execute(select(User).where(User.id == user_id))
-        user = result.scalar_one_or_none()
-        if not user or not user.is_active:
-            raise HTTPException(status_code=401, detail="User not found or inactive")
-        return user
+    result = await db.execute(select(User).where(User.id == user_id))
+    user = result.scalar_one_or_none()
+    if not user or not user.is_active:
+        raise HTTPException(status_code=401, detail="User not found or inactive")
+    return user
 
 
 def require_role(*roles: UserRole):

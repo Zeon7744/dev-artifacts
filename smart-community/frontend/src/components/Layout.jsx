@@ -1,12 +1,16 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../hooks/useAuth'
-import { LayoutDashboard, GitBranch, Bot, MessageSquare, Settings, LogOut, Zap } from 'lucide-react'
+import { LayoutDashboard, GitBranch, Bot, MessageSquare, Settings, LogOut, Zap, Clock, BookOpen, Puzzle } from 'lucide-react'
+import NotificationBell from './NotificationBell'
 
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: '控制台' },
   { to: '/workflows', icon: GitBranch, label: '工作流' },
   { to: '/agents', icon: Bot, label: 'Agent' },
   { to: '/community', icon: MessageSquare, label: '社区' },
+  { to: '/scheduler', icon: Clock, label: '定时调度' },
+  { to: '/knowledge', icon: BookOpen, label: '知识库' },
+  { to: '/plugins', icon: Puzzle, label: '插件' },
   { to: '/system', icon: Settings, label: '运维' },
 ]
 
@@ -72,6 +76,9 @@ export default function Layout() {
 
       {/* 主内容区 */}
       <main className="flex-1 overflow-auto">
+        <header className="sticky top-0 z-40 flex justify-end items-center px-8 py-3 bg-[#0a0a0f]/80 backdrop-blur border-b border-[#27272a]">
+          <NotificationBell />
+        </header>
         <Outlet />
       </main>
     </div>

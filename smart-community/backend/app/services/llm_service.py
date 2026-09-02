@@ -53,7 +53,7 @@ class LLMService:
         system_prompt: Optional[str],
     ) -> str:
         """调用 Ollama 本地模型"""
-        from .config import settings
+        from ..core.config import settings
         base_url = settings.OLLAMA_BASE_URL
         model = model or settings.OLLAMA_MODEL
 
@@ -94,7 +94,7 @@ class LLMService:
         system_prompt: Optional[str],
     ) -> str:
         """调用 OpenAI API"""
-        from .config import settings
+        from ..core.config import settings
         api_key = settings.OPENAI_API_KEY
         if not api_key:
             raise ValueError("OPENAI_API_KEY not configured")
@@ -132,7 +132,7 @@ class LLMService:
 
         # Ollama
         try:
-            from .config import settings
+            from ..core.config import settings
             async with httpx.AsyncClient(timeout=5) as client:
                 resp = await client.get(f"{settings.OLLAMA_BASE_URL}/api/tags")
                 results["ollama"] = resp.status_code == 200
@@ -140,7 +140,7 @@ class LLMService:
             results["ollama"] = False
 
         # OpenAI
-        from .config import settings
+        from ..core.config import settings
         results["openai"] = bool(settings.OPENAI_API_KEY)
 
         return results
