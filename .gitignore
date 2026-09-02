@@ -11,3 +11,18 @@ venv/
 .vscode/
 .idea/
 .DS_Store
+
+# Model files
+*.pkl
+*.h5
+*.pt
+*.onnx
+models/
+
+# Coverage
+.coverage
+*.cover
+htmlcov/
+
+# Reports
+reports/

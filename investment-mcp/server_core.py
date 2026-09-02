@@ -804,9 +804,13 @@ def handle_mcp_request(request: Dict[str, Any]) -> Dict[str, Any]:
             }
     
     else:
-        result["error"] = {
-            "code": -32601,
-            "message": f"Method not found: {method}"
+        result = {
+            "jsonrpc": "2.0",
+            "id": request_id,
+            "error": {
+                "code": -32601,
+                "message": f"Method not found: {method}"
+            }
         }
     
     return result
