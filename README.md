@@ -1,311 +1,117 @@
-# 金融期货基金全球新闻MCP v3.0
+# Dev-Artifacts - 开发成果库
 
-基于MCP 2026-07-28规范构建的高真实性财经新闻采集与分析平台。
+> 通用开发成品仓库 — 存放经过验证的可复用工具、脚本和项目
 
-## 核心能力
+这里是我开发成果的中心仓库，包含可复用的工具、命令行工具、自动化脚本等开发成品。
 
-| 能力 | 描述 | 关键指标 |
-|------|------|----------|
-| **全球数据采集** | Reuters/Bloomberg/CNBC/东方财富/同花顺等多源RSS聚合 | 实时性<5min，覆盖率>95% |
-| **情感分析** | BERT中文财经模型 + 规则引擎双模式 | 准确率>85%，响应<100ms |
-| **趋势预测** | 技术面+基本面融合预测 | 多因子加权，置信度量化 |
-| **投资建议** | 个性化资产配置与风控建议 | 风险偏好适配，止损位计算 |
-| **数据验证** | 来源权威性+事实核查双重验证 | 可信度评分，风险提示 |
-| **RAG知识库** | 语义搜索 + 金融报告解析 | 支持PDF/Markdown/JSON |
-| **Agent工作流** | 分析师/监控/报告编排 | 串行/并行工作流 |
-| **本地LLM** | Ollama + OpenAI双Provider | 支持熔断器降级 |
+<div align="center">
 
-## 工具列表
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
+[![GitHub forks](https://img.shields.io/github/forks/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts/forks)
 
-### 基础工具
+</div>
 
-#### 1. collect_news - 全球财经新闻采集
-```python
-{
-  "category": "all|commodity|crypto|fund|stock|macro",
-  "sources": "Reuters,Bloomberg,CNBC",  # 可选
-  "limit": 20,
-  "time_range": "24h|7d|30d"
-}
-```
+---
 
-**数据来源：**
-- Reuters: 路透社国际新闻（可信度 0.95）
-- Bloomberg: 彭博社财经（可信度 0.93）
-- CNBC: 美国财经频道（可信度 0.88）
-- 东方财富: 中国财经门户（可信度 0.82）
-- 同花顺: 中国投资门户（可信度 0.78）
+## 📦 当前项目
 
-#### 2. analyze_sentiment - 新闻情感分析
-```python
-{
-  "news_items": [{"title": "...", "content": "..."}],
-  "news_urls": ["https://..."],
-  "detail_level": "basic|advanced"
-}
-```
+### MLP 金融分析器
 
-**输出维度：**
-- 情感极性：positive/negative/neutral
-- 情感分数：-1.0 ~ 1.0
-- 置信度：0.0 ~ 1.0
-- 关键词提取
+基于机器学习的金融分析工具 — 技术指标 + MLP预测 + 可视化
 
-#### 3. predict_trend - 市场趋势预测
-```python
-{
-  "asset_type": "commodity|crypto|index|fund|stock",
-  "symbol": "GC=F|CL=F|BTC-USD|SPY",
-  "horizon": "1d|1w|1m",
-  "use_news": true
-}
-```
+**核心功能：**
+- 实时数据获取（yfinance）
+- 技术指标计算（MA/RSI/MACD/布林带）
+- MLP预测模型（分类+回归）
+- 投资建议生成
+- CLI命令行 + Web界面 + MCP集成
 
-**预测模型：**
-- 技术面：RSI/MACD/移动平均线
-- 基本面：新闻情绪加权
-- 合成算法：多因子融合
-
-#### 4. get_investment_advice - 投资建议
-```python
-{
-  "portfolio_value": 100000,
-  "risk_tolerance": "conservative|moderate|aggressive",
-  "target_return": 15.0,
-  "assets": ["GC=F", "BTC-USD"],
-  "market_sentiment": 0.3
-}
-```
-
-**建议内容：**
-- 资产配置比例
-- 具体操作建议（买入/卖出/持有）
-- 风险等级评估
-- 止损止盈位
-- 行动清单
-
-#### 5. validate_data_source - 数据源验证
-```python
-{
-  "news_item": {"title": "...", "url": "..."},
-  "check_facts": true,
-  "min_sources": 2
-}
-```
-
-**验证维度：**
-- 来源权威性评分
-- 标题风险分析
-- 时效性检查
-- 事实核查标记
-
-### v3.0 新增工具
-
-#### 6. rag_search - RAG知识库搜索
-```python
-{
-  "query": "美联储加息对黄金价格的影响",
-  "knowledge_base": "default",
-  "top_k": 5,
-  "min_score": 0.7
-}
-```
-
-**功能：**
-- 语义搜索
-- 金融报告解析
-- 元数据过滤
-
-#### 7. agent_run - 执行Agent工作流
-```python
-{
-  "workflow": "daily_briefing|monitoring|report",
-  "params": {
-    "time_range": "24h",
-    "assets": ["GC=F", "CL=F"]
-  }
-}
-```
-
-**工作流：**
-- `daily_briefing`: 每日简报生成
-- `monitoring`: 异常监控预警
-- `report`: 多格式报告输出
-
-#### 8. llm_generate - 本地LLM生成
-```python
-{
-  "prompt": "分析当前黄金市场走势",
-  "provider": "ollama|openai|auto",
-  "model": "llama3.2",
-  "max_tokens": 1000
-}
-```
-
-**Provider：**
-- Ollama: 本地模型（默认）
-- OpenAI: API备用
-- Auto: 自动选择（优先本地，失败时云端）
-
-#### 9. knowledge_manage - 知识库管理
-```python
-{
-  "action": "add|list|delete|stats",
-  "name": "my_knowledge",
-  "files": ["report.pdf", "doc.md"]
-}
-```
-
-**操作：**
-- 添加文档
-- 列出知识库
-- 删除知识库
-- 查看统计
-
-#### 10. workflow_status - 工作流状态查询
-```python
-{
-  "workflow_id": "wf_20240101_001"
-}
-```
-
-## 技术架构
-
-```
-financial-news-mcp/
-├── main.py                 # MCP服务器入口（v3.0.0）
-├── pyproject.toml          # 项目配置
-├── .mcp.json              # Coze配置
-├── tools/
-│   ├── news_collector.py   # 新闻采集模块
-│   ├── sentiment_analyzer.py  # 情感分析模块
-│   ├── trend_predictor.py   # 趋势预测模块
-│   ├── investment_advisor.py  # 投资建议模块
-│   ├── data_validator.py    # 数据验证模块
-│   └── rag/                # RAG知识库模块（v3.0新增）
-│       ├── vector_store.py
-│       ├── document_loader.py
-│       ├── chunker.py
-│       ├── embedder.py
-│       └── knowledge_base.py
-├── agents/                 # Agent工作流模块（v3.0新增）
-│   ├── base_agent.py
-│   ├── analyst_agent.py
-│   ├── watcher_agent.py
-│   ├── reporter_agent.py
-│   └── orchestrator.py
-├── llm_providers/          # 本地LLM集成（v3.0新增）
-│   ├── base_provider.py
-│   ├── ollama_provider.py
-│   ├── openai_provider.py
-│   └── provider_factory.py
-├── api_gateway/            # API网关
-├── management/             # 管理平台
-├── tests/
-│   ├── test_all.py         # 完整测试套件
-│   └── test_v3.py          # v3.0测试套件
-├── data/                   # 缓存数据目录
-│   ├── knowledge/          # RAG知识库存储
-│   └── cache/              # 缓存目录
-└── docs/                   # 文档目录
-```
-
-## 快速开始
-
-### 安装
+**快速开始：**
 ```bash
-cd /app/data/dev-artifacts/financial-news-mcp
-pip install -e ".[dev]"
+git clone https://github.com/Zeon7744/dev-artifacts.git
+cd dev-artifacts
+pip install -e .
+ml-finance AAPL
 ```
 
-### 运行测试
-```bash
-pytest tests/ -v --cov=tools --cov-report=html
+详见 [README.md](README.md) 了解完整使用方式。
+
+---
+
+## 🏗️ 项目结构
+
+```
+dev-artifacts/
+├── tools.py              # 金融分析器核心实现
+├── cli.py                # CLI 入口
+├── mcp_server.py         # MCP Server
+├── web.html              # Web 可视化界面
+├── pyproject.toml        # 项目配置
+├── README.md             # 使用说明
+├── commodity-mlp/        # 商品MLP分析模块
+├── crypto-mlp/           # 加密货币MLP分析模块
+└── reports/              # 分析报告目录
 ```
 
-### 启动MCP服务器
-```bash
-python main.py
-```
+---
 
-### Coze配置
-将 `.mcp.json` 添加到Coze Agent配置中：
-```json
-{
-  "mcpServers": {
-    "financial-news-mcp": {
-      "command": "python",
-      "args": ["python", "/app/data/dev-artifacts/financial-news-mcp/main.py"]
-    }
-  }
-}
-```
+## 🎯 仓库定位
 
-## 真实性保障机制
+这是**通用开发成果库**，不是单一垂直项目的仓库。
 
-### 1. 多层数据验证
-```
-原始数据 → 来源权威性评分 → 标题风险分析 → 事实核查 → 可信度输出
-```
+**包含：**
+- ✅ 经过验证的可复用工具
+- ✅ 命令行工具（CLI）
+- ✅ 自动化脚本
+- ✅ 可独立部署的项目
 
-### 2. 交叉验证
-- 同一新闻事件至少2个权威源交叉验证
-- 冲突信息标记为"待核实"
-- 低可信度新闻降低权重
+**不包含：**
+- ❌ 短剧内容（去 [awesome-ai-short-drama](https://github.com/Zeon7744/awesome-ai-short-drama)）
+- ❌ Vibe Coding 工具库（去 [baibai](https://github.com/Zeon7744/baibai)）
 
-### 3. 时效性控制
-- 超过30天的新闻自动标记过期
-- 发布时间和采集时间双重校验
-- 实时数据源优先
+---
 
-### 4. 风险提示
-- 高风险标题自动标记（"震惊"/"内幕"等）
-- 低可信度来源降低推荐权重
-- 明确标注数据来源和验证状态
+## 💖 支持本项目
 
-## 性能指标
+如果这个项目对你有帮助，欢迎赞助支持：
 
-| 指标 | 目标值 | 实际值 |
-|------|--------|--------|
-| 新闻采集延迟 | < 5s | ~3s |
-| 情感分析响应 | < 100ms | ~50ms |
-| 预测生成时间 | < 2s | ~1.5s |
-| 测试覆盖率 | > 90% | ~95% |
-| 数据验证准确率 | > 95% | ~97% |
-| RAG检索延迟 | < 200ms | ~100ms |
-| LLM响应时间 | < 5s | ~3s |
+| 平台 | 链接 | 说明 |
+|------|------|------|
+| 🇨🇳 爱发电 | [afdian.com/@Zeon7744](https://afdian.com) | 支付宝/微信支付 |
+| 🌍 GitHub Sponsors | [github.com/sponsors/Zeon7744](https://github.com/sponsors) | PayPal/Stripe |
+| 📦 Gitee | [gitee.com/Zeon7744/dev-artifacts](https://gitee.com) | 国内同步 |
 
-## v3.0 升级特性
+### 赞助档位
 
-### RAG知识库模块
-- 支持PDF/Markdown/JSON文档加载
-- 智能分块策略（金融报告专用）
-- 本地向量存储（ChromaDB + JSON降级）
-- 语义搜索 + 元数据过滤
+| 档位 | 价格 | 权益 |
+|------|------|------|
+| ☕ 请喝咖啡 | ¥18/月 | 感谢支持 |
+| 🍺 请喝啤酒 | ¥58/月 | 优先回复 Issue |
+| 🎁 项目赞助 | ¥188/月 | 定制功能需求 |
 
-### Agent工作流模块
-- 分析师Agent：每日简报自动生成
-- 监控Agent：异常预警实时推送
-- 报告Agent：多格式输出（markdown/json/html/csv）
-- 编排器：串行/并行工作流执行
+---
 
-### 本地LLM集成
-- Ollama本地模型支持
-- OpenAI API备用
-- Provider熔断器机制
-- 自动降级策略
+## 📋 相关仓库
 
-## 依赖项目
+| 仓库 | 定位 | 链接 |
+|------|------|------|
+| [baibai](https://github.com/Zeon7744/baibai) | Vibe Coding 通用工具库 | 查看 → |
+| [awesome-ai-short-drama](https://github.com/Zeon7744/awesome-ai-short-drama) | AI 短剧创作全链路 | 查看 → |
+| [crypto-mlp-high-confidence](https://github.com/Zeon7744/crypto-mlp-high-confidence) | 加密货币高精度分析 | 查看 → |
 
-- `crypto-mlp`: 加密货币预测模型
-- `commodity-mlp`: 大宗商品MLP模型
-- `global-investment-mlp`: 全球投资分析
-- `investment-mcp`: 投资分析MCP（架构参考）
-- `short-drama-mcp`: MCP开发规范参考
+---
 
-## License
+## ⚠️ 免责声明
 
-MIT
+本仓库中的金融分析工具仅供学习和研究使用，不构成任何投资建议。金融市场有风险，投资需谨慎。
+
+---
+
+## 📄 许可证
+
+MIT License
 
 ---
 
