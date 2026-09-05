@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Artifacts — 统一开发工具箱</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0d1117; color: #c9d1d9; line-height: 1.6;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+  .header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid #21262d; }
+  .header h1 { font-size: 2.2em; margin-bottom: 8px; }
+  .header .subtitle { color: #8b949e; font-size: 1.1em; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 20px 0; }
+  .badge {
+    display: inline-block; padding: 3px 12px; border-radius: 12px;
+    font-size: 0.8em; background: #21262d; border: 1px solid #30363d;
+  }
+  .badge-green { background: #238636; border-color: #238636; color: #fff; }
+  .badge-blue { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+  .badge-orange { background: #9e6a03; border-color: #9e6a03; color: #fff; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; justify-content: center; }
+  .btn {
+    display: inline-block; padding: 10px 24px; border-radius: 6px;
+    text-decoration: none; font-weight: 600; transition: all 0.2s;
+  }
+  .btn-primary { background: #238636; color: #fff; }
+  .btn-primary:hover { background: #2ea043; }
+  .btn-secondary { background: #21262d; color: #58a6ff; border: 1px solid #30363d; }
+  .btn-secondary:hover { background: #30363d; border-color: #58a6ff; }
+  .section { padding: 40px 0; border-bottom: 1px solid #21262d; }
+  .section h2 { color: #58a6ff; margin-bottom: 20px; font-size: 1.4em; }
+  .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .module-card {
+    background: #161b22; border: 1px solid #21262d; border-radius: 8px;
+    padding: 20px; transition: border-color 0.2s;
+  }
+  .module-card:hover { border-color: #58a6ff; }
+  .module-card h3 { color: #c9d1d9; margin-bottom: 8px; font-size: 1.05em; }
+  .module-card .desc { color: #8b949e; font-size: 0.88em; margin-bottom: 12px; }
+  .module-card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 0.75em; padding: 2px 8px; border-radius: 4px;
+    background: #21262d; border: 1px solid #30363d; color: #8b949e;
+  }
+  .tag-green { background: #23863620; border-color: #238636; color: #3fb950; }
+  .tag-blue { background: #1f6feb20; border-color: #1f6feb; color: #58a6ff; }
+  .tag-orange { background: #9e6a0320; border-color: #9e6a03; color: #d29922; }
+  .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .status-dot.live { background: #3fb950; }
+  .status-dot.beta { background: #d29922; }
+  .status-dot.stable { background: #58a6ff; }
+  .footer { text-align: center; padding: 40px 0; color: #8b949e; font-size: 0.85em; }
+  .footer a { color: #58a6ff; text-decoration: none; }
+  .note {
+    background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    padding: 16px; margin: 15px 0; color: #8b949e; font-size: 0.9em;
+  }
+  .note strong { color: #c9d1d9; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Dev Artifacts</h1>
+    <div class="subtitle">统一开发工具箱 · 多模块协同平台</div>
+    <div class="badges">
+      <span class="badge badge-green">v0.1.0</span>
+      <span class="badge badge-blue">Python</span>
+      <span class="badge">MIT License</span>
+      <span class="badge">Multi-Platform</span>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://github.com/Zeon7744/dev-artifacts">GitHub 仓库</a>
+      <a class="btn btn-secondary" href="https://gitee.com/Zeon7744/dev-artifacts">Gitee</a>
+      <a class="btn btn-secondary" href="https://gitcode.com/Zeon7744/dev-artifacts">GitCode</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>模块索引</h2>
+    <div class="note">
+      <strong>注意：</strong>以下模块中，<strong>crypto-mlp</strong> 和 <strong>global-investment-mlp</strong> 已发展为独立仓库，
+      此处保留为历史快照和参考。其他模块仍在本仓库中维护。
+    </div>
+    <div class="module-grid">
+      <a href="https://github.com/Zeon7744/crypto-mlp-high-confidence" style="text-decoration:none;color:inherit" target="_blank">
+        <div class="module-card">
+          <h3><span class="status-dot live"></span>crypto-mlp-high-confidence</h3>
+          <div class="desc">五模型投票加密货币预测引擎，CV 准确率 92.94%，支持 Kelly 仓位管理</div>
+          <div class="tags">
+            <span class="tag tag-green">独立仓库</span>
+            <span class="tag">ML 预测</span>
+            <span class="tag tag-orange">92.94% CV</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/Zeon7744/global-investment-mlp" style="text-decoration:none;color:inherit" target="_blank">
+        <div class="module-card">
+          <h3><span class="status-dot live"></span>global-investment-mlp</h3>
+          <div class="desc">四因子量化投资引擎，支持 A股/美股/加密货币，VaR/CVaR 风险分析</div>
+          <div class="tags">
+            <span class="tag tag-green">独立仓库</span>
+            <span class="tag">量化投资</span>
+            <span class="tag tag-blue">多市场</span>
+          </div>
+        </div>
+      </a>
+      <div class="module-card">
+        <h3><span class="status-dot beta"></span>financial-news-mcp</h3>
+        <div class="desc">金融新闻 MCP 服务器，实时抓取和分析金融市场资讯，支持多数据源</div>
+        <div class="tags">
+          <span class="tag tag-blue">MCP</span>
+          <span class="tag">NLP</span>
+          <span class="tag">金融数据</span>
+        </div>
+      </div>
+      <div class="module-card">
+        <h3><span class="status-dot beta"></span>short-drama-mcp</h3>
+        <div class="desc">短剧创作 MCP 服务器，AI 辅助剧本生成、格式校验、平台适配</div>
+        <div class="tags">
+          <span class="tag tag-blue">MCP</span>
+          <span class="tag">内容创作</span>
+          <span class="tag tag-orange">短剧</span>
+        </div>
+      </div>
+      <div class="module-card">
+        <h3><span class="status-dot beta"></span>investment-mcp</h3>
+        <div class="desc">量化投资 MCP 服务器，提供投资策略分析、风险评估和组合建议</div>
+        <div class="tags">
+          <span class="tag tag-blue">MCP</span>
+          <span class="tag">量化</span>
+          <span class="tag">风控</span>
+        </div>
+      </div>
+      <div class="module-card">
+        <h3><span class="status-dot stable"></span>agent-system</h3>
+        <div class="desc">多 Agent 协作系统：analyst_agent, orchestrator, reporter_agent, watcher_agent</div>
+        <div class="tags">
+          <span class="tag tag-green">活跃</span>
+          <span class="tag">Agent</span>
+          <span class="tag">自动化</span>
+        </div>
+      </div>
+      <div class="module-card">
+        <h3><span class="status-dot stable"></span>api-gateway</h3>
+        <div class="desc">异步 API 网关，统一管理服务间通信，支持 WebSocket 和 HTTP</div>
+        <div class="tags">
+          <span class="tag tag-blue">API</span>
+          <span class="tag">异步</span>
+          <span class="tag">网关</span>
+        </div>
+      </div>
+      <div class="module-card">
+        <h3><span class="status-dot stable"></span>smart-community</h3>
+        <div class="desc">Docker 化部署方案，支持一键启动多服务容器编排</div>
+        <div class="tags">
+          <span class="tag tag-blue">Docker</span>
+          <span class="tag">部署</span>
+          <span class="tag">运维</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>快速开始</h2>
+    <div class="note">
+      <strong>安装依赖：</strong><br>
+      <code style="color:#a5d6ff">pip install -r requirements.txt</code>
+    </div>
+    <div class="note">
+      <strong>启动 API 网关：</strong><br>
+      <code style="color:#a5d6ff">python api_gateway/server.py</code>
+    </div>
+    <div class="note">
+      <strong>运行 Docker 部署：</strong><br>
+      <code style="color:#a5d6ff">cd smart-community && docker-compose up -d</code>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>相关项目</h2>
+    <div class="module-grid">
+      <a href="https://github.com/Zeon7744/baibai" style="text-decoration:none;color:inherit" target="_blank">
+        <div class="module-card">
+          <h3><span class="status-dot live"></span>baibai</h3>
+          <div class="desc">MCP 工具库 · 12 个标准工具 · PyPI 可安装</div>
+          <div class="tags"><span class="tag tag-green">v1.2.0</span><span class="tag">MCP</span></div>
+        </div>
+      </a>
+      <a href="https://github.com/Zeon7744/awesome-ai-short-drama" style="text-decoration:none;color:inherit" target="_blank">
+        <div class="module-card">
+          <h3><span class="status-dot live"></span>awesome-ai-short-drama</h3>
+          <div class="desc">AI 短剧创作库 · 9 部剧本 · 6 个生产工具</div>
+          <div class="tags"><span class="tag tag-green">v1.0.0</span><span class="tag">内容创作</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>由 <a href="https://github.com/Zeon7744">Zeon7744</a> 维护</p>
+    <p style="margin-top:8px">统一开发工具箱 · 多平台同步 · MIT License</p>
+  </div>
+</div>
+</body>
+</html>
