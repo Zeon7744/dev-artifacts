@@ -6,21 +6,45 @@
 [![Gitee stars](https://gitee.com/Zeon7744/dev-artifacts/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/dev-artifacts)
 [![GitCode stars](https://gitcode.com/Zeon7744/dev-artifacts/stars/badge)](https://gitcode.com/Zeon7744/dev-artifacts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![MCP](https://img.shields.io/badge/MCP-Servers-5-orange)]()
+[![Version](https://img.shields.io/badge/version-v0.1.0-blue)](https://github.com/Zeon7744/dev-artifacts/releases/tag/v0.1.0)
+
+## 在线演示
+
+- [GitHub Pages](https://zeon7744.github.io/dev-artifacts/)
 
 ## 简介
 
-**开发工具箱**，集成多个 MCP Server，涵盖金融新闻、短剧创作、投资分析、加密货币预测等场景。
+**开发工具箱**，集成多个 MCP Server 和 Agent 系统，涵盖金融新闻、短剧创作、投资分析、加密货币预测等场景。
 
-## 集成模块
+## 模块索引
 
-| 模块 | 描述 | 关联仓库 |
+> 注意：以下模块已有独立仓库，推荐使用独立版本以获取最新功能。
+
+| 模块 | 描述 | 独立仓库 |
 |------|------|----------|
-| `financial-news-mcp` | 财经新闻数据 | dev-artifacts |
-| `short-drama-mcp` | 短剧创作辅助 | awesome-ai-short-drama |
-| `investment-mcp` | 投资分析工具 | global-investment-mlp |
-| `crypto-mlp` | 加密货币预测 | crypto-mlp-high-confidence |
-| `commodity-mlp` | 大宗商品预测 | dev-artifacts |
+| `crypto-mlp/` | 加密货币 MLP 预测引擎 | [crypto-mlp-high-confidence](https://github.com/Zeon7744/crypto-mlp-high-confidence) |
+| `global-investment-mlp/` | 量化投资框架 | [global-investment-mlp](https://github.com/Zeon7744/global-investment-mlp) |
+| `financial-news-mcp/` | 财经新闻 MCP | [dev-artifacts](此仓库) |
+| `short-drama-mcp/` | 短剧创作 MCP | [dev-artifacts](此仓库) |
+| `investment-mcp/` | 投资分析 MCP | [dev-artifacts](此仓库) |
+| `commodity-mlp/` | 大宗商品预测 | [dev-artifacts](此仓库) |
+
+## 核心组件
+
+### Agents 系统
+- `analyst_agent.py` — 分析师智能体
+- `orchestrator.py` — 编排器智能体
+- `reporter_agent.py` — 报告生成智能体
+- `watcher_agent.py` — 监控智能体
+
+### API 网关
+- `api_gateway/gateway.py` — 统一 API 网关
+- `api_gateway/subscription.py` — 订阅管理
+- `api_gateway/webhook.py` — Webhook 处理
+
+### Smart Community
+- `smart-community/` — Docker 化部署方案
+- `Dockerfile.backend` / `Dockerfile.frontend`
 
 ## 快速开始
 
