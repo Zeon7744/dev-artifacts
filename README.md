@@ -1,17 +1,52 @@
-# Dev-Artifacts - 开发成果库
+# dev-artifacts
 
-> 通用开发成品仓库 — 存放经过验证的可复用工具、脚本和项目
+> 开发工具箱 — MCP Server 集成 · 金融新闻 · 投资分析 · 加密货币预测
 
-这里是我开发成果的中心仓库，包含可复用的工具、命令行工具、自动化脚本等开发成品。
+[![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
+[![Gitee stars](https://gitee.com/Zeon7744/dev-artifacts/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/dev-artifacts)
+[![GitCode stars](https://gitcode.com/Zeon7744/dev-artifacts/stars/badge)](https://gitcode.com/Zeon7744/dev-artifacts)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![MCP](https://img.shields.io/badge/MCP-Servers-5-orange)]()
 
-<div align="center">
+## 简介
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/Zeon7744/dev-artifacts/releases)
-[![GitHub stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
-[![GitHub forks](https://img.shields.io/github/forks/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts/forks)
+开发工具箱，集成多个 MCP Server，涵盖金融新闻、短剧创作、投资分析、加密货币预测等场景。
 
-</div>
+## 集成模块
+
+| 模块 | 描述 |
+|------|------|
+| financial-news-mcp | 财经新闻数据 |
+| short-drama-mcp | 短剧创作辅助 |
+| investment-mcp | 投资分析工具 |
+| crypto-mlp | 加密货币预测 |
+| commodity-mlp | 大宗商品预测 |
+
+## 快速开始
+
+```bash
+git clone https://github.com/Zeon7744/dev-artifacts.git
+cd dev-artifacts
+```
+
+## 文档
+
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+
+## 多平台镜像
+
+| 平台 | 链接 |
+|------|------|
+| GitHub (主仓库) | https://github.com/Zeon7744/dev-artifacts |
+| Gitee | https://gitee.com/Zeon7744/dev-artifacts |
+| GitCode | https://gitcode.com/Zeon7744/dev-artifacts |
+
+## 赞助与支持
+
+- [爱发电](https://afdian.com/@Zeon7744)
+- [GitHub Sponsors](https://github.com/sponsors/Zeon7744)
 
 ---
+
+*Built with by Zeon7744 · 三平台同步: GitHub / Gitee / GitCode*
