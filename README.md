@@ -7,10 +7,11 @@
 [![GitCode stars](https://gitcode.com/Zeon7744/dev-artifacts/stars/badge)](https://gitcode.com/Zeon7744/dev-artifacts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-v0.1.0-blue)](https://github.com/Zeon7744/dev-artifacts/releases/tag/v0.1.0)
+[![GitHub Pages](https://img.shields.io/badge/Pages-online-success.svg)](https://zeon7744.github.io/dev-artifacts/)
 
 ## 在线演示
 
-- [GitHub Pages](https://zeon7744.github.io/dev-artifacts/)
+- [GitHub Pages 模块导航](https://zeon7744.github.io/dev-artifacts/)
 
 ## 简介
 
@@ -54,6 +55,11 @@ cd dev-artifacts
 pip install -e .
 ```
 
+## 文档
+
+- [CHANGELOG.md](CHANGELOG.md) — 版本历史
+- [docs/marketing/](docs/marketing/) — 营销文档归档
+
 ## 多平台镜像
 
 | 平台 | 链接 |
@@ -87,6 +93,8 @@ pip install -e .
 ## 贡献
 
 欢迎提交 Issue 和 Pull Request！详见 [CONTRIBUTING.md](CONTRIBUTING.md)
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 ---
 
