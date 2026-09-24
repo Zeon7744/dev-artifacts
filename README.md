@@ -2,6 +2,22 @@
 
 基于MCP 2026-07-28规范构建的高真实性财经新闻采集与分析平台。
 
+[![Gitee stars](https://gitee.com/Zeon7744/dev-artifacts/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/dev-artifacts)
+[![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+## 三平台同步
+
+| 平台 | 链接 |
+|------|------|
+| **Gitee** (主站) | [gitee.com/Zeon7744/dev-artifacts](https://gitee.com/Zeon7744/dev-artifacts) |
+| GitHub | [github.com/Zeon7744/dev-artifacts](https://github.com/Zeon7744/dev-artifacts) |
+| GitCode | [gitcode.com/Zeon7744/dev-artifacts](https://gitcode.com/Zeon7744/dev-artifacts) |
+
+---
+
 ## 核心能力
 
 | 能力 | 描述 | 关键指标 |
@@ -15,231 +31,54 @@
 | **Agent工作流** | 分析师/监控/报告编排 | 串行/并行工作流 |
 | **本地LLM** | Ollama + OpenAI双Provider | 支持熔断器降级 |
 
-## 工具列表
+---
 
-### 基础工具
-
-#### 1. collect_news - 全球财经新闻采集
-```python
-{
-  "category": "all|commodity|crypto|fund|stock|macro",
-  "sources": "Reuters,Bloomberg,CNBC",  # 可选
-  "limit": 20,
-  "time_range": "24h|7d|30d"
-}
-```
-
-**数据来源：**
-- Reuters: 路透社国际新闻（可信度 0.95）
-- Bloomberg: 彭博社财经（可信度 0.93）
-- CNBC: 美国财经频道（可信度 0.88）
-- 东方财富: 中国财经门户（可信度 0.82）
-- 同花顺: 中国投资门户（可信度 0.78）
-
-#### 2. analyze_sentiment - 新闻情感分析
-```python
-{
-  "news_items": [{"title": "...", "content": "..."}],
-  "news_urls": ["https://..."],
-  "detail_level": "basic|advanced"
-}
-```
-
-**输出维度：**
-- 情感极性：positive/negative/neutral
-- 情感分数：-1.0 ~ 1.0
-- 置信度：0.0 ~ 1.0
-- 关键词提取
-
-#### 3. predict_trend - 市场趋势预测
-```python
-{
-  "asset_type": "commodity|crypto|index|fund|stock",
-  "symbol": "GC=F|CL=F|BTC-USD|SPY",
-  "horizon": "1d|1w|1m",
-  "use_news": true
-}
-```
-
-**预测模型：**
-- 技术面：RSI/MACD/移动平均线
-- 基本面：新闻情绪加权
-- 合成算法：多因子融合
-
-#### 4. get_investment_advice - 投资建议
-```python
-{
-  "portfolio_value": 100000,
-  "risk_tolerance": "conservative|moderate|aggressive",
-  "target_return": 15.0,
-  "assets": ["GC=F", "BTC-USD"],
-  "market_sentiment": 0.3
-}
-```
-
-**建议内容：**
-- 资产配置比例
-- 具体操作建议（买入/卖出/持有）
-- 风险等级评估
-- 止损止盈位
-- 行动清单
-
-#### 5. validate_data_source - 数据源验证
-```python
-{
-  "news_item": {"title": "...", "url": "..."},
-  "check_facts": true,
-  "min_sources": 2
-}
-```
-
-**验证维度：**
-- 来源权威性评分
-- 标题风险分析
-- 时效性检查
-- 事实核查标记
-
-### v3.0 新增工具
-
-#### 6. rag_search - RAG知识库搜索
-```python
-{
-  "query": "美联储加息对黄金价格的影响",
-  "knowledge_base": "default",
-  "top_k": 5,
-  "min_score": 0.7
-}
-```
-
-**功能：**
-- 语义搜索
-- 金融报告解析
-- 元数据过滤
-
-#### 7. agent_run - 执行Agent工作流
-```python
-{
-  "workflow": "daily_briefing|monitoring|report",
-  "params": {
-    "time_range": "24h",
-    "assets": ["GC=F", "CL=F"]
-  }
-}
-```
-
-**工作流：**
-- `daily_briefing`: 每日简报生成
-- `monitoring`: 异常监控预警
-- `report`: 多格式报告输出
-
-#### 8. llm_generate - 本地LLM生成
-```python
-{
-  "prompt": "分析当前黄金市场走势",
-  "provider": "ollama|openai|auto",
-  "model": "llama3.2",
-  "max_tokens": 1000
-}
-```
-
-**Provider：**
-- Ollama: 本地模型（默认）
-- OpenAI: API备用
-- Auto: 自动选择（优先本地，失败时云端）
-
-#### 9. knowledge_manage - 知识库管理
-```python
-{
-  "action": "add|list|delete|stats",
-  "name": "my_knowledge",
-  "files": ["report.pdf", "doc.md"]
-}
-```
-
-**操作：**
-- 添加文档
-- 列出知识库
-- 删除知识库
-- 查看统计
-
-#### 10. workflow_status - 工作流状态查询
-```python
-{
-  "workflow_id": "wf_20240101_001"
-}
-```
-
-## 技术架构
+## 项目架构
 
 ```
-financial-news-mcp/
-├── main.py                 # MCP服务器入口（v3.0.0）
-├── pyproject.toml          # 项目配置
-├── .mcp.json              # Coze配置
-├── tools/
-│   ├── news_collector.py   # 新闻采集模块
-│   ├── sentiment_analyzer.py  # 情感分析模块
-│   ├── trend_predictor.py   # 趋势预测模块
-│   ├── investment_advisor.py  # 投资建议模块
-│   ├── data_validator.py    # 数据验证模块
-│   └── rag/                # RAG知识库模块（v3.0新增）
-│       ├── vector_store.py
-│       ├── document_loader.py
-│       ├── chunker.py
-│       ├── embedder.py
-│       └── knowledge_base.py
-├── agents/                 # Agent工作流模块（v3.0新增）
-│   ├── base_agent.py
-│   ├── analyst_agent.py
-│   ├── watcher_agent.py
-│   ├── reporter_agent.py
-│   └── orchestrator.py
-├── llm_providers/          # 本地LLM集成（v3.0新增）
-│   ├── base_provider.py
-│   ├── ollama_provider.py
-│   ├── openai_provider.py
-│   └── provider_factory.py
+dev-artifacts/
+├── financial-news-mcp/     # 财经新闻MCP (v3.0)
+├── short-drama-mcp/        # 短剧创作MCP
+├── investment-mcp/         # 投资分析MCP
+├── commodity-mlp/          # 大宗商品预测
+├── crypto-mlp/             # 加密货币预测
+├── global-investment-mlp/  # 全球投资分析
+├── smart-community/        # 智能社区Docker部署
+├── agents/                 # Agent系统
 ├── api_gateway/            # API网关
-├── management/             # 管理平台
-├── tests/
-│   ├── test_all.py         # 完整测试套件
-│   └── test_v3.py          # v3.0测试套件
-├── data/                   # 缓存数据目录
-│   ├── knowledge/          # RAG知识库存储
-│   └── cache/              # 缓存目录
-└── docs/                   # 文档目录
+└── docs/                   # 文档
 ```
+
+---
 
 ## 快速开始
 
 ### 安装
+
 ```bash
-cd /app/data/dev-artifacts/financial-news-mcp
-pip install -e ".[dev]"
+git clone https://gitee.com/Zeon7744/dev-artifacts.git
+cd dev-artifacts
+pip install -e .
 ```
 
 ### 运行测试
+
 ```bash
 pytest tests/ -v --cov=tools --cov-report=html
 ```
 
-### 启动MCP服务器
-```bash
-python main.py
-```
+---
 
-### Coze配置
-将 `.mcp.json` 添加到Coze Agent配置中：
-```json
-{
-  "mcpServers": {
-    "financial-news-mcp": {
-      "command": "python",
-      "args": ["python", "/app/data/dev-artifacts/financial-news-mcp/main.py"]
-    }
-  }
-}
-```
+## 相关项目
+
+| 项目 | 链接 |
+|------|------|
+| [awesome-ai-short-drama](https://gitee.com/Zeon7744/awesome-ai-short-drama) | AI短剧资源库 |
+| [baibai](https://gitee.com/Zeon7744/baibai) | Vibe Coding工具库 |
+| crypto-mlp-high-confidence | 加密货币MLP预测（独立仓库） |
+| global-investment-mlp | 量化投资框架（独立仓库） |
+
+---
 
 ## 真实性保障机制
 
@@ -258,50 +97,7 @@ python main.py
 - 发布时间和采集时间双重校验
 - 实时数据源优先
 
-### 4. 风险提示
-- 高风险标题自动标记（"震惊"/"内幕"等）
-- 低可信度来源降低推荐权重
-- 明确标注数据来源和验证状态
-
-## 性能指标
-
-| 指标 | 目标值 | 实际值 |
-|------|--------|--------|
-| 新闻采集延迟 | < 5s | ~3s |
-| 情感分析响应 | < 100ms | ~50ms |
-| 预测生成时间 | < 2s | ~1.5s |
-| 测试覆盖率 | > 90% | ~95% |
-| 数据验证准确率 | > 95% | ~97% |
-| RAG检索延迟 | < 200ms | ~100ms |
-| LLM响应时间 | < 5s | ~3s |
-
-## v3.0 升级特性
-
-### RAG知识库模块
-- 支持PDF/Markdown/JSON文档加载
-- 智能分块策略（金融报告专用）
-- 本地向量存储（ChromaDB + JSON降级）
-- 语义搜索 + 元数据过滤
-
-### Agent工作流模块
-- 分析师Agent：每日简报自动生成
-- 监控Agent：异常预警实时推送
-- 报告Agent：多格式输出（markdown/json/html/csv）
-- 编排器：串行/并行工作流执行
-
-### 本地LLM集成
-- Ollama本地模型支持
-- OpenAI API备用
-- Provider熔断器机制
-- 自动降级策略
-
-## 依赖项目
-
-- `crypto-mlp`: 加密货币预测模型
-- `commodity-mlp`: 大宗商品MLP模型
-- `global-investment-mlp`: 全球投资分析
-- `investment-mcp`: 投资分析MCP（架构参考）
-- `short-drama-mcp`: MCP开发规范参考
+---
 
 ## License
 
@@ -311,7 +107,7 @@ MIT
 
 <div align="center">
 
-**由 [Zeon7744](https://github.com/Zeon7744) 维护**
+**由 [Zeon7744](https://gitee.com/Zeon7744) 维护**
 
 *开发成果 · 可复用 · 经得起验证*
 
