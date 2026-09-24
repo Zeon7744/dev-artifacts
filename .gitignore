@@ -1,96 +1,18 @@
-# Python
 __pycache__/
 *.py[cod]
 *$py.class
-*.pyo
-*.pyd
 .Python
-*.egg-info/
-*.egg
-dist/
 build/
-.eggs/
-
-# Virtual environments
-.env
-.venv/
-venv/
-env/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Testing & Coverage
+dist/
+*.egg-info/
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.htmlcov/
-htmlcov/
-coverage.xml
-.coverage*
-*.cover
-
-# Model files (large binaries)
-*.pkl
-*.h5
-*.pt
-*.onnx
-*.pb
-*.bin
-models/
-checkpoints/
-
-# Data files
-data/
-*.jsonld
-*.parquet
-*.feather
-
-# Logs
+.env
+.venv
+env/
+venv/
+.idea/
+.vscode/
+.DS_Store
 *.log
-logs/
-
-# Reports (generated)
-reports/
-
-# Node.js (for web projects)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-package-lock.json
-yarn.lock
-
-# Database
-*.sqlite
-*.sqlite3
-*.db
-
-# Cache
-.cache/
-*.cache
-
-# Secrets
-*.key
-*.pem
-secrets/
-credentials/
-
-# Docker
-.dockerignore
-docker-compose.override.yml
-
-# Temporary files
-*.tmp
-*.bak
-*.swp
-*~
+data/cache/
+models/*.pkl

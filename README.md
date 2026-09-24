@@ -1,7 +1,8 @@
-# 金融期货基金全球新闻MCP v3.0
+# dev-artifacts
 
-基于MCP 2026-07-28规范构建的高真实性财经新闻采集与分析平台。
+> 开发工具箱 — MCP Server 集成 · 金融新闻 · 投资分析 · 加密货币预测
 
+<<<<<<< HEAD
 [![Gitee stars](https://gitee.com/Zeon7744/dev-artifacts/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/dev-artifacts)
 [![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -19,18 +20,37 @@
 ---
 
 ## 核心能力
+=======
+[![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
+[![Gitee stars](https://gitee.com/Zeon7744/dev-artifacts/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/dev-artifacts)
+[![GitCode stars](https://gitcode.com/Zeon7744/dev-artifacts/stars/badge)](https://gitcode.com/Zeon7744/dev-artifacts)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-v0.1.0-blue)](https://github.com/Zeon7744/dev-artifacts/releases/tag/v0.1.0)
+[![GitHub Pages](https://img.shields.io/badge/Pages-online-success.svg)](https://zeon7744.github.io/dev-artifacts/)
+>>>>>>> origin/main
 
-| 能力 | 描述 | 关键指标 |
+## 在线演示
+
+- [GitHub Pages 模块导航](https://zeon7744.github.io/dev-artifacts/)
+
+## 简介
+
+**开发工具箱**，集成多个 MCP Server 和 Agent 系统，涵盖金融新闻、短剧创作、投资分析、加密货币预测等场景。
+
+## 模块索引
+
+> 注意：以下模块已有独立仓库，推荐使用独立版本以获取最新功能。
+
+| 模块 | 描述 | 独立仓库 |
 |------|------|----------|
-| **全球数据采集** | Reuters/Bloomberg/CNBC/东方财富/同花顺等多源RSS聚合 | 实时性<5min，覆盖率>95% |
-| **情感分析** | BERT中文财经模型 + 规则引擎双模式 | 准确率>85%，响应<100ms |
-| **趋势预测** | 技术面+基本面融合预测 | 多因子加权，置信度量化 |
-| **投资建议** | 个性化资产配置与风控建议 | 风险偏好适配，止损位计算 |
-| **数据验证** | 来源权威性+事实核查双重验证 | 可信度评分，风险提示 |
-| **RAG知识库** | 语义搜索 + 金融报告解析 | 支持PDF/Markdown/JSON |
-| **Agent工作流** | 分析师/监控/报告编排 | 串行/并行工作流 |
-| **本地LLM** | Ollama + OpenAI双Provider | 支持熔断器降级 |
+| `crypto-mlp/` | 加密货币 MLP 预测引擎 | [crypto-mlp-high-confidence](https://github.com/Zeon7744/crypto-mlp-high-confidence) |
+| `global-investment-mlp/` | 量化投资框架 | [global-investment-mlp](https://github.com/Zeon7744/global-investment-mlp) |
+| `financial-news-mcp/` | 财经新闻 MCP | [dev-artifacts](此仓库) |
+| `short-drama-mcp/` | 短剧创作 MCP | [dev-artifacts](此仓库) |
+| `investment-mcp/` | 投资分析 MCP | [dev-artifacts](此仓库) |
+| `commodity-mlp/` | 大宗商品预测 | [dev-artifacts](此仓库) |
 
+<<<<<<< HEAD
 ---
 
 ## 项目架构
@@ -48,19 +68,43 @@ dev-artifacts/
 ├── api_gateway/            # API网关
 └── docs/                   # 文档
 ```
+=======
+## 核心组件
+
+### Agents 系统
+- `analyst_agent.py` — 分析师智能体
+- `orchestrator.py` — 编排器智能体
+- `reporter_agent.py` — 报告生成智能体
+- `watcher_agent.py` — 监控智能体
+
+### API 网关
+- `api_gateway/gateway.py` — 统一 API 网关
+- `api_gateway/subscription.py` — 订阅管理
+- `api_gateway/webhook.py` — Webhook 处理
+
+### Smart Community
+- `smart-community/` — Docker 化部署方案
+- `Dockerfile.backend` / `Dockerfile.frontend`
+>>>>>>> origin/main
 
 ---
 
 ## 快速开始
 
+<<<<<<< HEAD
 ### 安装
 
 ```bash
 git clone https://gitee.com/Zeon7744/dev-artifacts.git
+=======
+```bash
+git clone https://github.com/Zeon7744/dev-artifacts.git
+>>>>>>> origin/main
 cd dev-artifacts
 pip install -e .
 ```
 
+<<<<<<< HEAD
 ### 运行测试
 
 ```bash
@@ -79,24 +123,31 @@ pytest tests/ -v --cov=tools --cov-report=html
 | global-investment-mlp | 量化投资框架（独立仓库） |
 
 ---
+=======
+## 文档
 
-## 真实性保障机制
+- [CHANGELOG.md](CHANGELOG.md) — 版本历史
+- [docs/marketing/](docs/marketing/) — 营销文档归档
 
-### 1. 多层数据验证
-```
-原始数据 → 来源权威性评分 → 标题风险分析 → 事实核查 → 可信度输出
-```
+## 多平台镜像
+>>>>>>> origin/main
 
-### 2. 交叉验证
-- 同一新闻事件至少2个权威源交叉验证
-- 冲突信息标记为"待核实"
-- 低可信度新闻降低权重
+| 平台 | 链接 |
+|------|------|
+| GitHub (主仓库) | [GitHub](https://github.com/Zeon7744/dev-artifacts) |
+| Gitee | [Gitee](https://gitee.com/Zeon7744/dev-artifacts) |
+| GitCode | [GitCode](https://gitcode.com/Zeon7744/dev-artifacts) |
 
-### 3. 时效性控制
-- 超过30天的新闻自动标记过期
-- 发布时间和采集时间双重校验
-- 实时数据源优先
+## 赞助与支持
 
+| 平台 | 链接 | 支付方式 |
+|------|------|----------|
+| ☕ **爱发电** | [afdian.com/@Zeon7744](https://afdian.com/@Zeon7744) | 支付宝 / 微信支付 |
+| 🌍 **GitHub Sponsors** | [github.com/sponsors/Zeon7744](https://github.com/sponsors/Zeon7744) | PayPal / Stripe |
+
+### 赞助档位
+
+<<<<<<< HEAD
 ---
 
 ## License
@@ -112,3 +163,27 @@ MIT
 *开发成果 · 可复用 · 经得起验证*
 
 </div>
+=======
+| 档位 | 价格 | 权益 |
+|------|------|------|
+| ☕ 请喝咖啡 | ¥18/月 | 感谢支持 |
+| 🍺 请喝啤酒 | ¥58/月 | 优先回复 Issue |
+| 🎁 项目赞助 | ¥188/月 | 定制功能需求 |
+
+## 相关项目
+
+- [baibai](https://github.com/Zeon7744/baibai) — MCP 基础工具库
+- [crypto-mlp-high-confidence](https://github.com/Zeon7744/crypto-mlp-high-confidence) — 加密货币预测
+- [global-investment-mlp](https://github.com/Zeon7744/global-investment-mlp) — 量化投资框架
+- [awesome-ai-short-drama](https://github.com/Zeon7744/awesome-ai-short-drama) — AI 短剧资源
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！详见 [CONTRIBUTING.md](CONTRIBUTING.md)
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+
+---
+
+*由 [Zeon7744](https://github.com/Zeon7744) 维护 · 开发工具箱 · 三平台同步*
+>>>>>>> origin/main
