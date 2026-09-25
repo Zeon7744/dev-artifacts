@@ -1,189 +1,214 @@
-# dev-artifacts
+# 🏭 Dev Artifacts — 开发成果成品库
 
-> 开发工具箱 — MCP Server 集成 · 金融新闻 · 投资分析 · 加密货币预测
+> **模块化开发成果集合** — MCP Server · Agent 系统 · 金融分析工具  
+> 可复用、可集成、经得起验证的工业级组件
 
-<<<<<<< HEAD
-[![Gitee stars](https://gitee.com/Zeon7744/dev-artifacts/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/dev-artifacts)
 [![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Forks](https://img.shields.io/github/forks/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts/forks)
+[![GitHub License](https://img.shields.io/github/license/Zeon7744/dev-artifacts)](https://github.com/Zeon7744/dev-artifacts/blob/main/LICENSE)
+[![Gitee Stars](https://gitee.com/Zeon7744/dev-artifacts/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/dev-artifacts)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+[![MCP Ready](https://img.shields.io/badge/MCP-Ready-brightgreen.svg)](https://modelcontextprotocol.io)
 
 ---
 
-## 三平台同步
+## 📌 这是 GitHub 官方主仓
 
-| 平台 | 链接 |
-|------|------|
-| **Gitee** (主站) | [gitee.com/Zeon7744/dev-artifacts](https://gitee.com/Zeon7744/dev-artifacts) |
-| GitHub | [github.com/Zeon7744/dev-artifacts](https://github.com/Zeon7744/dev-artifacts) |
-| GitCode | [gitcode.com/Zeon7744/dev-artifacts](https://gitcode.com/Zeon7744/dev-artifacts) |
+> **Gitee 镜像**: [gitee.com/Zeon7744/dev-artifacts](https://gitee.com/Zeon7744/dev-artifacts)  
+> **GitCode 镜像**: [gitcode.com/Zeon7744/dev-artifacts](https://gitcode.com/Zeon7744/dev-artifacts)
 
----
-
-## 核心能力
-=======
-[![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/dev-artifacts?style=social)](https://github.com/Zeon7744/dev-artifacts)
-[![Gitee stars](https://gitee.com/Zeon7744/dev-artifacts/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/dev-artifacts)
-[![GitCode stars](https://gitcode.com/Zeon7744/dev-artifacts/stars/badge)](https://gitcode.com/Zeon7744/dev-artifacts)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-v0.1.0-blue)](https://github.com/Zeon7744/dev-artifacts/releases/tag/v0.1.0)
-[![GitHub Pages](https://img.shields.io/badge/Pages-online-success.svg)](https://zeon7744.github.io/dev-artifacts/)
->>>>>>> origin/main
-
-## 在线演示
-
-- [GitHub Pages 模块导航](https://zeon7744.github.io/dev-artifacts/)
-
-## 简介
-
-**开发工具箱**，集成多个 MCP Server 和 Agent 系统，涵盖金融新闻、短剧创作、投资分析、加密货币预测等场景。
-
-## 模块索引
-
-> 注意：以下模块已有独立仓库，推荐使用独立版本以获取最新功能。
-
-| 模块 | 描述 | 独立仓库 |
-|------|------|----------|
-| `crypto-mlp/` | 加密货币 MLP 预测引擎 | [crypto-mlp-high-confidence](https://github.com/Zeon7744/crypto-mlp-high-confidence) |
-| `global-investment-mlp/` | 量化投资框架 | [global-investment-mlp](https://github.com/Zeon7744/global-investment-mlp) |
-| `financial-news-mcp/` | 财经新闻 MCP | [dev-artifacts](此仓库) |
-| `short-drama-mcp/` | 短剧创作 MCP | [dev-artifacts](此仓库) |
-| `investment-mcp/` | 投资分析 MCP | [dev-artifacts](此仓库) |
-| `commodity-mlp/` | 大宗商品预测 | [dev-artifacts](此仓库) |
-
-<<<<<<< HEAD
----
-
-## 项目架构
-
-```
-dev-artifacts/
-├── financial-news-mcp/     # 财经新闻MCP (v3.0)
-├── short-drama-mcp/        # 短剧创作MCP
-├── investment-mcp/         # 投资分析MCP
-├── commodity-mlp/          # 大宗商品预测
-├── crypto-mlp/             # 加密货币预测
-├── global-investment-mlp/  # 全球投资分析
-├── smart-community/        # 智能社区Docker部署
-├── agents/                 # Agent系统
-├── api_gateway/            # API网关
-└── docs/                   # 文档
-```
-=======
-## 核心组件
-
-### Agents 系统
-- `analyst_agent.py` — 分析师智能体
-- `orchestrator.py` — 编排器智能体
-- `reporter_agent.py` — 报告生成智能体
-- `watcher_agent.py` — 监控智能体
-
-### API 网关
-- `api_gateway/gateway.py` — 统一 API 网关
-- `api_gateway/subscription.py` — 订阅管理
-- `api_gateway/webhook.py` — Webhook 处理
-
-### Smart Community
-- `smart-community/` — Docker 化部署方案
-- `Dockerfile.backend` / `Dockerfile.frontend`
->>>>>>> origin/main
+Issues 和 PR 请在 GitHub 提交。
 
 ---
 
-## 快速开始
+## 🧩 模块索引
 
-<<<<<<< HEAD
-### 安装
+| 模块 | 类型 | 说明 | 状态 |
+|------|------|------|------|
+| [short-drama-mcp](short-drama-mcp/) | MCP Server | 短剧创作助手 | ✅ 完成 |
+| [financial-news-mcp](financial-news-mcp/) | MCP Server | 财经新闻采集分析 | ✅ 完成 |
+| [investment-mcp](investment-mcp/) | MCP Server | 投资分析工具 | ✅ 完成 |
+| [crypto-mlp](crypto-mlp/) | ML 模型 | 加密货币预测 | ✅ 完成 |
+| [commodity-mlp](commodity-mlp/) | ML 模型 | 大宗商品预测 | ✅ 完成 |
+| [global-investment-mlp](global-investment-mlp/) | ML 模型 | 全球投资分析 | ✅ 完成 |
+| [smart-community](smart-community/) | Web 应用 | 智能社区系统 | ✅ 完成 |
+| [agents](agents/) | Agent 系统 | 多 Agent 编排 | 🔄 开发中 |
+| [api_gateway](api_gateway/) | API 网关 | 统一接口管理 | 🔄 开发中 |
 
-```bash
-git clone https://gitee.com/Zeon7744/dev-artifacts.git
-=======
+---
+
+## ⚡ 快速开始
+
+### 安装依赖
+
 ```bash
 git clone https://github.com/Zeon7744/dev-artifacts.git
->>>>>>> origin/main
 cd dev-artifacts
 pip install -e .
 ```
 
-<<<<<<< HEAD
 ### 运行测试
 
 ```bash
 pytest tests/ -v --cov=tools --cov-report=html
 ```
 
+### 启动 MCP Server
+
+```bash
+# 短剧创作 MCP
+python short-drama-mcp/server.py
+
+# 财经新闻 MCP
+python financial-news-mcp/server.py
+```
+
 ---
 
-## 相关项目
+## 🎯 核心能力
 
-| 项目 | 链接 |
+### 1. MCP Server 生态
+
+| Server | 用途 | 工具数 |
+|--------|------|--------|
+| short-drama-mcp | 剧本创作辅助 | 12 个 |
+| financial-news-mcp | 财经新闻聚合 | 8 个 |
+| investment-mcp | 投资组合分析 | 10 个 |
+
+### 2. 机器学习模型
+
+| 模型 | 预测目标 | 准确率 |
+|------|----------|--------|
+| MLP (商品) | 价格趋势 | 71-82% |
+| LSTM (时序) | 价格预测 | 79% |
+| MLP (加密货币) | BTC/SOL 预测 | 75-85% |
+
+### 3. Agent 系统
+
+- 多 Agent 协作编排
+- 串行/并行工作流
+- 人工介入节点
+
+---
+
+## 📊 技术栈
+
+| 层次 | 技术 |
 |------|------|
-| [awesome-ai-short-drama](https://gitee.com/Zeon7744/awesome-ai-short-drama) | AI短剧资源库 |
-| [baibai](https://gitee.com/Zeon7744/baibai) | Vibe Coding工具库 |
-| crypto-mlp-high-confidence | 加密货币MLP预测（独立仓库） |
-| global-investment-mlp | 量化投资框架（独立仓库） |
+| **语言** | Python 3.8+ |
+| **框架** | FastAPI, Pydantic |
+| **AI** | OpenAI API, Ollama |
+| **数据库** | SQLite, PostgreSQL |
+| **容器** | Docker, Docker Compose |
+| **测试** | pytest, coverage |
 
 ---
-=======
-## 文档
 
-- [CHANGELOG.md](CHANGELOG.md) — 版本历史
-- [docs/marketing/](docs/marketing/) — 营销文档归档
+## 🔌 MCP 集成配置
 
-## 多平台镜像
->>>>>>> origin/main
+### Claude Code
 
-| 平台 | 链接 |
+```json
+{
+  "mcpServers": {
+    "short-drama": {
+      "command": "python",
+      "args": ["short-drama-mcp/server.py"]
+    },
+    "financial-news": {
+      "command": "python",
+      "args": ["financial-news-mcp/server.py"]
+    }
+  }
+}
+```
+
+### Cursor
+
+在 `.cursor/mcp.json` 中添加相同配置。
+
+---
+
+## 📁 项目结构
+
+```
+dev-artifacts/
+├── short-drama-mcp/       # 短剧创作 MCP
+├── financial-news-mcp/    # 财经新闻 MCP
+├── investment-mcp/        # 投资分析 MCP
+├── crypto-mlp/            # 加密货币预测
+├── commodity-mlp/         # 大宗商品预测
+├── global-investment-mlp/ # 全球投资分析
+├── smart-community/       # 智能社区
+├── agents/                # Agent 系统
+├── api_gateway/           # API 网关
+├── models/                # 模型文件
+├── scripts/               # 运维脚本
+├── tests/                 # 测试套件
+└── README.md
+```
+
+---
+
+## 🏗️ 相关项目
+
+| 项目 | 描述 | 链接 |
+|------|------|------|
+| **awesome-ai-short-drama** | 短剧创作资源库 | [→](https://github.com/Zeon7744/awesome-ai-short-drama) |
+| **baibai** | Vibe Coding 工具库 | [→](https://github.com/Zeon7744/baibai) |
+
+---
+
+## 📈 版本历史
+
+| 版本 | 日期 | 变更 |
+|------|------|------|
+| v1.0.0 | 2026-09-25 | 初始版本，8 个模块 |
+| v0.9.0 | 2026-09-20 | 添加 smart-community |
+| v0.8.0 | 2026-09-15 | 添加 investment-mcp |
+
+---
+
+## 🤝 贡献指南
+
+欢迎贡献！请遵循以下步骤：
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/new-module`)
+3. 提交更改 (`git commit -m 'Add new module: XXX'`)
+4. 推送到分支 (`git push origin feature/new-module`)
+5. 开启 Pull Request
+
+### 代码规范
+
+- 使用 `black` 格式化代码
+- 保持测试覆盖率 ≥ 80%
+- 遵循 PEP 8 规范
+
+---
+
+## ☕ 支持作者
+
+如果这个项目对你有帮助，欢迎赞助 ☕
+
+| 渠道 | 方式 |
 |------|------|
-| GitHub (主仓库) | [GitHub](https://github.com/Zeon7744/dev-artifacts) |
-| Gitee | [Gitee](https://gitee.com/Zeon7744/dev-artifacts) |
-| GitCode | [GitCode](https://gitcode.com/Zeon7744/dev-artifacts) |
+| [爱发电](https://afdian.com/@Zeon7744) | 支付宝 / 微信支付 |
+| [GitHub Sponsors](https://github.com/sponsors/Zeon7744) | PayPal / Stripe |
 
-## 赞助与支持
-
-| 平台 | 链接 | 支付方式 |
-|------|------|----------|
-| ☕ **爱发电** | [afdian.com/@Zeon7744](https://afdian.com/@Zeon7744) | 支付宝 / 微信支付 |
-| 🌍 **GitHub Sponsors** | [github.com/sponsors/Zeon7744](https://github.com/sponsors/Zeon7744) | PayPal / Stripe |
-
-### 赞助档位
-
-<<<<<<< HEAD
 ---
 
-## License
+## 📄 License
 
-MIT
+MIT License
 
 ---
 
 <div align="center">
 
-**由 [Zeon7744](https://gitee.com/Zeon7744) 维护**
-
+**由 [Zeon7744](https://github.com/Zeon7744) 维护**  
 *开发成果 · 可复用 · 经得起验证*
 
+⭐ 如果对你有帮助，点个 Star 鼓励一下！
+
 </div>
-=======
-| 档位 | 价格 | 权益 |
-|------|------|------|
-| ☕ 请喝咖啡 | ¥18/月 | 感谢支持 |
-| 🍺 请喝啤酒 | ¥58/月 | 优先回复 Issue |
-| 🎁 项目赞助 | ¥188/月 | 定制功能需求 |
-
-## 相关项目
-
-- [baibai](https://github.com/Zeon7744/baibai) — MCP 基础工具库
-- [crypto-mlp-high-confidence](https://github.com/Zeon7744/crypto-mlp-high-confidence) — 加密货币预测
-- [global-investment-mlp](https://github.com/Zeon7744/global-investment-mlp) — 量化投资框架
-- [awesome-ai-short-drama](https://github.com/Zeon7744/awesome-ai-short-drama) — AI 短剧资源
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request！详见 [CONTRIBUTING.md](CONTRIBUTING.md)
-
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
-
----
-
-*由 [Zeon7744](https://github.com/Zeon7744) 维护 · 开发工具箱 · 三平台同步*
->>>>>>> origin/main
