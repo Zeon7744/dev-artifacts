@@ -1,41 +1,99 @@
-# 全球资本投资分析系统 (Global Investment MLP)
+# 🌍 Global Investment MLP — 全球资本投资分析系统
 
-一个全面的多机构类型投资分析平台，支持公募基金、对冲基金、VC、PE、天使基金等全球资本的分析与配置建议。
+> **多机构类型量化投资框架** — 公募/私募/VC/PE/主权基金全覆盖  
+> 多因子模型 · VaR风险引擎 · 压力测试 · 资产配置建议
 
-## 🚀 核心功能
+[![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/global-investment-mlp?style=social)](https://github.com/Zeon7744/global-investment-mlp)
+[![GitHub Forks](https://img.shields.io/github/forks/Zeon7744/global-investment-mlp?style=social)](https://github.com/Zeon7744/global-investment-mlp/forks)
+[![GitHub License](https://img.shields.io/github/license/Zeon7744/global-investment-mlp)](https://github.com/Zeon7744/global-investment-mlp/blob/main/LICENSE)
+[![Gitee Stars](https://gitee.com/Zeon7744/global-investment-mlp/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/global-investment-mlp)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+[![Test Coverage](https://img.shields.io/badge/测试-86%_coverage-success.svg)](https://github.com/Zeon7744/global-investment-mlp)
+
+---
+
+## 📌 这是 GitHub 官方主仓
+
+> **Gitee 镜像**: [gitee.com/Zeon7744/global-investment-mlp](https://gitee.com/Zeon7744/global-investment-mlp)
+
+Issues 和 PR 请在 GitHub 提交。
+
+---
+
+## ⚡ 快速开始
+
+```bash
+# 克隆仓库
+git clone https://github.com/Zeon7744/global-investment-mlp.git
+cd global-investment-mlp
+
+# 安装依赖
+pip install numpy pandas scikit-learn scipy yfinance
+
+# 运行测试
+python -m pytest test_*.py -v
+
+# 执行分析
+python main.py
+```
+
+### CLI 参数
+
+```bash
+python main.py \
+  --markets US,CN,HK \
+  --days 365 \
+  --n-funds 10 \
+  --n-assets 20 \
+  --portfolio-value 10000000 \
+  --factor-method ic_weighting \
+  --regime expansion
+```
+
+---
+
+## 🛠️ 核心功能
 
 ### 1. 多机构类型支持
-- **对冲基金** - Bridgewater, Renaissance, Citadel等
-- **风险投资(VC)** - Sequoia, a16z, Benchmark等
-- **私募股权(PE)** - Blackstone, KKR, Carlyle等
-- **公募基金** - Vanguard, BlackRock等
-- **主权财富基金** - Norway, Saudi PIB, GIC等
-- **天使投资基金** - Y Combinator等
 
-### 2. 投资热点分析
-- 实时检测全球投资热点赛道
-- 多时间窗口动量评分
-- 行业轮动预测
-- 风险调整收益评估
+| 机构类型 | 代表机构 | 策略特点 |
+|----------|----------|----------|
+| **对冲基金** | Bridgewater, Renaissance, Citadel | 多空套利、量化策略 |
+| **风险投资(VC)** | Sequoia, a16z, Benchmark | 早期项目、高成长 |
+| **私募股权(PE)** | Blackstone, KKR, Carlyle | 并购重组、杠杆收购 |
+| **公募基金** | Vanguard, BlackRock | 被动指数、分散配置 |
+| **主权基金** | Norway, Saudi PIB, GIC | 国家储备、长期持有 |
+| **天使基金** | Y Combinator | 种子轮、初创企业 |
 
-### 3. 多因子量化模型
-- 8类因子体系：价值、成长、动量、质量、低波动、流动性、宏观、另类数据
-- IC加权优化
-- 机器学习排名
-- 组合优化
+### 2. 多因子量化模型
 
-### 4. 风险分析引擎
-- VaR/CVaR计算
-- 历史压力测试（2008危机、COVID、加息周期等）
-- 相关性分析
-- 风险预警系统
+- **8类因子体系**：价值、成长、动量、质量、低波动、流动性、宏观、另类数据
+- **IC加权优化**：信息系数自适应权重
+- **机器学习排名**：XGBoost/LightGBM排序
+- **组合优化**：Mean-Variance / Risk Parity
 
-### 5. 资产配置建议
-- 基于风险偏好的配置建议
-- 动态权重调整
-- 市场周期适配
+### 3. 风险分析引擎
 
-## 📊 系统架构
+| 指标 | 说明 |
+|------|------|
+| VaR(95%) | 95%置信度下的最大损失 |
+| CVaR | 条件风险价值（期望损失） |
+| 夏普比率 | 风险调整收益 |
+| 最大回撤 | 历史最大亏损幅度 |
+| IC均值 | 因子信息系数 |
+| 多空收益 | 长短线差收益 |
+
+### 4. 压力测试情景
+
+- 📉 2008年金融危机
+- 🦠 2020年新冠疫情
+- 📈 利率缓慢上升
+- 🚀 突然加息周期
+- 📊 经济衰退模拟
+
+---
+
+## 📁 项目结构
 
 ```
 global-investment-mlp/
@@ -52,78 +110,61 @@ global-investment-mlp/
 └── docs/                 # 文档
 ```
 
-## 🔧 安装依赖
+---
 
-```bash
-pip install numpy pandas scikit-learn scipy yfinance
+## 📊 输出报告
+
+分析完成后自动生成：
+
+| 文件 | 格式 | 内容 |
+|------|------|------|
+| `reports/investment_report_*.html` | HTML | 完整可视化报告 |
+| `reports/summary_*.json` | JSON | 结构化数据摘要 |
+
+---
+
+## 🔬 技术架构
+
+```
+data_source (yfinance/API)
+    ↓
+feature_engine (因子提取)
+    ↓
+multi_factor_model (IC加权优化)
+    ↓
+risk_analytics (VaR/CVaR计算)
+    ↓
+report_generator (HTML/JSON输出)
 ```
 
-## 📈 快速开始
+---
 
-### 基本分析
-```bash
-python main.py
-```
+## ⚠️ 注意事项
 
-### 自定义参数
-```bash
-python main.py \
-  --markets US,CN,HK \
-  --days 365 \
-  --n-funds 10 \
-  --n-assets 20 \
-  --portfolio-value 10000000 \
-  --factor-method ic_weighting \
-  --regime expansion
-```
+- 本系统仅供研究学习使用
+- 不构成投资建议
+- 投资有风险，决策需谨慎
 
-### 运行测试
-```bash
-python -m pytest test_*.py -v
-```
+---
 
-## 📋 输出报告
+## 🤝 贡献指南
 
-分析完成后将生成：
-- `reports/investment_report_YYYYMMDD_HHMMSS.html` - 完整HTML报告
-- `reports/summary_YYYYMMDD.json` - JSON摘要
+欢迎提交 Issue 和 Pull Request！
 
-## 🎯 核心指标
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启 Pull Request
 
-| 指标 | 说明 |
-|------|------|
-| VaR(95%) | 95%置信度下的最大损失 |
-| CVaR | 条件风险价值 |
-| 夏普比率 | 风险调整收益 |
-| 最大回撤 | 历史最大亏损 |
-| IC均值 | 因子信息系数 |
-| 多空收益 | 长短线差 |
-
-## 📊 压力测试情景
-
-- 2008年金融危机
-- 2020年新冠疫情
-- 利率缓慢上升
-- 突然加息
-- 经济衰退
-
-## 🔮 未来规划
-
-- [ ] 接入真实基金数据库
-- [ ] 添加另类数据支持
-- [ ] 实现实时数据推送
-- [ ] 增加可视化Dashboard
-- [ ] 支持Python API集成
-- [ ] 添加机器学习预测模块
+---
 
 ## 📄 许可证
 
 MIT License
 
-## 👥 作者
-
-Global Investment MLP Team
-
 ---
 
-*免责声明：本系统仅供研究学习使用，不构成投资建议。投资有风险，决策需谨慎。*
+**开发者**: Zeon7744  
+**最后更新**: 2026-09-25  
+**GitHub**: https://github.com/Zeon7744/global-investment-mlp

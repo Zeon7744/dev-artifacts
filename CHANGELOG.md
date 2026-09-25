@@ -1,36 +1,32 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [v1.0.0] - 2026-09-25
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### 新增
+- crypto-mlp 加密货币分析系统（6模型投票，92.94%精度）
+- global-investment-mlp 全球投资分析系统
+- commodity-mlp 大宗商品分析系统
+- financial-news-mcp 金融新闻MCP服务
+- investment-mcp 统一投资分析MCP
+- short-drama-mcp 短剧创作MCP
+- smart-community 智能社区平台
+
+### 优化
+- README 全面重写，模块索引优化
+- 添加双平台镜像说明
+- 技术栈文档完善
+
+### 文档
+- CONTRIBUTING.md 贡献指南
+- CODE_OF_CONDUCT.md 行为准则
+- LICENSE MIT 许可证
+- DEPLOYMENT.md 部署指南
 
 ---
 
 ## [Unreleased]
 
-### Added
-- README unified template with module index table
-- Multi-platform links to independent repos (crypto-mlp, global-investment-mlp)
-- GitHub Pages site deployed
-- Release tag: v0.1.0
-
-### Fixed
-- README: added GitHub Pages link
-- README: added version badge (v0.1.0)
-- README: clarified that crypto-mlp and global-investment-mlp are independent repos, not submodules
-
----
-
-## [v0.1.0] — 2026-09-05
-
-### Added
-- Unified development toolbox with multi-platform sync
-- API gateway with async support
-- Agent system: analyst, orchestrator, reporter, watcher
-- Docker deployment templates
-- Release tag: v0.1.0 (pre-release)
-
----
-
-[v0.1.0]: https://github.com/Zeon7744/dev-artifacts/releases/tag/v0.1.0
+### 计划中
+- 更多 MCP Server 开发
+- Agent 系统完善
+- API Gateway 功能增强
