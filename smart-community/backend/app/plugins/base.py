@@ -85,6 +85,10 @@ class PluginRegistry:
         """返回所有已注册的 node_type（工作流编辑器节点面板用）。"""
         return list(self._plugins.keys())
 
+    def unregister(self, node_type: str) -> bool:
+        """注销插件（下架时调用）。返回是否曾注册。"""
+        return self._plugins.pop(node_type, None) is not None
+
 
 # 模块级全局注册器单例
 registry = PluginRegistry()
