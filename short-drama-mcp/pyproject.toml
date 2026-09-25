@@ -4,8 +4,8 @@ build-backend = "setuptools.backends._legacy:_Backend"
 
 [project]
 name = "short-drama-mcp"
-version = "1.0.0"
-description = "短剧创作 MCP 服务器 - 剧本校验、爽点统计、集纲生成"
+version = "2.0.0"
+description = "短剧创作 MCP 服务器 v2.0 - AI Agent 系统 + 剧本工具集"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
@@ -29,6 +29,7 @@ classifiers = [
 requires-python = ">=3.8"
 dependencies = [
     "mcp>=1.0.0",
+    "openai>=1.0.0",
 ]
 
 [project.optional-dependencies]

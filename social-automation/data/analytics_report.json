@@ -1,0 +1,25 @@
+{
+  "report_id": "rpt_20260925182748",
+  "period": "7d",
+  "generated_at": "2026-09-25T18:27:48.836851",
+  "platforms": [
+    "all"
+  ],
+  "summary": {
+    "total_engagements": 0,
+    "total_likes": 0,
+    "total_comments": 0,
+    "total_views": 0,
+    "total_reposts": 0,
+    "total_posts": 0,
+    "total_auto_replies": 0,
+    "total_followers": 0,
+    "followers_by_platform": {}
+  },
+  "by_platform": {},
+  "trends": {
+    "daily": {},
+    "data_points": 0
+  },
+  "top_content": []
+}
