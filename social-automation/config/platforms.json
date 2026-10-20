@@ -1,0 +1,84 @@
+"""
+社交自动化工具集 - 统一配置管理
+"""
+import json
+import os
+from pathlib import Path
+
+CONFIG_DIR = Path(__file__).parent
+DEFAULT_CONFIG_PATH = CONFIG_DIR / "platforms.json"
+
+
+def load_config(config_path=None):
+    """加载平台配置"""
+    path = Path(config_path) if config_path else DEFAULT_CONFIG_PATH
+    if not path.exists():
+        return _default_config()
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_config(config, config_path=None):
+    """保存平台配置"""
+    path = Path(config_path) if config_path else DEFAULT_CONFIG_PATH
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(config, f, ensure_ascii=False, indent=2)
+
+
+def _default_config():
+    return {
+        "juejin": {
+            "enabled": True,
+            "api_base": "https://api.juejin.cn",
+            "auth_type": "cookie",
+            "credentials": {"cookie": ""},
+            "rate_limit": 5,
+        },
+        "zhihu": {
+            "enabled": True,
+            "api_base": "https://api.zhihu.com",
+            "auth_type": "oauth",
+            "credentials": {"access_token": "", "refresh_token": ""},
+            "rate_limit": 3,
+        },
+        "weibo": {
+            "enabled": True,
+            "api_base": "https://api.weibo.com/2",
+            "auth_type": "oauth",
+            "credentials": {"access_token": "", "app_key": "", "app_secret": ""},
+            "rate_limit": 10,
+        },
+        "twitter": {
+            "enabled": True,
+            "api_base": "https://api.twitter.com/2",
+            "auth_type": "oauth2",
+            "credentials": {
+                "bearer_token": "",
+                "api_key": "",
+                "api_secret": "",
+                "access_token": "",
+                "access_token_secret": "",
+            },
+            "rate_limit": 5,
+        },
+        "github": {
+            "enabled": True,
+            "api_base": "https://api.github.com",
+            "auth_type": "token",
+            "credentials": {"token": ""},
+            "rate_limit": 30,
+            "repos": [],
+        },
+        "defaults": {
+            "retry_max": 3,
+            "retry_delay": 2.0,
+            "timeout": 30,
+            "log_level": "INFO",
+            "data_dir": "./data",
+        },
+    }
+
+
+# 初始化默认配置
+if not DEFAULT_CONFIG_PATH.exists():
+    save_config(_default_config())

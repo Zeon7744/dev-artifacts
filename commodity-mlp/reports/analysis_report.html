@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大宗商品MLP投资分析报告</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 12px; margin-bottom: 30px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { opacity: 0.9; font-size: 1.1em; }
+        .card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .card h2 { color: #667eea; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; font-weight: 600; color: #555; }
+        tr:hover { background: #f8f9fa; }
+        .signal-buy { color: #28a745; font-weight: bold; }
+        .signal-sell { color: #dc3545; font-weight: bold; }
+        .metric { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin: 5px; }
+        .metric-high { background: #d4edda; color: #155724; }
+        .metric-mid { background: #fff3cd; color: #856404; }
+        .feature-bar { display: flex; align-items: center; margin: 8px 0; }
+        .feature-name { width: 150px; font-size: 0.9em; }
+        .feature-bar-bg { flex: 1; height: 20px; background: #f0f0f0; border-radius: 10px; overflow: hidden; }
+        .feature-bar-fill { height: 100%; border-radius: 10px; transition: width 0.3s; }
+        .feature-value { width: 60px; text-align: right; font-size: 0.85em; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 大宗商品MLP投资分析报告</h1>
+            <p>生成时间: 2026-09-01T06:37:37.993066 | 商品数量: 5</p>
+        </div>
+
+        <div class="card">
+            <h2>GC=F - 看跌</h2>
+            <table>
+                <tr><th>指标</th><th>数值</th></tr>
+                <tr><td>预测信号</td><td class="signal-sell">看跌</td></tr>
+                <tr><td>置信度</td><td>100.0%</td></tr>
+                <tr><td>测试集准确率</td><td>0.7771</td></tr>
+                <tr><td>F1分数</td><td>0.7244</td></tr>
+                <tr><td>交叉验证</td><td>0.7821 ± 0.0175</td></tr>
+                <tr><td>样本数</td><td>781</td></tr>
+                <tr><td>特征数</td><td>15</td></tr>
+            </table>
+            
+            <h3 style="margin-top:20px;">特征重要性</h3>
+
+            <div class="feature-bar">
+                <span class="feature-name">RSI_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:100.0%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">18.8419</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Band_Width</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:96.87279028148984%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">18.2527</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">ATR_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:92.68086789223135%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.4629</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Volume_Ratio</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:92.15711030861749%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.3642</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_1d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:91.73953175987738%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.2855</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_5d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:86.0321360235376%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.2101</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">MACD</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:86.02946210854438%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.2096</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_10d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:84.97911235576727%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.0117</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h2>CL=F - 看跌</h2>
+            <table>
+                <tr><th>指标</th><th>数值</th></tr>
+                <tr><td>预测信号</td><td class="signal-sell">看跌</td></tr>
+                <tr><td>置信度</td><td>99.9%</td></tr>
+                <tr><td>测试集准确率</td><td>0.7962</td></tr>
+                <tr><td>F1分数</td><td>0.7895</td></tr>
+                <tr><td>交叉验证</td><td>0.8077 ± 0.0373</td></tr>
+                <tr><td>样本数</td><td>781</td></tr>
+                <tr><td>特征数</td><td>15</td></tr>
+            </table>
+            
+            <h3 style="margin-top:20px;">特征重要性</h3>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_1d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:100.0%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.9790</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">RSI_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:98.20287145713421%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.6559</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Position</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:93.67020870155555%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.8410</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Band_Width</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:92.02250310483643%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.5448</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_10d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:91.16645292720219%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.3909</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">ATR_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:90.75230413024286%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.3164</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_5d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:87.69166722312744%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">15.7661</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Volume_Ratio</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:86.9268840413733%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">15.6286</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h2>SI=F - 看跌</h2>
+            <table>
+                <tr><th>指标</th><th>数值</th></tr>
+                <tr><td>预测信号</td><td class="signal-sell">看跌</td></tr>
+                <tr><td>置信度</td><td>99.9%</td></tr>
+                <tr><td>测试集准确率</td><td>0.7962</td></tr>
+                <tr><td>F1分数</td><td>0.7895</td></tr>
+                <tr><td>交叉验证</td><td>0.8077 ± 0.0373</td></tr>
+                <tr><td>样本数</td><td>781</td></tr>
+                <tr><td>特征数</td><td>15</td></tr>
+            </table>
+            
+            <h3 style="margin-top:20px;">特征重要性</h3>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_1d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:100.0%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.9790</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">RSI_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:98.20287145713317%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.6559</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Position</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:93.67020870153408%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.8410</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Band_Width</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:92.02250310481593%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.5448</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_10d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:91.16645292719573%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.3909</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">ATR_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:90.75230413024008%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.3164</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_5d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:87.6916672231079%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">15.7661</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Volume_Ratio</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:86.92688404137374%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">15.6286</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h2>HG=F - 看跌</h2>
+            <table>
+                <tr><th>指标</th><th>数值</th></tr>
+                <tr><td>预测信号</td><td class="signal-sell">看跌</td></tr>
+                <tr><td>置信度</td><td>99.9%</td></tr>
+                <tr><td>测试集准确率</td><td>0.7962</td></tr>
+                <tr><td>F1分数</td><td>0.7895</td></tr>
+                <tr><td>交叉验证</td><td>0.8077 ± 0.0373</td></tr>
+                <tr><td>样本数</td><td>781</td></tr>
+                <tr><td>特征数</td><td>15</td></tr>
+            </table>
+            
+            <h3 style="margin-top:20px;">特征重要性</h3>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_1d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:100.0%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.9790</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">RSI_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:98.2028714571733%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.6559</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Position</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:93.67020870151809%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.8410</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Band_Width</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:92.02250310480379%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.5448</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_10d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:91.16645292720348%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.3909</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">ATR_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:90.75230413021745%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.3164</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_5d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:87.69166722311166%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">15.7661</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Volume_Ratio</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:86.92688404129832%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">15.6286</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h2>NG=F - 看跌</h2>
+            <table>
+                <tr><th>指标</th><th>数值</th></tr>
+                <tr><td>预测信号</td><td class="signal-sell">看跌</td></tr>
+                <tr><td>置信度</td><td>99.9%</td></tr>
+                <tr><td>测试集准确率</td><td>0.7962</td></tr>
+                <tr><td>F1分数</td><td>0.7895</td></tr>
+                <tr><td>交叉验证</td><td>0.8077 ± 0.0373</td></tr>
+                <tr><td>样本数</td><td>781</td></tr>
+                <tr><td>特征数</td><td>15</td></tr>
+            </table>
+            
+            <h3 style="margin-top:20px;">特征重要性</h3>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_1d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:100.0%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.9790</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">RSI_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:98.20287145713421%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">17.6559</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Position</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:93.67020870155555%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.8410</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Bollinger_Band_Width</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:92.02250310483643%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.5448</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_10d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:91.16645292720219%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.3909</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">ATR_14</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:90.75230413024286%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">16.3164</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Returns_5d</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:87.69166722312744%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">15.7661</span>
+            </div>
+
+            <div class="feature-bar">
+                <span class="feature-name">Volume_Ratio</span>
+                <div class="feature-bar-bg">
+                    <div class="feature-bar-fill" style="width:86.9268840413733%;background:#667eea;"></div>
+                </div>
+                <span class="feature-value">15.6286</span>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

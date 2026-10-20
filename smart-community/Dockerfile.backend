@@ -1,0 +1,44 @@
+# ============================================================
+# Smart Community - 后端镜像 (FastAPI)
+# 构建上下文：项目根目录 smart-community/
+#   docker build -f Dockerfile.backend -t smart-community-backend .
+# ============================================================
+FROM python:3.11-slim
+
+# 环境变量：Python 不缓冲输出 / 不生成 .pyc（容器内）
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /app/backend
+
+# 先单独安装依赖，利用 Docker 层缓存
+# pyproject.toml 中未配置 build 包发现（多顶层包会导致 pip install . 失败），
+# 这里直接按 pyproject.toml 的 dependencies 显式安装运行时依赖。
+RUN pip install --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+        "fastapi>=0.115.0" \
+        "uvicorn[standard]>=0.30.0" \
+        "sqlalchemy[asyncio]>=2.0.0" \
+        "aiosqlite>=0.20.0" \
+        "python-jose[cryptography]>=3.3.0" \
+        "passlib>=1.7.4" \
+        "httpx>=0.27.0" \
+        "aiohttp>=3.10.0" \
+        "pydantic>=2.0.0" \
+        "email-validator>=2.0.0" \
+        "apscheduler>=3.10.0" \
+        "websockets>=12.0"
+
+# 拷贝后端源码（.dockerignore 已排除 tests / __pycache__ 等）
+COPY backend/ /app/backend/
+
+# 数据持久化目录（compose 中以 volume 挂载；sqlite 数据库文件存放于此）
+RUN mkdir -p /data
+
+EXPOSE 8000
+
+# 容器内默认使用 /data 下的 sqlite；可通过环境变量覆盖 DATABASE_URL / SECRET_KEY
+ENV DATABASE_URL="sqlite+aiosqlite:////data/smart_community.db"
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

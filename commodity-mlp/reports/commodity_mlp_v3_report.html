@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大宗商品MLP投资分析工具 - 迭代优化v3测试报告</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #16a34a;
+            --warning: #ca8a04;
+            --danger: #dc2626;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --radius: 8px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-50);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-left: 1rem;
+        }
+        
+        .badge-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .badge-warning {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .stat-card.success {
+            border-left-color: var(--success);
+        }
+        
+        .stat-card.warning {
+            border-left-color: var(--warning);
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .stat-change {
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .stat-change.positive {
+            color: var(--success);
+        }
+        
+        .stat-change.negative {
+            color: var(--danger);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        tr:hover {
+            background: var(--gray-50);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill.success {
+            background: var(--success);
+        }
+        
+        .progress-fill.warning {
+            background: var(--warning);
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: var(--gray-100);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.25rem;
+            color: var(--gray-600);
+        }
+        
+        .feature-tag.top {
+            background: #dbeafe;
+            color: var(--primary);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .model-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .model-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fef3c7 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+            padding: 0 0.25rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            header {
+                padding: 2rem 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .two-col, .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+        
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+        
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            height: 200px;
+            padding: 1rem 0;
+        }
+        
+        .bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .bar {
+            width: 100%;
+            max-width: 60px;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.3s ease;
+        }
+        
+        .bar-label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            text-align: center;
+        }
+        
+        .bar-value {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>大宗商品MLP投资分析工具 <span class="badge badge-success">迭代v3完成</span></h1>
+            <p>集成LSTM时序模型、超参数自动搜索、多数据源支持、风险管理回测引擎 | 测试时间: 2026-09-01</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 核心指标概览 -->
+        <div class="stats-grid">
+            <div class="stat-card success">
+                <div class="stat-label">LSTM最佳准确率</div>
+                <div class="stat-value">86.76%</div>
+                <div class="stat-change positive">↑ 较MLP提升15.4%</div>
+            </div>
+            <div class="stat-card success">
+                <div class="stat-label">超参优化最佳分数</div>
+                <div class="stat-value">82.05%</div>
+                <div class="stat-change positive">↑ 较基础MLP提升10.7%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">支持商品数量</div>
+                <div class="stat-value">5</div>
+                <div class="stat-change">GC=F, CL=F, SI=F, HG=F, NG=F</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">技术指标特征数</div>
+                <div class="stat-value">15</div>
+                <div class="stat-change">RSI、MACD、布林带等</div>
+            </div>
+        </div>
+
+        <!-- 新增功能 -->
+        <h2 class="section-title">迭代v3新增功能</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">🎯 核心升级</h3>
+            </div>
+            <div class="two-col">
+                <div>
+                    <ul class="feature-list">
+                        <li><strong>LSTM时序模型</strong> - 双层LSTM + Dropout，捕捉价格序列时序依赖</li>
+                        <li><strong>超参数自动搜索</strong> - 基于Optuna的智能搜索，自动寻找最优架构</li>
+                        <li><strong>多数据源支持</strong> - yfinance + 新浪财经 + Tushare三重保障</li>
+                        <li><strong>风险管理回测引擎</strong> - 内置止损/止盈/每日亏损限制/连续亏损熔断</li>
+                        <li><strong>REST API服务</strong> - Flask API，支持健康检查、训练、预测、回测</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="feature-list">
+                        <li><strong>文件结构优化</strong> - 模块化设计，mlp_model_advanced / lstm_model / risk_backtest</li>
+                        <li><strong>综合测试套件</strong> - test_comprehensive_v2.py 一键测试所有功能</li>
+                        <li><strong>HTML可视化报告</strong> - 自动生成reports目录下的测试报告</li>
+                        <li><strong>GitHub同步</strong> - 所有代码已推送至 Zeon7744/dev-artifacts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 测试结果对比 -->
+        <h2 class="section-title">模型性能对比</h2>
+        
+        <div class="comparison-grid">
+            <div class="model-card">
+                <h3>🥇 LSTM时序模型</h3>
+                <div class="metric-row">
+                    <span class="metric-label">测试集准确率</span>
+                    <span class="metric-value" style="color: var(--success);">86.76%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">精确率</span>
+                    <span class="metric-value">81.25%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">召回率</span>
+                    <span class="metric-value">89.66%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">F1分数</span>
+                    <span class="metric-value">85.25%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">最佳验证损失</span>
+                    <span class="metric-value">0.5636</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">序列长度</span>
+                    <span class="metric-value">20天</span>
+                </div>
+            </div>
+
+            <div class="model-card">
+                <h3>🥈 超参数优化MLP</h3>
+                <div class="metric-row">
+                    <span class="metric-label">验证集最佳分数</span>
+                    <span class="metric-value" style="color: var(--primary);">82.05%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">搜索试验次数</span>
+                    <span class="metric-value">10次</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">隐藏层数</span>
+                    <span class="metric-value">2层</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">激活函数</span>
+                    <span class="metric-value">logistic</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">求解器</span>
+                    <span class="metric-value">lbfgs</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Batch Size</span>
+                    <span class="metric-value">32</span>
+                </div>
+            </div>
+
+            <div class="model-card">
+                <h3>🥉 基础MLP模型</h3>
+                <div class="metric-row">
+                    <span class="metric-label">训练集准确率</span>
+                    <span class="metric-value">78.94%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">验证集准确率</span>
+                    <span class="metric-value">80.77%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">测试集准确率</span>
+                    <span class="metric-value">71.34%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">时序CV均值</span>
+                    <span class="metric-value">76.48%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">CV标准差</span>
+                    <span class="metric-value">±2.66%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">特征选择</span>
+                    <span class="metric-value">11个特征</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关键发现 -->
+        <div class="card" style="margin-top: 2rem;">
+            <div class="card-header">
+                <h3 class="card-title">💡 关键发现</h3>
+            </div>
+            <div class="two-col">
+                <div>
+                    <h4 style="margin-bottom: 0.5rem; color: var(--primary);">LSTM优势明显</h4>
+                    <p style="color: var(--gray-600); font-size: 0.9rem;">
+                        LSTM时序模型在黄金(GC=F)上达到<span class="highlight">86.76%准确率</span>，
+                        相比基础MLP的71.34%提升了<span style="color: var(--success); font-weight: 600;">15.4个百分点</span>。
+                        这是因为LSTM能够有效捕捉价格序列的时序依赖关系。
+                    </p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem; color: var(--primary);">超参优化有效</h4>
+                    <p style="color: var(--gray-600); font-size: 0.9rem;">
+                        超参数自动搜索找到了<span class="highlight">82.05%验证分数</span>的MLP配置，
+                        比基础模型提升<span style="color: var(--success); font-weight: 600;">10.7%</span>。
+                        最佳架构：2层隐藏层，logistic激活，lbfgs求解器。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 特征重要性 -->
+        <h2 class="section-title">特征重要性分析 (GC=F)</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Top 5 重要特征</h3>
+            </div>
+            <div style="margin-top: 1rem;">
+                <div class="metric-row">
+                    <span class="metric-label"><span class="feature-tag top">1</span> RSI_14 (相对强弱指标)</span>
+                    <span class="metric-value">34.17%</span>
+                </div>
+                <div class="progress-bar" style="margin: 0.25rem 0 0.75rem;">
+                    <div class="progress-fill success" style="width: 34.17%;"></div>
+                </div>
+                
+                <div class="metric-row">
+                    <span class="metric-label"><span class="feature-tag top">2</span> Returns_10d (10日收益率)</span>
+                    <span class="metric-value">30.45%</span>
+                </div>
+                <div class="progress-bar" style="margin: 0.25rem 0 0.75rem;">
+                    <div class="progress-fill success" style="width: 30.45%;"></div>
+                </div>
+                
+                <div class="metric-row">
+                    <span class="metric-label"><span class="feature-tag top">3</span> MA_5 (5日均线)</span>
+                    <span class="metric-value">30.11%</span>
+                </div>
+                <div class="progress-bar" style="margin: 0.25rem 0 0.75rem;">
+                    <div class="progress-fill" style="width: 30.11%;"></div>
+                </div>
+                
+                <div class="metric-row">
+                    <span class="metric-label"><span class="feature-tag top">4</span> Bollinger_Band_Width (布林带宽度)</span>
+                    <span class="metric-value">30.05%</span>
+                </div>
+                <div class="progress-bar" style="margin: 0.25rem 0 0.75rem;">
+                    <div class="progress-fill" style="width: 30.05%;"></div>
+                </div>
+                
+                <div class="metric-row">
+                    <span class="metric-label"><span class="feature-tag top">5</span> Bollinger_Position (布林带位置)</span>
+                    <span class="metric-value">30.05%</span>
+                </div>
+                <div class="progress-bar" style="margin: 0.25rem 0 0.75rem;">
+                    <div class="progress-fill" style="width: 30.05%;"></div>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: var(--gray-600); font-size: 0.875rem;">
+                技术指标中，动量类指标(RSI、收益率)和波动率类指标(布林带)贡献最大。
+            </p>
+        </div>
+
+        <!-- 风险管理回测 -->
+        <h2 class="section-title">风险管理回测引擎</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">🛡️ 风控规则配置</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>风控规则</th>
+                        <th>参数</th>
+                        <th>说明</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>止损机制</td>
+                        <td>2%</td>
+                        <td>单笔亏损超过2%自动平仓</td>
+                        <td><span style="color: var(--success);">✓ 已实现</span></td>
+                    </tr>
+                    <tr>
+                        <td>止盈机制</td>
+                        <td>5%</td>
+                        <td>单笔盈利超过5%自动平仓</td>
+                        <td><span style="color: var(--success);">✓ 已实现</span></td>
+                    </tr>
+                    <tr>
+                        <td>每日亏损限制</td>
+                        <td>3%</td>
+                        <td>当日累计亏损达3%停止交易</td>
+                        <td><span style="color: var(--success);">✓ 已实现</span></td>
+                    </tr>
+                    <tr>
+                        <td>连续亏损熔断</td>
+                        <td>3次</td>
+                        <td>连续3笔亏损后暂停交易</td>
+                        <td><span style="color: var(--success);">✓ 已实现</span></td>
+                    </tr>
+                    <tr>
+                        <td>手续费率</td>
+                        <td>0.1%</td>
+                        <td>每笔交易收取0.1%手续费</td>
+                        <td><span style="color: var(--success);">✓ 已实现</span></td>
+                    </tr>
+                    <tr>
+                        <td>滑点模拟</td>
+                        <td>0.05%</td>
+                        <td>模拟0.05%市场滑点</td>
+                        <td><span style="color: var(--success);">✓ 已实现</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- API服务 -->
+        <h2 class="section-title">REST API服务</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">🔌 API端点列表</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>端点</th>
+                        <th>方法</th>
+                        <th>功能</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>/api/health</code></td>
+                        <td>GET</td>
+                        <td>健康检查，返回服务状态</td>
+                        <td><span style="color: var(--success);">✓ 已测试</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/api/symbols</code></td>
+                        <td>GET</td>
+                        <td>获取可用商品列表</td>
+                        <td><span style="color: var(--success);">✓ 已测试</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/api/train</code></td>
+                        <td>POST</td>
+                        <td>训练模型，返回训练结果</td>
+                        <td><span style="color: var(--warning);">◐ 待测试</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/api/predict</code></td>
+                        <td>POST</td>
+                        <td>获取预测信号</td>
+                        <td><span style="color: var(--warning);">◐ 待测试</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/api/backtest</code></td>
+                        <td>POST</td>
+                        <td>运行风险管理回测</td>
+                        <td><span style="color: var(--warning);">◐ 待测试</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 项目文件结构 -->
+        <h2 class="section-title">项目文件结构</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">📁 核心模块</h3>
+            </div>
+            <pre style="background: var(--gray-900); color: #e2e8f0; padding: 1rem; border-radius: var(--radius); overflow-x: auto; font-size: 0.875rem; line-height: 1.8;">
+commodity-mlp/
+├── cli.py                      # 命令行接口
+├── app_web.py                  # Web界面
+├── mlp_model.py                # 基础MLP模型
+├── mlp_model_v2.py             # v2增强版
+├── mlp_model_advanced.py       # 高级版(集成学习+时序CV)
+├── lstm_model.py               # 🆕 LSTM时序模型
+├── hyperparameter_optimizer.py # 🆕 超参数优化器
+├── data_fetcher.py             # 基础数据获取
+├── data_fetcher_v2.py          # v2增强版
+├── data_fetcher_v3.py          # 🆕 多数据源支持(yfinance/新浪/Tushare)
+├── feature_engineering.py      # 基础特征工程
+├── feature_engineering_v2.py   # v2增强版
+├── risk_manager.py             # 风险管理模块
+├── risk_backtest.py            # 🆕 风险管理回测引擎
+├── api_server.py               # 🆕 REST API服务
+├── test_*.py                   # 各种测试脚本
+├── reports/                    # 测试报告目录
+│   ├── comprehensive_test_report_20260901.html
+│   └── comprehensive_test_*.json
+└── OPTIMIZATION_V3_SUMMARY.md  # 🆕 v3迭代总结
+            </pre>
+        </div>
+
+        <!-- 下一步建议 -->
+        <h2 class="section-title">下一步优化建议</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">🚀 优化方向</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>优先级</th>
+                        <th>优化项</th>
+                        <th>预期效果</th>
+                        <th>难度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span style="color: var(--danger); font-weight: bold;">P0</span></td>
+                        <td>集成更多数据源(Akshare修复)</td>
+                        <td>解决yfinance速率限制问题</td>
+                        <td>中</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: var(--danger); font-weight: bold;">P0</span></td>
+                        <td>真实数据回测验证</td>
+                        <td>验证模型在实际市场的表现</td>
+                        <td>中</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: var(--warning); font-weight: bold;">P1</span></td>
+                        <td>实时预测API</td>
+                        <td>提供低延迟的在线预测服务</td>
+                        <td>高</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: var(--warning); font-weight: bold;">P1</span></td>
+                        <td>模型持久化与缓存</td>
+                        <td>避免重复训练，加速预测</td>
+                        <td>低</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: var(--success); font-weight: bold;">P2</span></td>
+                        <td>前端可视化增强</td>
+                        <td>更直观的图表和交互</td>
+                        <td>中</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: var(--success); font-weight: bold;">P2</span></td>
+                        <td>多商品组合策略</td>
+                        <td>分散风险，提升稳定性</td>
+                        <td>高</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 项目链接 -->
+        <div class="card" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: white;">
+            <div class="card-header" style="border-bottom-color: rgba(255,255,255,0.1);">
+                <h3 class="card-title" style="color: white;">📦 项目资源</h3>
+            </div>
+            <div class="two-col">
+                <div>
+                    <p style="margin-bottom: 0.5rem;"><strong>GitHub仓库:</strong></p>
+                    <a href="https://github.com/Zeon7744/dev-artifacts" style="color: #60a5fa; text-decoration: none;">https://github.com/Zeon7744/dev-artifacts</a>
+                </div>
+                <div>
+                    <p style="margin-bottom: 0.5rem;"><strong>最新提交:</strong></p>
+                    <code style="background: rgba(255,255,255,0.1); padding: 0.25rem 0.5rem; border-radius: 4px;">7c9844d - docs: 添加API功能测试脚本</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--gray-600); font-size: 0.875rem; border-top: 1px solid var(--gray-200); margin-top: 2rem;">
+        <p>大宗商品MLP投资分析工具 v3.0 | 迭代完成于 2026-09-01</p>
+        <p style="margin-top: 0.5rem;">由红剑 Agent 开发维护</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "financial-news-mcp"
+version = "1.0.0"
+description = "金融期货基金全球新闻MCP - 高真实性数据采集、情感分析、趋势预测、投资建议"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Zeon7744", email = "zeon7744@gmail.com"}
+]
+keywords = ["financial", "news", "mcp", "prediction", "sentiment", "investment"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "mcp>=1.0.0",
+    "requests>=2.28.0",
+    "feedparser>=6.0.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+financial-news-mcp = "main:run_server"
+
+[project.urls]
+Homepage = "https://github.com/Zeon7744/dev-artifacts"
+Documentation = "https://github.com/Zeon7744/dev-artifacts/tree/main/financial-news-mcp"
+Repository = "https://github.com/Zeon7744/dev-artifacts.git"
+Issues = "https://github.com/Zeon7744/dev-artifacts/issues"
+
+[tool.setuptools.packages.find]
+include = ["*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=tools --cov-report=term-missing"

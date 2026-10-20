@@ -1,0 +1,30 @@
+{
+  "metrics": {
+    "total_return": 4820.9197501199105,
+    "annual_return": 3713.4125050872267,
+    "volatility": 0.7030904092951865,
+    "max_drawdown": -0.12871808559227446,
+    "max_drawdown_duration": 36,
+    "sharpe_ratio": 0.14692036344030038,
+    "sortino_ratio": 0.35615256080960883,
+    "calmar_ratio": 28849.189979796454,
+    "start_date": "2023-01-02 00:00:00",
+    "end_date": "2024-01-01 00:00:00",
+    "total_periods": 261,
+    "initial_capital": 100000.0,
+    "final_capital": 482191975.011991,
+    "trade_stats": {
+      "total_trades": 9,
+      "winning_trades": 4,
+      "losing_trades": 0,
+      "win_rate": 0.4444444444444444,
+      "avg_win": 26877714.495657697,
+      "avg_loss": 0.0,
+      "profit_factor": Infinity,
+      "max_win": 89117317.3788862,
+      "max_loss": 0.0,
+      "total_pnl": 107510857.98263079
+    }
+  },
+  "trade_count": 9
+}

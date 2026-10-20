@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a2e;
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --border: #27272a;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* 工作流节点样式 */
+.workflow-node {
+  @apply rounded-lg border p-4 shadow-lg transition-all;
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+.workflow-node:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+}
+.workflow-node.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}

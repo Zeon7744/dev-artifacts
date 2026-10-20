@@ -1,0 +1,48 @@
+name: Mirror to Gitee & GitCode
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [gitee, gitcode]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Mirror to Gitee
+        if: matrix.platform == 'gitee'
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          REPO=${{ github.event.repository.name }}
+          git remote add gitee https://oauth2:${GITEE_TOKEN}@gitee.com/Zeon7744/${REPO}.git 2>/dev/null || true
+          git push gitee --all --force
+          git push gitee --tags --force
+
+      - name: Mirror to GitCode
+        if: matrix.platform == 'gitcode'
+        env:
+          GITCODE_TOKEN: ${{ secrets.GITCODE_TOKEN }}
+        run: |
+          REPO=${{ github.event.repository.name }}
+          if [ -z "${GITCODE_TOKEN}" ]; then
+            echo "ERROR: GITCODE_TOKEN secret is not set."
+            exit 0
+          fi
+          git remote add gitcode https://oauth2:${GITCODE_TOKEN}@gitcode.com/Zeon7744/${REPO}.git 2>/dev/null || true
+          for attempt in 1 2 3; do
+            if git push gitcode --all --force 2>&1 && git push gitcode --tags --force 2>&1; then
+              echo "GitCode mirror OK"
+              exit 0
+            fi
+            echo "GitCode mirror attempt ${attempt} failed, retrying..."
+            sleep $((attempt * 5))
+          done
+          echo "GitCode mirror FAILED after 3 attempts"

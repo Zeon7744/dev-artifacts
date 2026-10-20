@@ -1,0 +1,127 @@
+"""社区API - 帖子/评论"""
+from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel
+from typing import Optional
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
+from sqlalchemy.orm import selectinload
+from ..core.database import get_session
+from ..core.auth import get_current_user
+from ..models.database import User, Post, Comment
+
+router = APIRouter()
+
+class PostCreate(BaseModel):
+    title: str
+    content: str
+    post_type: str = "discussion"
+    tags: list = []
+
+class CommentCreate(BaseModel):
+    content: str
+    parent_id: Optional[int] = None
+
+@router.get("/posts")
+async def list_posts(skip: int = 0, limit: int = 20, db: AsyncSession = Depends(get_session)):
+    result = await db.execute(
+        select(Post)
+        .options(selectinload(Post.author))
+        .order_by(Post.is_pinned.desc(), Post.created_at.desc())
+        .offset(skip).limit(limit)
+    )
+    posts = result.scalars().all()
+    return [{"id": p.id, "title": p.title, "post_type": p.post_type,
+             "author": p.author.username if p.author else "unknown",
+             "like_count": p.like_count, "comment_count": p.comment_count,
+             "tags": p.tags, "created_at": p.created_at.isoformat() if p.created_at else None} for p in posts]
+
+@router.post("/posts")
+async def create_post(req: PostCreate, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_session)):
+    post = Post(author_id=user.id, title=req.title, content=req.content, post_type=req.post_type, tags=req.tags)
+    db.add(post)
+    await db.commit()
+    await db.refresh(post)
+    return {"id": post.id, "title": post.title, "status": "created"}
+
+@router.get("/posts/{post_id}")
+async def get_post(post_id: int, db: AsyncSession = Depends(get_session)):
+    result = await db.execute(
+        select(Post).where(Post.id == post_id).options(selectinload(Post.author))
+    )
+    post = result.scalar_one_or_none()
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+    post.view_count += 1
+    await db.commit()
+    # 查评论
+    cresult = await db.execute(
+        select(Comment).where(Comment.post_id == post_id).order_by(Comment.created_at)
+    )
+    comments = []
+    for c in cresult.scalars().all():
+        comments.append({"id": c.id, "content": c.content, "author_id": c.author_id,
+                         "parent_id": c.parent_id,
+                         "created_at": c.created_at.isoformat() if c.created_at else None})
+    return {"id": post.id, "title": post.title, "content": post.content, "post_type": post.post_type,
+            "author": post.author.username if post.author else "unknown",
+            "like_count": post.like_count, "comment_count": post.comment_count,
+            "view_count": post.view_count, "tags": post.tags, "comments": comments}
+
+@router.post("/posts/{post_id}/comments")
+async def add_comment(post_id: int, req: CommentCreate, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_session)):
+    post = (await db.execute(select(Post).where(Post.id == post_id))).scalar_one_or_none()
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+    comment = Comment(post_id=post_id, author_id=user.id, content=req.content, parent_id=req.parent_id)
+    db.add(comment)
+    post.comment_count += 1
+    await db.commit()
+
+    # 互动通知：评论/回复通知帖子作者（自己评论自己不通知；旁路，失败不影响主流程）
+    try:
+        if post.author_id and post.author_id != user.id:
+            from ..notifications import notify_user
+
+            snippet = req.content[:60]
+            if req.parent_id:
+                title = f"{user.username} 回复了你的评论"
+            else:
+                title = f"{user.username} 评论了你的帖子「{post.title[:20]}」"
+            await notify_user(
+                post.author_id,
+                category="community",
+                level="info",
+                title=title,
+                content=snippet,
+                data={"post_id": post_id, "comment_id": comment.id, "action": "comment"},
+            )
+    except Exception:
+        pass
+
+    return {"id": comment.id, "status": "created"}
+
+@router.post("/posts/{post_id}/like")
+async def like_post(post_id: int, user: User = Depends(get_current_user), db: AsyncSession = Depends(get_session)):
+    post = (await db.execute(select(Post).where(Post.id == post_id))).scalar_one_or_none()
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+    post.like_count += 1
+    await db.commit()
+
+    # 互动通知：点赞通知帖子作者（自己点赞自己不通知）
+    try:
+        if post.author_id and post.author_id != user.id:
+            from ..notifications import notify_user
+
+            await notify_user(
+                post.author_id,
+                category="community",
+                level="info",
+                title=f"{user.username} 赞了你的帖子「{post.title[:20]}」",
+                content="",
+                data={"post_id": post_id, "action": "like"},
+            )
+    except Exception:
+        pass
+
+    return {"id": post.id, "like_count": post.like_count}

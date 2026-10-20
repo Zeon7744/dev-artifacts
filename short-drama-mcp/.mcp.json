@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "short-drama-creator": {
+      "command": "python",
+      "args": [
+        "python",
+        "/app/data/dev-artifacts/short-drama-mcp/main.py"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}

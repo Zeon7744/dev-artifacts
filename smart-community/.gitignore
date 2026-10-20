@@ -1,0 +1,8 @@
+# Smart Community specific
+data/
+*.db
+*.sqlite
+node_modules/
+dist/
+.env
+*.log

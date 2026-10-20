@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动量策略回测报告</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+               background: #0f172a; color: #e2e8f0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #f59e0b; margin-bottom: 8px; font-size: 28px; }
+        .subtitle { color: #94a3b8; margin-bottom: 30px; font-size: 14px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; }
+        .card h3 { color: #f59e0b; font-size: 14px; text-transform: uppercase; margin-bottom: 16px; letter-spacing: 1px; }
+        .metric { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #334155; }
+        .metric:last-child { border-bottom: none; }
+        .metric-label { color: #94a3b8; font-size: 14px; }
+        .metric-value { color: #f1f5f9; font-weight: 600; font-size: 14px; }
+        .positive { color: #22c55e; }
+        .negative { color: #ef4444; }
+        .highlight { font-size: 36px; font-weight: 700; margin: 8px 0; }
+        .chart-placeholder { background: #1e293b; border-radius: 12px; padding: 40px; text-align: center; 
+                              border: 1px solid #334155; margin-bottom: 20px; }
+        .chart-placeholder pre { text-align: left; font-size: 12px; color: #94a3b8; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { background: #334155; padding: 10px 12px; text-align: left; color: #f59e0b; font-weight: 600; }
+        td { padding: 8px 12px; border-bottom: 1px solid #334155; }
+        tr:hover { background: #1e293b; }
+        .footer { text-align: center; color: #64748b; margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 12px; }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-green { background: #22c55e20; color: #22c55e; }
+        .badge-red { background: #ef444420; color: #ef4444; }
+        .badge-yellow { background: #f59e0b20; color: #f59e0b; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📊 动量策略回测报告</h1>
+    <p class="subtitle">策略: 动量策略 | 
+    回测期间: 2023-01-02 00:00:00 ~ 2024-01-01 00:00:00</p>
+    
+    <div class="grid">
+        <div class="card">
+            <h3>📈 收益概览</h3>
+            <div class="metric">
+                <span class="metric-label">总收益率</span>
+                <span class="metric-value positive">
+                    482091.98%
+                </span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">年化收益率</span>
+                <span class="metric-value positive">
+                    371341.25%
+                </span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">初始资金</span>
+                <span class="metric-value">¥100,000.00</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">最终资金</span>
+                <span class="metric-value">¥482,191,975.01</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>⚡ 风险指标</h3>
+            <div class="metric">
+                <span class="metric-label">夏普比率</span>
+                <span class="metric-value">0.1469</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Sortino 比率</span>
+                <span class="metric-value">0.3562</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Calmar 比率</span>
+                <span class="metric-value">28849.1900</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">波动率</span>
+                <span class="metric-value">70.31%</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>🛡️ 回撤控制</h3>
+            <div class="metric">
+                <span class="metric-label">最大回撤</span>
+                <span class="metric-value negative">-12.87%</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">回撤持续期</span>
+                <span class="metric-value">36 天</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>🎯 交易统计</h3>
+            <div class="metric">
+                <span class="metric-label">总交易次数</span>
+                <span class="metric-value">9</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">胜率</span>
+                <span class="metric-value">
+                    <span class="badge badge-red">
+                        44.4%
+                    </span>
+                </span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">盈亏比</span>
+                <span class="metric-value">inf</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">总盈亏</span>
+                <span class="metric-value positive">
+                    ¥107,510,857.98
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="chart-placeholder">
+        <h3 style="color: #f59e0b; margin-bottom: 16px;">📉 权益曲线 (ASCII)</h3>
+        <pre>                                                                               █
+                                                                               ▄
+                                                                               ▄
+                                                                               ▄
+                                                                               ▄
+                                                                               ▄
+                                                                               ▄
+                                                                              █▄
+                                                                              ▄ 
+                                                                              ▄ 
+                                                                             █▄ 
+                                                                             ▄  
+                                                                            █▄  
+                                                                            ▄   
+                                                                           █▄   
+                                                               ████████████▄    
+                                                              █▄                
+                                                            ██▄                 
+                                                          ██▄                   
+██████████████████████████████████████████████████████████▄                     
+────────────────────────────────────────────────────────────────────────────────
+ ¥   100,000                                                  ¥482,191,975</pre>
+    </div>
+    
+    <div class="card" style="margin-bottom: 20px;">
+        <h3>📋 最近交易记录</h3>
+        <table>
+            <thead><tr>
+                <th>时间</th><th>标的</th><th>操作</th><th>数量</th><th>价格</th><th>盈亏</th>
+            </tr></thead>
+            <tbody><tr>
+                <td>2023-01-03 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-green">BUY</span></td>
+                <td>930.3630</td>
+                <td>¥102.16</td>
+                <td class="positive">¥0.00</td>
+            </tr><tr>
+                <td>2023-02-16 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-red">SELL</span></td>
+                <td>930.3630</td>
+                <td>¥589.33</td>
+                <td class="positive">¥452697.82</td>
+            </tr><tr>
+                <td>2023-03-27 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-green">BUY</span></td>
+                <td>6133.4756</td>
+                <td>¥85.63</td>
+                <td class="positive">¥0.00</td>
+            </tr><tr>
+                <td>2023-05-12 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-red">SELL</span></td>
+                <td>6133.4756</td>
+                <td>¥533.70</td>
+                <td class="positive">¥2744913.83</td>
+            </tr><tr>
+                <td>2023-06-19 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-green">BUY</span></td>
+                <td>35669.9243</td>
+                <td>¥87.85</td>
+                <td class="positive">¥0.00</td>
+            </tr><tr>
+                <td>2023-08-04 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-red">SELL</span></td>
+                <td>35669.9243</td>
+                <td>¥514.38</td>
+                <td class="positive">¥15195928.95</td>
+            </tr><tr>
+                <td>2023-09-12 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-green">BUY</span></td>
+                <td>169822.3242</td>
+                <td>¥103.49</td>
+                <td class="positive">¥0.00</td>
+            </tr><tr>
+                <td>2023-10-31 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-red">SELL</span></td>
+                <td>169822.3242</td>
+                <td>¥628.88</td>
+                <td class="positive">¥89117317.38</td>
+            </tr><tr>
+                <td>2023-12-05 00:00:00</td>
+                <td>ASSET</td>
+                <td><span class="badge badge-green">BUY</span></td>
+                <td>921538.1777</td>
+                <td>¥110.97</td>
+                <td class="positive">¥0.00</td>
+            </tr></tbody>
+        </table>
+    </div>
+    
+    <div class="footer">
+        <p>量化交易策略库 v1.0 | 生成时间: 2026-09-25 18:34:54</p>
+        <p>本报告仅供参考，不构成投资建议</p>
+    </div>
+</div>
+</body>
+</html>

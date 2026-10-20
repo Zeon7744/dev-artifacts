@@ -1,0 +1,12 @@
+# 构建上下文排除项，减小镜像构建体积
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/.coverage
+**/htmlcov/
+backend/tests/
+backend/data/
+**/node_modules/
+frontend/dist/
+.git/
+*.md

@@ -1,0 +1,232 @@
+{
+  "generated_at": "2026-09-01T07:06:37.504053",
+  "version": "advanced",
+  "total_commodities": 5,
+  "commodities": [
+    {
+      "symbol": "GC=F",
+      "version": "advanced",
+      "timestamp": "2026-09-01T07:06:11.474182",
+      "samples": 751,
+      "features": 28,
+      "metrics": {
+        "train_accuracy": 0.8819047619047619,
+        "val_accuracy": 0.5333333333333333,
+        "test_accuracy": 0.609271523178808,
+        "test_precision": 0.6046511627906976,
+        "test_recall": 0.6753246753246753,
+        "test_f1": 0.6380368098159509,
+        "cv_mean": 0.5885057471264368,
+        "cv_std": 0.024545007475934067
+      },
+      "prediction": 0,
+      "signal": "看跌",
+      "confidence": 36.528319048630614,
+      "backtest_return": 412.24400087512174,
+      "sharpe_ratio": 2.7144789393030075,
+      "max_drawdown": 80.50873201938977,
+      "top_features": [
+        "Bollinger_Position",
+        "MA_5/M50",
+        "Price_Position_20"
+      ],
+      "feature_importance": {
+        "Bollinger_Position": 31.957812388394693,
+        "MA_5/M50": 31.612718112523872,
+        "Price_Position_20": 31.553093197195274,
+        "Price_Position_50": 31.550399806241764,
+        "MA_5/M20": 31.152398554953933,
+        "MA_10/M20": 31.04975292555277,
+        "ATR_7": 30.86155720618914,
+        "Volume_Ratio_20": 30.70181716301108,
+        "MACD": 30.2761134772649,
+        "RSI_14": 29.6756183487625,
+        "ROC_20d": 29.609872079669454,
+        "Returns_10d": 29.415209028683133,
+        "Returns_20d": 28.876574693106633,
+        "ROC_10d": 28.70050202467394,
+        "MACD_Signal": 27.590720826803604
+      }
+    },
+    {
+      "symbol": "CL=F",
+      "version": "advanced",
+      "timestamp": "2026-09-01T07:06:17.902422",
+      "samples": 751,
+      "features": 28,
+      "metrics": {
+        "train_accuracy": 0.9504761904761905,
+        "val_accuracy": 0.7333333333333333,
+        "test_accuracy": 0.5761589403973509,
+        "test_precision": 0.5657894736842105,
+        "test_recall": 0.581081081081081,
+        "test_f1": 0.5733333333333334,
+        "cv_mean": 0.639080459770115,
+        "cv_std": 0.043979601079790806
+      },
+      "prediction": 1,
+      "signal": "看涨",
+      "confidence": 68.18731556833141,
+      "backtest_return": 363.3166828602357,
+      "sharpe_ratio": 2.589329902751002,
+      "max_drawdown": 79.49151139011626,
+      "top_features": [
+        "MACD_Histogram",
+        "ATR_14",
+        "Returns_5d"
+      ],
+      "feature_importance": {
+        "MACD_Histogram": 37.11554674368026,
+        "ATR_14": 35.266804269142355,
+        "Returns_5d": 32.73006904868596,
+        "ATR_7": 32.48282473250556,
+        "Volatility_10d": 32.307365169510135,
+        "MA_5/M20": 32.287919603245776,
+        "Volume_Ratio_20": 31.65915134429553,
+        "RSI_14": 31.389833393392376,
+        "MA_50": 31.344396060170844,
+        "MA_10/M20": 30.934089329751245,
+        "Price_Position_20": 30.929817725758433,
+        "MA_20": 30.519252543895902,
+        "MA_10": 29.598247205819934,
+        "Bollinger_Position": 28.966320787492982,
+        "MA_5": 27.76900360717959
+      }
+    },
+    {
+      "symbol": "SI=F",
+      "version": "advanced",
+      "timestamp": "2026-09-01T07:06:24.720399",
+      "samples": 751,
+      "features": 28,
+      "metrics": {
+        "train_accuracy": 0.9504761904761905,
+        "val_accuracy": 0.7333333333333333,
+        "test_accuracy": 0.5761589403973509,
+        "test_precision": 0.5657894736842105,
+        "test_recall": 0.581081081081081,
+        "test_f1": 0.5733333333333334,
+        "cv_mean": 0.639080459770115,
+        "cv_std": 0.043979601079790806
+      },
+      "prediction": 1,
+      "signal": "看涨",
+      "confidence": 68.18731556850662,
+      "backtest_return": 363.3166828602349,
+      "sharpe_ratio": 2.5893299027509973,
+      "max_drawdown": 79.49151139011626,
+      "top_features": [
+        "MACD_Histogram",
+        "ATR_14",
+        "Returns_5d"
+      ],
+      "feature_importance": {
+        "MACD_Histogram": 37.11554674363882,
+        "ATR_14": 35.266804269147904,
+        "Returns_5d": 32.73006904865652,
+        "ATR_7": 32.482824732485525,
+        "Volatility_10d": 32.307365169539636,
+        "MA_5/M20": 32.287919603205246,
+        "Volume_Ratio_20": 31.65915134430338,
+        "RSI_14": 31.38983339333845,
+        "MA_50": 31.344396060162826,
+        "MA_10/M20": 30.934089329710318,
+        "Price_Position_20": 30.929817725786222,
+        "MA_20": 30.51925254390616,
+        "MA_10": 29.598247205847137,
+        "Bollinger_Position": 28.96632078750469,
+        "MA_5": 27.769003607204002
+      }
+    },
+    {
+      "symbol": "HG=F",
+      "version": "advanced",
+      "timestamp": "2026-09-01T07:06:31.158568",
+      "samples": 751,
+      "features": 28,
+      "metrics": {
+        "train_accuracy": 0.9504761904761905,
+        "val_accuracy": 0.7333333333333333,
+        "test_accuracy": 0.5761589403973509,
+        "test_precision": 0.5657894736842105,
+        "test_recall": 0.581081081081081,
+        "test_f1": 0.5733333333333334,
+        "cv_mean": 0.639080459770115,
+        "cv_std": 0.043979601079790806
+      },
+      "prediction": 1,
+      "signal": "看涨",
+      "confidence": 68.1873155697879,
+      "backtest_return": 363.3166828602371,
+      "sharpe_ratio": 2.589329902751005,
+      "max_drawdown": 79.49151139011632,
+      "top_features": [
+        "MACD_Histogram",
+        "ATR_14",
+        "Returns_5d"
+      ],
+      "feature_importance": {
+        "MACD_Histogram": 37.115546743352745,
+        "ATR_14": 35.26680426919358,
+        "Returns_5d": 32.73006904844722,
+        "ATR_7": 32.48282473233605,
+        "Volatility_10d": 32.307365169779146,
+        "MA_5/M20": 32.287919602909966,
+        "Volume_Ratio_20": 31.659151344360744,
+        "RSI_14": 31.38983339297527,
+        "MA_50": 31.344396060087107,
+        "MA_10/M20": 30.934089329419745,
+        "Price_Position_20": 30.929817725955388,
+        "MA_20": 30.51925254394752,
+        "MA_10": 29.598247206027168,
+        "Bollinger_Position": 28.96632078759807,
+        "MA_5": 27.76900360734645
+      }
+    },
+    {
+      "symbol": "NG=F",
+      "version": "advanced",
+      "timestamp": "2026-09-01T07:06:37.504025",
+      "samples": 751,
+      "features": 28,
+      "metrics": {
+        "train_accuracy": 0.9504761904761905,
+        "val_accuracy": 0.7333333333333333,
+        "test_accuracy": 0.5761589403973509,
+        "test_precision": 0.5657894736842105,
+        "test_recall": 0.581081081081081,
+        "test_f1": 0.5733333333333334,
+        "cv_mean": 0.639080459770115,
+        "cv_std": 0.043979601079790806
+      },
+      "prediction": 1,
+      "signal": "看涨",
+      "confidence": 68.18731557058388,
+      "backtest_return": 363.3166828602357,
+      "sharpe_ratio": 2.589329902751002,
+      "max_drawdown": 79.49151139011626,
+      "top_features": [
+        "MACD_Histogram",
+        "ATR_14",
+        "Returns_5d"
+      ],
+      "feature_importance": {
+        "MACD_Histogram": 37.11554674317446,
+        "ATR_14": 35.26680426922169,
+        "Returns_5d": 32.73006904831748,
+        "ATR_7": 32.48282473224274,
+        "Volatility_10d": 32.30736516992718,
+        "MA_5/M20": 32.287919602726475,
+        "Volume_Ratio_20": 31.65915134439736,
+        "RSI_14": 31.38983339274823,
+        "MA_50": 31.34439606004059,
+        "MA_10/M20": 30.934089329238333,
+        "Price_Position_20": 30.929817726061273,
+        "MA_20": 30.51925254397402,
+        "MA_10": 29.598247206139785,
+        "Bollinger_Position": 28.96632078765805,
+        "MA_5": 27.769003607435856
+      }
+    }
+  ]
+}
