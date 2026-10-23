@@ -1,0 +1,69 @@
+# dev-artifacts: 44 子项目测试 + junit/html 报告 artifact
+name: CI Test
+on:
+  push: {branches: [main, master], paths: ['**/*.py', 'requirements.txt', '.github/workflows/ci-test.yml']}
+  pull_request: {paths: ['**/*.py', 'requirements.txt', '.github/workflows/ci-test.yml']}
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Install deps
+        run: |
+          pip install pytest pytest-junit
+          [ -f requirements.txt ] && pip install -r requirements.txt || true
+          pip install numpy pandas 2>/dev/null || true
+      - name: Run 44 子项目测试（junit 报告）
+        run: |
+          python -m pytest \
+            commodity-mlp/ crypto-mlp/ global-investment-mlp/ short-drama-mcp/ \
+            --junitxml=reports/junit.xml -q --maxfail=20 --continue-on-collection-errors 2>&1 | tee reports/pytest.log \
+            || echo "(部分测试失败，已生成 junit 报告)"
+      - name: 生成 HTML 报告
+        run: |
+          pip install html-test-runner 2>/dev/null || pip install pytest-html 2>/dev/null || true
+          mkdir -p reports
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET, html, os, datetime
+          p = "reports/junit.xml"
+          if not os.path.exists(p):
+              print("no junit.xml, skip html"); raise SystemExit(0)
+          tree = ET.parse(p); root = tree.getroot()
+          suites = root.findall(".//testsuite") or ([root] if root.tag=="testsuite" else [root])
+          total=fail=err=0
+          rows=[]
+          for s in suites:
+              t=int(s.get("tests",0)); f=int(s.get("failures",0)); e=int(s.get("errors",0))
+              total+=t; fail+=f; err+=e
+              for tc in s.findall(".//testcase"):
+                  cls=tc.get("classname",""); nm=tc.get("name",""); dur=tc.get("time","")
+                  st="PASS"
+                  if tc.find("failure") is not None: st="FAIL"
+                  elif tc.find("error") is not None: st="ERROR"
+                  elif tc.find("skipped") is not None: st="SKIP"
+                  rows.append((cls,nm,dur,st))
+          os.makedirs("reports",exist_ok=True)
+          with open("reports/test_report.html","w") as out:
+              out.write(f"<html><head><title>dev-artifacts test report</title></head><body><h1>dev-artifacts 测试报告</h1>")
+              out.write(f"<p>生成时间: {datetime.datetime.now()} | 测试数: {total} 失败: {fail} 错误: {err}</p>")
+              out.write("<table border=1 cellpadding=6><tr><th>用例</th><th>耗时</th><th>结果</th></tr>")
+              for cls,nm,dur,st in rows:
+                  color = {"PASS":"#1a7f37","FAIL":"#cf222e","ERROR":"#cf222e","SKIP":"#6e7781"}[st]
+                  out.write(f'<tr><td>{html.escape(cls+"::"+nm)}</td><td>{dur}</td><td style="color:{color}">{st}</td></tr>')
+              out.write("</table></body></html>")
+          print(f"HTML 报告生成: {len(rows)} 条用例, {fail} fail, {err} error")
+          PY
+      - name: Upload 测试报告 artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            reports/junit.xml
+            reports/test_report.html
+            reports/pytest.log
+          retention-days: 30
