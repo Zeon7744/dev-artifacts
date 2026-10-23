@@ -1,125 +1,109 @@
-<!DOCTYPE html>
-<html lang="zh">
-  <head>
-    <script>
-      if (window.parent !== window && !window.location.search.includes('be_nested=1')) {
-        window.stop();
-      }
-    </script>
-    <meta charset="UTF-8">
-    <link rel="icon" href="https://cdn-static.gitcode.com/static/images/logo-favicon.png">
-    <link rel="dns-prefetch" href="https://res.hc-cdn.com">
-    <link rel="dns-prefetch" href="https://assets-cli.s2.udesk.cn">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content='pc,mobile' name='applicable-device'>
-    <meta property="og:image" content="https://cdn-img.gitcode.com/images/og-image.png">
-    <meta property="og:image:secure_url" content="https://cdn-img.gitcode.com/images/og-image.png">
-    <meta name="twitter:image" content="https://cdn-img.gitcode.com/images/og-image.png">
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="favicon">
-    <meta property="og:image:type" content="image/png">
-    <meta name="baidu-site-verification" content="codeva-zQ72KLO8Ne" />
-    <title>AtomGit - 全球开发者的开源社区,开源代码托管平台</title>
-    <meta name="description" content="AtomGit是面向全球开发者的开源社区,包括原创博客,开源代码托管,代码协作,项目管理等。与开发者社区互动,提升您的研发效率和质量。"/>
-    <meta name="keywords" content="开源社区,开源代码,AtomGit"/>
-    <style type="text/css">
-      .icon {
-         width: 1em; height: 1em;
-         vertical-align: -0.15em;
-         fill: currentColor;
-         overflow: hidden;
-      }
-    </style>
-    <script type="module" crossorigin src="https://cdn-static.gitcode.com/assets/index-2b342e54.js"></script>
-    <link rel="modulepreload" crossorigin href="https://cdn-static.gitcode.com/assets/vendor-a7fa94b7.js">
-    <link rel="modulepreload" crossorigin href="https://cdn-static.gitcode.com/assets/vendor-layout-b54bc1b9.js">
-    <link rel="stylesheet" href="https://cdn-static.gitcode.com/assets/vendor-layout-dca41200.css">
-    <link rel="stylesheet" href="https://cdn-static.gitcode.com/assets/index-30f9e41b.css">
-  </head>
-  <body>
-    <img src="https://cdn-static.gitcode.com/static/images/logo-favicon.png" style="position:absolute;left:-1000px;top:-1000px" alt="favicon">
-    <div id="app"></div>
-    
-  <script data-gitcode-ssr-create-menu-fix>(() => {
-  const createMenuPaths = new Set(["/create","/create/migrate","/models/create","/datasets/create","/space/create","/collections/create","/org/create","/dashboard"]);
+"""
+dev-artifacts 收款层 — 爱发电 afdian 网关 + 免费版限次门控
 
-  function toInternalHref(value) {
-    if (!value) return null;
-    let url;
-    try {
-      url = new window.URL(value, window.location.href);
-    } catch {
-      return null;
-    }
-    if (!createMenuPaths.has(url.pathname)) return null;
-    return url.pathname + url.search + url.hash;
-  }
+先体验后付费：免费额度拉满吸引使用，深度功能赞赏解锁。
+网关（环境变量 dev-artifacts_BILLING_GATEWAY=noop|afdian，缺省 noop）：
+  - NoopGateway  : MVP 占位，不扣款
+  - AfdianGateway: 爱发电（个人创作者 10 分钟开通，API 查订单 + Webhook，无需备案域名）
+所有密钥/赞赏码走环境变量，不落代码。
+收款/发布：https://afdian.net/@Zeon7744
+"""
+import os
+import time
+import uuid
+import json
+import hashlib
+import urllib.request
 
-  function normalizeMenuLinks() {
-    const menu = window.document.getElementById('gitcode-header-create-menu');
-    menu?.querySelectorAll('a.dashboard-create-menu__item').forEach(normalizeLink);
-    window.document
-      .querySelectorAll('a.home-header-actions__workspace')
-      .forEach(normalizeLink);
-  }
+_AFDIAN = "Zeon7744"
+_GW_ENV = "dev-artifacts_BILLING_GATEWAY"
 
-  function normalizeLink(link) {
-    const target = toInternalHref(link.getAttribute('href'));
-    if (target && link.getAttribute('href') !== target) {
-      link.setAttribute('href', target);
-    }
-  }
+# ---------- 付费墙规则（价格锚点对齐各仓 README）----------
+PAYWALL_RULES = {
+    "free":   {"daily_limit": 50, "label": "免费版"},
+    "pro":    {"daily_limit": -1, "label": "Pro ¥99/月"},
+    "team":   {"daily_limit": -1, "label": "Team ¥399/月"},
+    "enterprise": {"daily_limit": -1, "label": "企业版 定制"},
+}
 
-  window.document.addEventListener('click', (event) => {
-    if (!(event.target instanceof window.Element)) return;
-    const link = event.target.closest(
-      '#gitcode-header-create-menu a.dashboard-create-menu__item, ' +
-        'a.home-header-actions__workspace'
-    );
-    if (!link) return;
-    const target = toInternalHref(link.getAttribute('href'));
-    if (!target) return;
+_STATE = {"date": "", "count": 0}
 
-    // 旧组件的 click handler 会继续使用它闭包里的绝对地址；在捕获阶段截断，
-    // 再用已经归一化的站内地址完成同源导航。
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) {
-      window.open(target, '_blank', 'noopener');
-      return;
-    }
-    window.location.assign(target);
-  }, true);
 
-  normalizeMenuLinks();
-  if (typeof window.MutationObserver === 'function' && window.document.documentElement) {
-    const observer = new window.MutationObserver(normalizeMenuLinks);
-    observer.observe(window.document.documentElement, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      attributeFilter: ['href']
-    });
-  }
-})();</script></body>
-  <!-- ai 社区图标 -->
-  <script type="text/javascript" src="https://cdn-static.gitcode.com/js/font_4976451_914etgmfzh8.js" defer></script>
-  <script type="text/javascript" src="https://cdn-static.gitcode.com/js/font_4205092_vklvlu13jx8.js" defer></script>
-  <script type="text/javascript" src="https://cdn-static.gitcode.com/js/lottie.min.js" defer></script>
-  <script type="text/javascript" src="https://cdn-static.gitcode.com/js/tac/load.min.js" defer></script>
-  <script type="text/javascript" src="https://cdn-static.gitcode.com/js/yunpian/riddler-sdk-0.2.2.js" defer></script>
-  <script src="https://cdn-static.gitcode.com/js/yidun/yidun-captcha.js" defer></script>
-  <script type="text/javascript" src="https://cdn-static.gitcode.com/js/furion.js" defer></script>
-  <!-- baidu统计X -->
-  <script>
-    var _hmt = _hmt || [];
-    _hmt.push(['_setAutoPageview', true]);
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?62047c952451105d57bab2c4af9ce85b";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-</html>
+def _today():
+    return time.strftime("%Y-%m-%d")
+
+
+def _bump():
+    if _STATE["date"] != _today():
+        _STATE["date"] = _today()
+        _STATE["count"] = 0
+    _STATE["count"] += 1
+    return _STATE["count"]
+
+
+# ---------- 网关 ----------
+class NoopGateway:
+    name = "noop"
+
+    def create_order(self, plan, amount_cents, meta=None):
+        return {"order_id": "noop-" + uuid.uuid4().hex[:12], "status": "noop", "amount_cents": amount_cents}
+
+    def query(self, order_id):
+        return {"order_id": order_id, "status": "noop"}
+
+
+class AfdianGateway:
+    """爱发电赞赏/订阅网关：未配密钥时返回占位，不发起真实请求。"""
+    name = "afdian"
+
+    def __init__(self):
+        self.secret = os.getenv("AFDIAN_SECRET_KEY", "")
+        self.user_url = "https://afdian.net/@" + _AFDIAN
+
+    def _sign(self, payload):
+        if not self.secret:
+            return ""
+        base = json.dumps(payload, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256((base + self.secret).encode()).hexdigest()
+
+    def create_order(self, plan, amount_cents, meta=None):
+        payload = {"order_no": uuid.uuid4().hex, "amount_cents": amount_cents, "plan": plan, "ts": int(time.time())}
+        payload["sign"] = self._sign(payload)
+        if not self.secret:
+            # 未配密钥：返回赞赏页链接，引导用户手动赞赏（骨架不扣款）
+            return {"order_id": payload["order_no"], "status": "pending_manual", "afdian_url": self.user_url, "amount_cents": amount_cents}
+        # 已配密钥可对接爱发电开放 API（此处保持骨架，避免真实扣款）
+        return {"order_id": payload["order_no"], "status": "created", "amount_cents": amount_cents}
+
+    def query(self, order_id):
+        return {"order_id": order_id, "status": "unknown_without_secret"}
+
+
+_GATEWAYS = {"noop": NoopGateway, "afdian": AfdianGateway}
+
+
+def get_gateway():
+    name = os.getenv(_GW_ENV, "noop").lower()
+    return _GATEWAYS.get(name, NoopGateway)()
+
+
+def check_access(plan="free", action="use", tenant_id=""):
+    """门控：免费版限次；pro/team/enterprise 不限。返回 {"allowed","reason","upgrade_url"}。"""
+    rules = PAYWALL_RULES.get(plan, PAYWALL_RULES["free"])
+    limit = rules["daily_limit"]
+    if limit < 0:
+        return {"allowed": True, "reason": "paid", "plan": plan}
+    used = _bump()
+    if used > limit:
+        return {"allowed": False, "reason": "limit_reached", "upgrade_url": "https://afdian.net/@" + _AFDIAN, "daily_limit": limit}
+    return {"allowed": True, "reason": "free_quota", "plan": plan, "used": used}
+
+
+def get_pricing():
+    return PAYWALL_RULES
+
+
+def create_order_for_plan(plan="pro"):
+    amt = {"free": 0, "pro": 9900, "team": 39900, "enterprise": 0}.get(plan, 9900)
+    gw = get_gateway()
+    return gw.create_order(plan, amt)
