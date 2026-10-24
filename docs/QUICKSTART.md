@@ -13,5 +13,5 @@ python -m pytest commodity-mlp/ crypto-mlp/ global-investment-mlp/ short-drama-m
 
 ## 3. 收款与门控
 - 各子项目独立定价（见各子目录 billing.py）
-- 爱发电：https://afdian.com/@Zeon7744
+- 面包多 Pay：https://mbd.com/@Zeon7744
 - 冒烟：`bash smoke_test.sh`

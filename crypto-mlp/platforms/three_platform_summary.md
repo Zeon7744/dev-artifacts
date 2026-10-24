@@ -16,7 +16,7 @@
 - [x] 发布计划 (`PUBLISH_PLAN.md`)
 - [x] 三平台推广材料 (`platforms/`)
 
-**最新提交**: `934d744 docs: 添加三平台推广材料（Gitee/爱发电）`
+**最新提交**: `934d744 docs: 添加三平台推广材料（Gitee/面包多 Pay）`
 
 ---
 
@@ -36,15 +36,15 @@
 
 ---
 
-### 3️⃣ 爱发电（待手动创建）
+### 3️⃣ 面包多 Pay（待手动创建）
 
 **页面名称**: 加密货币MLP高精度分析系统  
-**推荐地址**: https://afdian.com/@Zeon7744
+**推荐地址**: https://mbd.com/@Zeon7744
 
 **操作指南**: 见 `platforms/aifadian_guide.md`
 
 **关键步骤**:
-1. 登录爱发电，创建创作者页面
+1. 登录面包多 Pay，创建创作者页面
 2. 使用指南中的项目介绍和赞助档位
 3. 上传项目截图和Logo
 4. 设置分类标签：技术开源、量化交易、机器学习
@@ -96,7 +96,7 @@ crypto-mlp/
 │   ├── zhihu_article.md    # 知乎文章
 │   ├── juejin_article.md   # 掘金文章
 │   ├── gitee_guide.md      # Gitee发布指南
-│   └── aifadian_guide.md   # 爱发电发布指南
+│   └── aifadian_guide.md   # 面包多 Pay发布指南
 └── models/                 # 训练好的模型
 ```
 
@@ -131,7 +131,7 @@ python advanced_analyzer.py
 | Day 2 10:00 | 知乎 | 技术深度解析 | ⏳ 待发布 |
 | Day 3 | GitHub | README优化 | ✅ 已完成 |
 | Day 3-5 | Gitee | 创建仓库并同步 | ⏳ 待手动操作 |
-| Day 5-7 | 爱发电 | 创建赞助页面 | ⏳ 待手动操作 |
+| Day 5-7 | 面包多 Pay | 创建赞助页面 | ⏳ 待手动操作 |
 
 ---
 
@@ -147,7 +147,7 @@ python advanced_analyzer.py
 - 🏷️ 添加中文标签（机器学习、量化交易等）
 - 👥 关注国内开发者反馈
 
-### 爱发电
+### 面包多 Pay
 - 📝 使用`aifadian_guide.md`中的项目介绍
 - 💰 设置三个赞助档位（¥10/¥50/¥200）
 - 📊 透明化资金用途说明
@@ -159,12 +159,12 @@ python advanced_analyzer.py
 ### 短期（1周）
 - GitHub Stars: 50-100
 - Gitee Stars: 20-50
-- 爱发电赞助: 5-15人
+- 面包多 Pay赞助: 5-15人
 
 ### 中期（1个月）
 - GitHub Stars: 200-500
 - Gitee Stars: 100-200
-- 爱发电赞助: 30-80人，月收入1000-5000元
+- 面包多 Pay赞助: 30-80人，月收入1000-5000元
 
 ### 长期（3个月）
 - GitHub Stars: 500-1000
@@ -187,7 +187,7 @@ python advanced_analyzer.py
 
 - **GitHub Issues**: https://github.com/Zeon7744/crypto-mlp-high-confidence/issues
 - **Gitee**: https://gitee.com/Zeon7744
-- **爱发电**: https://afdian.com/@Zeon7744
+- **面包多 Pay**: https://mbd.com/@Zeon7744
 
 ---
 
