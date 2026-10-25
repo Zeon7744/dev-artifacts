@@ -16,3 +16,4 @@ venv/
 *.log
 data/cache/
 models/*.pkl
+praise_ledger.jsonl

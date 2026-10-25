@@ -64,6 +64,13 @@ def mbd_sign_mbd(data: dict, api_key: str) -> str:
     return hashlib.md5((s + "&key=" + api_key).encode("utf-8")).hexdigest()
 
 
+# 面包多 Pay 真实契约（官方 doc.mbd.pub 核实）：
+#   支付宝 POST https://newapi.mbd.pub/release/alipay/pay（返回 body 自动提交 form HTML）
+#   查询   POST https://newapi.mbd.pub/release/main/search_order（out_trade_no|流水号）
+#   退款   POST https://api.niucodata.com/release/main/refund（order_id）
+#   签名   非空参数 ASCII 字典序 k=v&... + &key=app_key → MD5（参考 payjs，非 HMAC）
+#   费率   2% + 0.1 元/笔（<0.5 元免收）；支付宝 5 分钟内到账；微信次日自动提现到银行卡
+#   降级   未配 MBD_API_KEY/MBD_APP_ID → status=created_pending_key + needs_secret 清单
 class MbdGateway:
     """
     面包多 Pay 网关：赞赏码 / 支付宝 H5 / 微信 H5 三种收款模式，均走 newapi.mbd.pub。
@@ -155,11 +162,99 @@ class MbdGateway:
             return {"order_id": order_id, "ok": False, "error": str(e), "gateway": "mbd"}
 
 
-_GATEWAYS = {"noop": NoopGateway, "mbd": MbdGateway}
 
 
-def get_gateway():
-    name = os.getenv(_GW_ENV, "mbd").lower()
+# ─────────────────────────── 第三条通道：支付宝/微信个人赞赏码（praise 网关，无 API 密钥可用）───────────────────────────
+import os
+import json
+import time
+import uuid
+
+# 到账核对台账（本仓本地维护；推 GitHub 前注意剔除真实收款记录或用 .gitignore）
+LEDGER_FILE = os.getenv("PRAISE_LEDGER_FILE", "praise_ledger.jsonl")
+RECON_HINT = ("手动到账核对：白皇在 支付宝/微信 查看 该笔 到账后，"
+              "运行 billing.mark_praise_paid(order_id, channel, amount_cents, evidence) 放行")
+
+
+def _qr_value(channel):
+    ch = channel or os.getenv("PRAISE_CHANNEL", "alipay")
+    key = "PRAISE_ALIPAY_QR" if ch == "alipay" else "PRAISE_WX_QR"
+    return os.getenv(key, "")
+
+
+def _append_ledger(record):
+    try:
+        with open(LEDGER_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+        return True
+    except Exception:
+        return False
+
+
+class AlipayWxPraiseGateway:
+    """支付宝/微信个人赞赏码网关：无密钥可用，到账靠手动核对。"""
+    name = "praise"
+
+    def create_order(self, plan, amount_cents, meta=None):
+        ch = os.getenv("PRAISE_CHANNEL", "alipay")
+        qr = _qr_value(ch)
+        oid = "praise_" + str(uuid.uuid4())[:12]
+        if not qr:
+            return {"order_id": oid, "status": "created_pending_key",
+                    "needs_secret": [f"PRAISE_{ch.upper()}_QR"],
+                    "amount_cents": amount_cents, "plan": plan,
+                    "gateway": "praise",
+                    "note": (f"赞赏码通道未配置：白皇在 {'支付宝 App-我的-收款码' if ch=='alipay' else '微信 App-收付款-收款二维码-赞赏'} "
+                             f"生成个人码后，把码值/二维码填 {f'PRAISE_{ch.upper()}_QR'} 即可；无 API 密钥门槛")}
+        guide = {"qr": qr, "channel": ch, "amount_cents": amount_cents, "plan": plan,
+                 "instructions": f"扫码/向收款人支付 ¥{amount_cents/100:.2f}（{plan}），付款备注写订单号 {oid}"}
+        _append_ledger({"ts": int(time.time()), "order_id": oid, "status": "awaiting_manual_recon",
+                       "amount_cents": amount_cents, "channel": ch, "plan": plan})
+        return {"order_id": oid, "status": "created", "pay_guide": guide, "gateway": "praise",
+                "note": RECON_HINT}
+
+    def mark_paid(self, order_id, channel=None, amount_cents=None, evidence=""):
+        """白皇手动核对到账后调用：台账追加 paid 记录（幂等：重复调用返回已 paid）。"""
+        rec = {"order_id": order_id, "status": "paid", "paid_at": int(time.time()), "evidence": evidence}
+        if channel:
+            rec["channel"] = channel
+        if amount_cents:
+            rec["amount_cents"] = amount_cents
+        _append_ledger(rec)
+        return {"order_id": order_id, "ok": True, "status": "paid"}
+
+    def query_callback(self, order_id):
+        """按台账最后一行（最新状态）返回；无记录 → not_found。"""
+        latest = None
+        if os.path.exists(LEDGER_FILE):
+            with open(LEDGER_FILE, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line:
+                        try:
+                            r = json.loads(line)
+                        except Exception:
+                            continue
+                        if r.get("order_id") == order_id:
+                            latest = r
+        if latest is None:
+            return {"order_id": order_id, "status": "not_found", "paid": False, "gateway": "praise"}
+        return {"order_id": order_id, "status": latest.get("status", "unknown"),
+                "paid": latest.get("status") == "paid", "gateway": "praise"}
+
+    def verify_callback(self, payload):
+        # 赞赏码无 webhook；手动核对接口，恒 False 触发人工路径
+        return isinstance(payload, dict) and payload.get("manual_recon") is True
+
+    def refund(self, order_id, amount_cents, reason=""):
+        return {"order_id": order_id, "ok": True, "refunded_cents": 0,
+                "note": "赞赏码通道退款 = 白皇手动原路退回（支付宝/微信转账给付款人），台账记录在案", "gateway": "praise"}
+
+_GATEWAYS = {"noop": NoopGateway, "mbd": MbdGateway, "praise": AlipayWxPraiseGateway}
+
+
+def get_gateway(name=None):
+    name = (name or os.getenv(_GW_ENV, "mbd")).lower()
     return _GATEWAYS.get(name, NoopGateway)()
 
 
@@ -168,11 +263,11 @@ def check_access(plan="free", action="use", tenant_id=""):
     rules = PAYWALL_RULES.get(plan, PAYWALL_RULES["free"])
     limit = rules["daily_limit"]
     if limit < 0:
-        return {"allowed": True, "reason": "paid", "plan": plan}
+        return {"allowed": True, "reason": "paid", "plan": plan, "upgrade_url": "", "http_status": 200}
     used = _bump()
     if used > limit:
         return {"allowed": False, "reason": "limit_reached", "upgrade_url": "https://mbd.pub/@Zeon7744", "daily_limit": limit}
-    return {"allowed": True, "reason": "free_quota", "plan": plan, "used": used}
+    return {"allowed": True, "reason": "free_quota", "plan": plan, "used": used, "upgrade_url": "", "http_status": 200}
 
 
 def get_pricing():
